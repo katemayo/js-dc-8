@@ -25,7 +25,7 @@ TBD
 
 |   Class   |                                Title                                |    Date     |
 | --------- | ------------------------------------------------------------------- | ----------- |
-| Lesson 00 | [Installfest](https://ga-students.github.io/js-dc-7/00-installfest) | March 27th |
+| Lesson 00 | [Installfest](https://git.generalassemb.ly/Ramsay/JS-DC-8/tree/master/00-installfest) | March 27th |
 | Lesson 01 | Data and Operators | March 29th |
 | Lesson 02 | Control Flow | April 3rd |
 | Lesson 03 | Data Structures | April 5th |
