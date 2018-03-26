@@ -16,10 +16,10 @@ TBD
 
 ## What to Bring
 
-A. Your laptop (and charger with your name on it!)
-B. Snacks in case you get hungry
-C. A Sweater in case you get cold
-D. [Class Pass](./assets/class-pass.png) printed out or on your phone
+    A. Your laptop (and charger with your name on it!)
+    B. Snacks in case you get hungry
+    C. A Sweater in case you get cold
+    D. [Class Pass](./assets/class-pass.png) printed out or on your phone
 
 ## Schedule
 
