@@ -69,9 +69,9 @@ Node has a handy package manager, which we will using frequently. It comes with 
     npm install npm -g
     ```
 
-7. __Install Sublime Text 3__
+7. __Install MS Visual Code__
 
-Sublime Text can be found [here](http://www.sublimetext.com/3) and is available for all platforms, but you are free to use any code editor you choose. Popular choices include [Atom](http://atom.io) (Mac and Windows) and [Visual Studio Code](https://code.visualstudio.com/#alt-downloads) (all platforms).
+VS Code can be found [here](https://code.visualstudio.com/) and is available for all platforms.
 
 When you’re done, raise your hand and ask a member of the instructional team to verify that the installation was successful.
 
@@ -123,9 +123,9 @@ about the underlying technology of GitHub known as `git` in the next lesson.
 
 Refer to the package installer on Node’s [website](https://nodejs.org/en/). Just follow the set-up instructions.
 
-5. __Install Sublime Text__
+5. __Install MS Visual Code__
 
-Sublime Text can be found [here](http://www.sublimetext.com/3) and is available for all platforms, but you are free to use any code editor that you are comfortable with. Other popular choices are [Atom](http://atom.io) (Mac and Windows) and [Visual Studio Code](https://code.visualstudio.com/#alt-downloads) (all platforms).
+VS Code can be found [here](https://code.visualstudio.com/) and is available for all platforms.
 
 When you’re done, raise your hand and ask a member of the instructional team to verify that the installation was successful.
 
@@ -185,19 +185,28 @@ about the underlying technology of GitHub known as `git` in the next lesson.
     apt-get install --yes build-essential
     ```
 
-5. __Install Sublime Text 3__
+5. __Install MS Visual Code__
 
-Sublime Text can be found [here](http://www.sublimetext.com/3) and is available for all platforms, but you are free to use any code editor you choose. Popular choices include [Atom](http://atom.io) (Mac and Windows) and [Visual Studio Code](https://code.visualstudio.com/#alt-downloads) (all platforms).
+VS Code can be found [here](https://code.visualstudio.com/) and is available for all platforms.
+
+When you’re done, raise your hand and ask a member of the instructional team to verify that the installation was successful.
 
 
-    ```bash
-    sudo add-apt-repository ppa:webupd8team/sublime-text-3
-    sudo apt-get update
-    sudo apt-get install sublime-text-installer
-    ```
+## VS Code Configuration
 
-You’re all set! Test it out with `subl` and  ask a member of the instructional team to verify that the installation was successful.
+### eslint
 
+eslint is a tool that assists in code formatting. It will save you time and many headaches. 
+
+In vscode, click on the fifth icon in the sidebar. This is the extensions management page. In the search field, type 'eslint' and click on the first result (ESLint) to install it. 
+
+Next, install the required packages. Run the following in your terminal from the root directory of this repo:
+
+```
+npm install
+```
+
+### quokka
 
 ## Helpful Debugging Tips
 
