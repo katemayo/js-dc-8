@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Todo</title>
+</head>
+<body>
+
+  <form method="POST" action="/todos/<%= todo.id %>">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="text" name="title" value="<%= todo.title %>">
+    <input type="submit" value="Update Todo">
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo: <%= todo.title %></title>
+</head>
+<body>
+  <h1> <%= todo.title %> </h1>
+
+  <form method="POST" action="/todos/<%= todo.id %>">
+    <input type="hidden" name="_method" value="DELETE" />
+    <button>Delete</button>
+  </form>
+    
+  <a href="/todos/<%= todo.id %>/edit">Edit</a>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GrumblrApp</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <header>
+    <img id="banner" src="https://camo.githubusercontent.com/613bc7eb2a28483a252a45946af877f7034a919d/687474703a2f2f692e696d6775722e636f6d2f554a38747232412e6a7067">
+  </header>
+
+  <div>
+    <span class='add'>Add Grumble</span>
+  </div>
+
+  <div class='grumble-form'>
+    <div class='grumble-form-div'>
+      <input type="text" name="title" placeholder="title">
+      <input type="text" name="content" placeholder="content">
+      <input type="text" name="author" placeholder="author">
+      <input type="text" name="avatar" placeholder="avatar">
+      <span class='new-grumble'>GRUMBLE</span>
+    </div>
+  </div>
+
+  <div id='grumble-list'>
+
+    <div class="grumble">
+      <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1204/nyan%20kitten_1320364.jpg" alt="Gravatar">
+
+      <h3>Something | <small>Sean</small></h3>
+
+      <p>Grumble grumble grumble</p>
+
+      <span class='destroy'>Delete</span>
+      <span class='edit'>Edit</span>
+    </div>
+
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="/javascripts/index.js"></script>
+
+</body>
+</html>

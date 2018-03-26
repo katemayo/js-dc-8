@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dog Search</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+  <form id="dog-search-form">
+    <input type="text" name="dog-name">
+    <select name="dog-breed">
+      <option value="">Choose a Breed</option>
+      <option>Frenchie</option>
+      <option>Shiba</option>
+      <option>Mixed</option>
+      <option>Pug</option>
+      <option>Great Dane</option>
+      <option>St. Bernard</option>
+    </select>
+    <div>
+      <label>
+        Small
+        <input type="checkbox" name="dog-size" value="small">
+      </label>
+      <label>
+        Medium
+        <input type="checkbox" name="dog-size" value="medium">
+      </label>
+      <label>
+        Large
+        <input type="checkbox" name="dog-size" value="large">
+      </label>
+    </div>
+    <div>
+      <label>
+        A to Z
+        <input type="radio" name="sort" value="atoz">
+      </label>
+      <label>
+        Z to A
+        <input type="radio" name="sort" value="ztoa">
+      </label>
+    </div>
+    <button>Search</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <td>
+          <strong>Picture</strong>
+        </td>
+        <td>
+          <strong>Name</strong>
+        </td>
+        <td>
+          <strong>Breed</strong>
+        </td>
+        <td>
+          <strong>Size</strong>
+        </td>
+      </tr>
+    </thead>
+    <tbody id="dog-list">
+      
+    </tbody>
+  </table>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+</body>
+</html>
