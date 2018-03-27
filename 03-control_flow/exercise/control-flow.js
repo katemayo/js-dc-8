@@ -23,7 +23,6 @@
 // console.log( 'in' )
 // console.log( 'action.' )
 
-
 /*
   Running this file with `node control-flow.js` and lines 15-30 uncommented will result in each string being logged to the console in order. Our program runs from the first line to the last and evaluated every line in between, in order.
 */
@@ -31,7 +30,6 @@
 //
 // 2. Conditional Flow
 //
-
 
 // A. If Statements
 
@@ -46,7 +44,6 @@
 // console.log( 'in' )
 // console.log( 'action.' )
 
-
 // B. If/Else Statements
 
 // console.log( 'This' )
@@ -60,7 +57,6 @@
 // console.log( 'flow' )
 // console.log( 'in' )
 // console.log( 'action.' )
-
 
 // C. If/Else If/Else Statements
 
@@ -77,7 +73,6 @@
 // console.log( 'flow' )
 // console.log( 'in' )
 // console.log( 'action.' )
-
 
 // D. Ternary Statements
 
@@ -138,15 +133,14 @@
 //
 // }
 
-
 // B. `while` loops
 
 // A basic `while loop`
-console.log( 'while loop' )
+console.log('while loop')
 var x = 10
-while ( x >= 0  ) {
-  console.log( x )
-  x--;
+while (x >= 0) {
+  console.log(x)
+  x--
 }
 
 // console.log( 'for loop' )

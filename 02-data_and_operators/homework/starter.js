@@ -1,7 +1,6 @@
-/* 
+/*
   Under each of these prompts, write the line (or lines) of code that will execute the instructions
 */
-
 
 // Create a variable called `name`, and set its value to your full name (first and last)
 
@@ -23,12 +22,10 @@
 
 // Print your weirdName to the console, so it says "My weirdName is (weirdName)"
 
-///////////
+/// ////////
 // BONUS //
-///////////
+/// ////////
 
 // Try to create the Pig Latin version of your name and print it to the console.
 // As a reminder, pig latin takes any consonants at the beginning of your name, and moves them to the end
 // of your name, with "-ay" at the end. So my Pig Latin name would be "Eansay"
-
-
