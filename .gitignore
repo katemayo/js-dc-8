@@ -2,6 +2,7 @@
 node_modules/
 
 /00-installfest/exercise/solution.md
-/02-data_and_operators/homework/solution.js
+/02-data_and_operators/homework/solution*
 /03*/*/*solution.js
 /03*/*/*solution.js
+/00-installfest/excercise/solution.md
