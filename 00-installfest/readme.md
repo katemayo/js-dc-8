@@ -4,9 +4,8 @@
 | --- | --- | --- |
 | 10 min | [Opening](#opening) | Opening & Introductions |
 | 10 min | [Structure](#structure) | Structure & Benchmarks |
+| 60 min | Install
 | 50 min | [Fundamentals](#fundamentals) | Fundamentals of JS & Web Development |
-| 15 min | [Install](#install1) |Set Up Slack |
-| 45 min | [Install](#install2) |Brew, Git, GitHub, Node & Text Editors |
 | 25 min | [Exercise](#exercise) |Thinking Like a Programmer: Pseudocode |
 | 10 min | [Conclusion](#conclusion) |Final Questions & Exit Tickets|
 
