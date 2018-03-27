@@ -10,26 +10,26 @@ Brew is a package manager that we use to install various command line applicatio
 
 Open your terminal (`Applications > Utilities > Terminal`), paste the following command, and hit enter:
 
-    ```bash
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    ```
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 
 2. __Install Git__
 
 Git is used to track the state of your code over time. [GitHub](https://github.com) has built its platform on Git technology. We will be using both Git and GitHub to distribute code, submit assignments, and offer feedback. Use the following command to install Git:
 
-    ```bash
-    brew install git
-    ```
+```bash
+brew install git
+```
 
 3. __Configure Git__
 
 Copy and paste the following two commands (separately) into your terminal. Replace the name and email address values with your own.
 
-    ```bash
-    git config --global user.name "Steve Jobs"
-    git config --global user.email "steve@apple.com"
-    ```
+```bash
+git config --global user.name "Steve Jobs"
+git config --global user.email "steve@apple.com"
+```
 
 4. __Configure GitHub__
 
@@ -46,16 +46,16 @@ about the underlying technology of GitHub known as `git` in the next lesson.
   instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 - Verify your key works by running the following:
 
-  ```bash
-  ssh git@github.com
-  ```
+```bash
+ssh git@github.com
+```
 
   You should see output similar to:
 
-  ```
-  Hi <you>! You've successfully authenticated, but GitHub does not provide shell access.
-  Connection to github.com closed.
-  ```
+```
+Hi <you>! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+```
 
 5. __Install Node__
 
@@ -65,9 +65,9 @@ Refer to the package installer on Node’s [website](https://nodejs.org/en/). Ju
 
 Node has a handy package manager, which we will using frequently. It comes with Node, but NPM is updated more frequently; you will always need to have the most up-to-date version.
 
-    ```bash
-    npm install npm -g
-    ```
+```bash
+npm install npm -g
+```
 
 7. __Install MS Visual Code__
 
@@ -88,10 +88,10 @@ In order to interact with Git, you'll need to first open the Git Bash utility. A
 
 Copy and paste the following two commands (separately) into your terminal. Replace the name and email address values with your own.
 
-    ```bash
-    git config --global user.name "Steve Jobs"
-    git config --global user.email "steve@apple.com"
-    ```
+```bash
+git config --global user.name "Steve Jobs"
+git config --global user.email "steve@apple.com"
+```
 
 3. __Configure GitHub__
 
@@ -108,16 +108,16 @@ about the underlying technology of GitHub known as `git` in the next lesson.
   instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 - Verify your key works by running the following:
 
-  ```bash
-  ssh git@github.com
-  ```
+```bash
+ssh git@github.com
+```
 
   You should see output similar to:
 
-  ```
-  Hi <you>! You've successfully authenticated, but GitHub does not provide shell access.
-  Connection to github.com closed.
-  ```
+```
+Hi <you>! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+```
 
 4. __Install Node__
 
@@ -137,18 +137,18 @@ Git is a tool used to track the state of your code over time. [GitHub](https://g
 
 Git can be installed by running the following command:
 
-    ```bash
-    sudo apt-get install build-essential git-core curl
-    ```
+```bash
+sudo apt-get install build-essential git-core curl
+```
 
 2. __Configure Git__
 
 Copy and paste the following two commands (separately) into your terminal. Replace the name and email address values with your own.
 
-    ```bash
-    git config --global user.name "Steve Jobs"
-    git config --global user.email "steve@apple.com"
-    ```
+```bash
+git config --global user.name "Steve Jobs"
+git config --global user.email "steve@apple.com"
+```
 
 3. __Configure GitHub__
 
@@ -165,25 +165,25 @@ about the underlying technology of GitHub known as `git` in the next lesson.
   instructions](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
 - Verify your key works by running the following:
 
-  ```bash
-  ssh git@github.com
-  ```
+```bash
+ssh git@github.com
+```
 
   You should see output similar to:
 
-  ```
-  Hi <you>! You've successfully authenticated, but GitHub does not provide shell access.
-  Connection to github.com closed.
-  ```
+```
+Hi <you>! You've successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+```
 
 
 4. __Install Node.js__
 
-    ```bash
-    curl --silent --location https://deb.nodesource.com/setup_6.x | sudo -E bash -
-    sudo apt-get install --yes nodejs
-    apt-get install --yes build-essential
-    ```
+```bash
+curl --silent --location https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install --yes nodejs
+apt-get install --yes build-essential
+```
 
 5. __Install MS Visual Code__
 
@@ -206,7 +206,11 @@ Next, install the required packages. Run the following in your terminal from the
 npm install
 ```
 
-### quokka
+### quokka (optional)
+
+You can install a free version of [Quokka](https://quokkajs.com/)
+
+
 
 ## Helpful Debugging Tips
 
