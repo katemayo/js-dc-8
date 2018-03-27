@@ -2,7 +2,7 @@
 
 ### Sample solution pseudocode
 
-* If the red button is tapped (_event listener_)
+* If the red button is tapped (_event listener_) 
   * Check to see if the light is red (_conditional_)
   * If the light is not red, turn the light red and set the light color (_variable_) to red
   * If the light is red, turn the light off and set the light color to off
