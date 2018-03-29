@@ -26,12 +26,12 @@ TBD
 |   Class   |                                Title                                |    Date     |
 | --------- | ------------------------------------------------------------------- | ----------- |
 | Lesson 00 | [Installfest](https://git.generalassemb.ly/Ramsay/JS-DC-8/tree/master/00-installfest) | March 27th |
-| Lesson 01 | Data and Operators | March 29th |
-| Lesson 02 | Control Flow | April 3rd |
-| Lesson 03 | Data Structures | April 5th |
+| Lesson 01 | Command Line JS | March 29th |
+| Lesson 02 | Data and Operators| April 3rd |
+| Lesson 03 | Control Flow | April 5th |
 | Lesson 04 | Functions | April 10th |
-| Lesson 05 | Objects | April 12th |
-| Lesson 06 | **Project 1** | April 17th |
+| Lesson 05 | **Project 1**  | April 12th |
+| Lesson 06 | Objects | April 17th |
 | Lesson 07 | Intro to DOM | April 19th |
 | Lesson 08 | DOM Events | April 26th |
 | Lesson 09 | Forms | May 1st  |

@@ -1,6 +1,6 @@
 # ONE TIME ONLY
 
-### Fork the JS DC 7 repo
+### Fork the JS DC 8 repo
 - Follow Instructor on screen
 
 ### Remove the origin remote on your local repo
@@ -12,7 +12,7 @@
 - `git remote add origin THE_FORKED_GIT_URL_HERE`
 - `git remote -v` to see the new origin
 
-### Add the original JS DC 7 repo as an upstream remote
+### Add the original JS DC 8 repo as an upstream remote
 - Follow Instructor to copy the clone URL on github
 - `git remote add upstream THE_ORIGINAL_GIT_URL_HERE`
 - `git remote -v` to see the new upstream
@@ -23,7 +23,7 @@
 
 # EACH HOMEWORK ASSIGNMENT
 
-Do a `git pull upstream master` on the JS DC 7 repo
+Do a `git pull upstream master` on the JS DC 8 repo
 
 Do your homework in the `homework` folder, typically in a file or folder called `starter`
 
