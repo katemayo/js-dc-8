@@ -103,8 +103,7 @@ Here are some important UNIX commands to know as you're working on the terminal.
   * Optionally, download and install [iTerm 2](https://www.iterm2.com/), which is a replacement for the terminal app that is more configurable.
 
 **For Windows**:
- * Open the "Command Prompt" application.
- * For a better experience, try [Console](http://sourceforge.net/projects/console/).
+ * Open  "git bash".
 
 
 **Get familiar with the basic commands on the terminal!**
