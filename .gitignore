@@ -1,7 +1,6 @@
 .DS_Store
 node_modules/
 
-/00*/**/*solution*
 /02*/**/*solution*
 /03*/**/*solution*
 /04*/**/*solution*
