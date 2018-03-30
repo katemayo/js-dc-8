@@ -27,7 +27,7 @@ TBD
 | --------- | ------------------------------------------------------------------- | ----------- |
 | Lesson 00 | [Installfest](https://git.generalassemb.ly/Ramsay/JS-DC-8/tree/master/00-installfest) | March 27th |
 | Lesson 01 | [Command Line JS](https://github.com/ga-students/js-dc-8/tree/master/01-command-line-JS) | March 29th |
-| Lesson 02 | Data and Operators| April 3rd |
+| Lesson 02 | [Data and Operators](https://github.com/ga-students/js-dc-8/tree/master/02-data_and_operators)| April 3rd |
 | Lesson 03 | Control Flow | April 5th |
 | Lesson 04 | Functions | April 10th |
 | Lesson 05 | **Project 1**  | April 12th |
