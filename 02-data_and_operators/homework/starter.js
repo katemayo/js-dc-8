@@ -1,31 +1,63 @@
-/*
-  Under each of these prompts, write the line (or lines) of code that will execute the instructions
-*/
+/**
+ * Arrays
+ * Most of your answers should be stored in variables called q1, q2 etc..
+ * and the variables printed to the console.
+ * (i.e) console.log("Question 1" + q1)
+ */
 
-// Create a variable called `name`, and set its value to your full name (first and last)
+/**
+ * Question 1
+ * Create an array of image source filenames.
+ * Use "image1.png", "image2.png", and "image3.png" as the array values.
+ */
 
-// Print your name to the console, so it says "My name is (your name)"
+// Your code here
 
-// Use a method to calculate the number of characters in your name, and put that number inside a variable called `charCount`
+/**
+ * Question 2
+ * Using the array from Question 1, store the first element of the array
+ * in variable q2.
+ */
 
-// Print the number of characters in your name to the console, so it says "My name has (charCount) letters in it"
+// Your code here
 
-// Use a method to get only the first 3 letters of your name, and save it to a variable called `first3`
+/**
+ * Question 3
+ * Get the length of the first array (number of elements in the array)
+ * and store it in variable q3
+ */
 
-// Create another variable with only the last 3 letters of your name, called `last 3`
+// Your code here
 
-// Combine the first3 and last3 into a new variable called `nickName`
+/**
+ * Question 4
+ * Using the array from Question 1, store the last element of the array
+ * in variable q4. Hint: How can we get the number of elements in the array?
+ */
 
-// Print your nickname to the console, so it says "My nickname is (nickName)"
+// Your code here
 
-// Create a variable called `weirdName` that replaces all instances of one letter in your name with a Z
+// ____________________________________________________________________________
 
-// Print your weirdName to the console, so it says "My weirdName is (weirdName)"
+/**
+ * Arrays + Iteration
+ */
 
-/// ////////
-// BONUS //
-/// ////////
+/**
+ * Question 5
+ * Create an array of numbers using 1, 2, 3, and 4 as values.
+ * Use a for loop, a forEach function or a map function to increase
+ * each value by 1. You can either store each new value back in the original
+ * array, or in a new array -- your choice. The end result should be
+ * an array of numbers with values 2, 3, 4, and 5.
+ */
 
-// Try to create the Pig Latin version of your name and print it to the console.
-// As a reminder, pig latin takes any consonants at the beginning of your name, and moves them to the end
-// of your name, with "-ay" at the end. So my Pig Latin name would be "Eansay"
+// Your code here
+
+/**
+ * Question 6
+ * Using the array from Question 5, find the average of the numbers in the array
+ * (average = sum of all numbers/number of numbers). Store the average in q6.
+ */
+
+// Your code here
