@@ -12,6 +12,7 @@
  */
 
 // Your code here
+let q1 = ["image1.png", "image2.png", "image3.png"];
 
 /**
  * Question 2
@@ -20,7 +21,7 @@
  */
 
 // Your code here
-
+let q2 = q1[0];
 /**
  * Question 3
  * Get the length of the first array (number of elements in the array)
@@ -28,6 +29,7 @@
  */
 
 // Your code here
+let q3 = q1.length;
 
 /**
  * Question 4
@@ -36,7 +38,7 @@
  */
 
 // Your code here
-
+let q4 = q1[q1.length - 1];
 // ____________________________________________________________________________
 
 /**
@@ -53,7 +55,10 @@
  */
 
 // Your code here
-
+let q5 = [1, 2, 3, 4];
+for (let i = 0; i < q5.length; i++) {
+    q5[i] += 1;
+};
 /**
  * Question 6
  * Using the array from Question 5, find the average of the numbers in the array
@@ -61,3 +66,10 @@
  */
 
 // Your code here
+let runningTot = 0;
+for (let i = 0; i < q5.length; i++) {
+    
+    runningTot += q5[i];
+};
+
+let q6 = runningTot/q5.length;
