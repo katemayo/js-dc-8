@@ -38,7 +38,7 @@
 
 Let's jump into today's lesson—data types—where we’ll learn the basics of JavaScript and how to exchange data. 
 
-Building an app requires the exchange of data—and it all starts with data types. But what are data types? In computer science and computer programming, a data type is a classification identifying one of letious types of data. Using data types, we can determine 1) the possible values for that type; 2) the operations that can be performed on values of that type; 3) the meaning of the data; and 4) the way values of that type can be stored.
+Building an app requires the exchange of data—and it all starts with data types. But what are data types? In computer science and computer programming, a data type is a classification identifying one of various types of data. Using data types, we can determine 1) the possible values for that type; 2) the operations that can be performed on values of that type; 3) the meaning of the data; and 4) the way values of that type can be stored.
 
 You might have already encountered data types. Data types hold many similarities across different languages:
 
@@ -426,7 +426,7 @@ quantity.push(8) // [1, 2, 3, 8]
 
 #### Part 3: Accessing Elements from Arrays and Concatenating Them With Strings
 
-Now it's time to access letious combinations of the two arrays’ elements and concatenate their returned values.
+Now it's time to access various combinations of the two arrays’ elements and concatenate their returned values.
 
 ```javascript
 
