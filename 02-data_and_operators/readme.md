@@ -4,7 +4,7 @@
 | --- | --- | --- |
 | 10 min | [Opening](#opening) |What is a Data Type?  |
 | 15 min | [Codealong](#codealong1)  | Data Types  |
-| 15 min | [Codealong](#codealong2)  | letiables and Keywords|
+| 15 min | [Codealong](#codealong2)  | Variables and Keywords|
 | 10 min | [Introduction](#introduction) | Intro to Arrays|
 | 15 min | [Codealong](#codealong3)  | Working with Arrays|
 | 25 min | [Codealong](#codealong4)  | Accessing Values in Arrays |
@@ -17,7 +17,7 @@
 ### Learning Objectives
 *After this lesson, students will be able to:*
 
-- Describe the concept of a "data type" and how it relates to letiables.
+- Describe the concept of a "data type" and how it relates to variables.
 - Declare, assign to, and manipulate data stored in a letiable.
 - Create arrays and access values in them.
 - Iterate over and manipulate values in an array.
@@ -26,7 +26,7 @@
 *Before this lesson, students should already be able to:*
 
 - Be comfortable navigating between folders on the command line.
-- Run JavaScript on the command line using Node.js and use basic letiables.
+- Run JavaScript on the command line using Node.js and use basic variables.
 
 >Last class, we worked on using basic commands in the terminal, writing JavaScript, and working with Git and GitHub. Check with students to make sure that everyone is comfortable with the materials covered in the last class.
 
@@ -191,13 +191,13 @@ Strings are collections of letters and symbols known as *characters*. We use the
 
 ---
 <a name="codealong2"></a>
-## letiables and Keywords (15 min)
+## variables and Keywords (15 min)
 
-letiables are used to store data types in a computer’s memory, so that they can be referenced later.
+variables are used to store data types in a computer’s memory, so that they can be referenced later.
 
 #### Part 1: Always Use Let or Const!
 
-We declare new letiables in JavaScript using the [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) keyword.
+We declare new variables in JavaScript using the [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) keyword.
 
 If you declare a letiable without assigning a value to it, its type will be `undefined.`s
 
@@ -225,7 +225,7 @@ let myNumber = 1;
 let myString = "Greetings y'all!"
 ```
 
-Always remember that these letiables should always have the `let` keyword and use `camelCase`
+Always remember that these variables should always have the `let` keyword and use `camelCase`
 
 `const` is a keyword that declares a letiable whose value should never change.
 
