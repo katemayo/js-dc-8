@@ -18,7 +18,7 @@
 *After this lesson, students will be able to:*
 
 - Describe the concept of a "data type" and how it relates to variables.
-- Declare, assign to, and manipulate data stored in a letiable.
+- Declare, assign to, and manipulate data stored in a variable.
 - Create arrays and access values in them.
 - Iterate over and manipulate values in an array.
 
@@ -199,14 +199,14 @@ variables are used to store data types in a computer’s memory, so that they ca
 
 We declare new variables in JavaScript using the [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) keyword.
 
-If you declare a letiable without assigning a value to it, its type will be `undefined.`s
+If you declare a variable without assigning a value to it, its type will be `undefined.`s
 
 ```javascript
 let a;
 => undefined
 ```
 
-Let’s try assigning a value to letiable:
+Let’s try assigning a value to variable:
 
 ```javascript
 let name = "Alex";
@@ -227,7 +227,7 @@ let myString = "Greetings y'all!"
 
 Always remember that these variables should always have the `let` keyword and use `camelCase`
 
-`const` is a keyword that declares a letiable whose value should never change.
+`const` is a keyword that declares a variable whose value should never change.
 
 ```javascript
 const numberOfContinents = 7
@@ -622,7 +622,7 @@ evens.some(function (num) {
 The `.filter()` method creates a new array with all elements that pass the test implemented by the provided function.
 [[Source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)]
 
-__Note:__ `.filter()` does not mutate the array it is acting upon; while it does return a new array of filtered elements, this new array must be assigned to a new letiable or returned to another function.
+__Note:__ `.filter()` does not mutate the array it is acting upon; while it does return a new array of filtered elements, this new array must be assigned to a new variable or returned to another function.
 
 ```javascript
 evens.filter(function (num) {
@@ -654,7 +654,7 @@ smallNums
 The `.map()` method creates a new array with the results of calling a provided function on every element in this array.
 [[Source](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)]
 
-__Note:__ `.map()` does not mutate the array it is acting upon; while it does return a new array of filtered elements, this new array must be assigned to a new letiable or returned to another function.
+__Note:__ `.map()` does not mutate the array it is acting upon; while it does return a new array of filtered elements, this new array must be assigned to a new variable or returned to another function.
 
 ```javascript
 let timesFive = evens.map(function (num) {
