@@ -1,304 +1,757 @@
-# Control Flow
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Conditionals and Loops (3:00)
 
-## Learning Objectives
-- Submit a pull request from a branch on one repository to another
-- Understand different types of control flow including linear, conditional and iterative
-- Describe what `if`, `if/else`, and `if/else if` statements are and when to use each
-- Define truthy and falsy as it applies to JavaScript conditionals
-- Discuss how to chain conditions together with logical operators
-- Explain what a ternary operator is and when to use one
-- Explain what pseudocoding is and why it is important
-- Explain the concept of DRY and why it is important
-- Describe how a for loop works, when to use it, and potential pitfalls
-- Describe how a while loop works, when to use it, and potential pitfalls
+| Timing | Topic |Description|
+| --- | --- | --- |
+| 15 min | [Opening](#opening) | Conditional Statements |
+| 20 min | [Codealong](#codealong1) | Comparison Operators |
+| 15 min | [Codealong](#codealong2)| Truthy and Falsy |
+| 20 min | [Codealong](#codealong3)| Boolean/Logical Operators |
+| 25 min | [Lab](#practice1) | Independent Practice |
+| 25 min | [Codealong & Independent Practice](#codealong4) | Switch Statements |
+| 10 min | [Codealong](#codealong5) | While & Do-While |
+| 15 min | [Codealong](#codealong6) | Iteration |
+| 30 min | [Lab](#practice2) | Fizzbuzz Code Challenge|
+| 5 min | [Conclusion](#conclusion) | Final Questions & Exit Tickets |
 
-## Class Structure
-- Homework review (6:30)
-- Homework submission process (6:50)
-- Explain course structure (7:05)
-- Review previous class (7:15)
-- **Break** (7:30)
-- Introduction to Control Flow (7:35)
-  - Conditionals and logical operators (7:50)
-  - Truthy/Falsy (8:15)
-  - Ternary (8:25)
-  - **Break** (8:35)
-  - Looping (8:40)
-    - For loop (8:45)
-    - While loop (9:00)
-- Closing Questions / Tying up loose ends (9:15)
-- Exit Tickets (9:20)
 
-## Introduction to Control Flow
-Programming is often described as writing and following a recipe. Recipes are a metaphor that we use to describe what we're doing when we're programing: taking a complex task and breaking it down into small and discrete steps that we can describe to a computer, so that the computer can not only follow those tasks, but do so with incredible speed and precision on a huge quantity of data.
 
-But this metaphor is flawed. It certainly used to be the case that this is what programming consisted of, but not any more. This metaphor breaks when we start talking about accepting user input or responding to changes based on previous calculations. So this metaphor is archaic and not applicable - at least not for us.
+### Learning Objectives
+*After this lesson, students will be able to:*
 
-We need to write programs that can respond to a set of circumstances. This is called Control Flow.
+- Use if/else conditionals to control program flow based on Boolean (true or false) tests.
+- Use Boolean logic (!, &&, ||) to combine and manipulate conditional tests.
+- Use switch/case conditionals to control program flow based on matching explicit values.
+- Differentiate among true, false, 'truth-y', and 'false-y'.
+- Review loop iteration using for and forEach, and introduce while and do/while loops.
 
-## What is Control Flow?
-"Control Flow" refers to the order in which statements of a program are evaluated or executed. So, to that effect, we've already seen one type of control flow. When we did the distance calculator, we used what's called a linear control flow - we ran the program and ran each line in sequential order until we got to the end of the program: linear control flow. In this case, we're not really doing a whole lot of controlling as much as we are just letting the program run (or flow, if you will). What we're going to learn about today is how we can exercise control over which statements of our programs are run and in which order they run.
+### Preparation
+*Before this lesson, students should already be able to:*
 
-### Conditional Flow
-The first type or category on control flow we're going to discuss is called conditional execution. In conditional execution, we define something as needing to be true before a block of code will run. We can take it a step further and say that if something is not true, run a separate block of code instead.
+- Describe the concept of a "data type" and how it relates to letiables.
+- Declare, assign to, and manipulate data stored in a letiable.
+- Create arrays and access values in them.
+- Iterate over and manipulate values in an array.
 
-#### Linear control flow
-We've already seen Linear control flow - it's when we just run a file and do nothing to manipulate which lines of code get run or do not get run under certain circumstances.
+> Note: Last class, we worked on data types, arrays, helper methods, and array iterations. Check with students to make sure that everyone is comfortable with the materials covered in the last class before introducing the new material.
 
-*From to `control-flow.js`*
-So if I had a file that looked something like this:
+---
 
-```
-console.log( 'This' )
-console.log( 'is' )
-console.log( 'linear' )
-console.log( 'control' )
-console.log( 'flow' )
-console.log( 'in' )
-console.log( 'action' )
-```
+<a name="opening"></a>
+## Conditional Statements (15 min)
 
-We would expect each line to be `console.log`ed, in order.
+Conditional statements enable us to essentially decide which blocks of code to execute and which to skip, based on the results of tests that we run. JavaScript supports two conditional statements: `if`...`else` and `switch`. We'll start off with the 'if'...'else' statement, which uses Boolean (true or false) tests.
 
-#### Conditional Flow
-With linear flow as our baseline, we want to first explore conditional flow: running a block of code when a condition is met. We do this with `if` statements.
+#### If/Else Statement
 
-*Refer to `control-flow.js` throughout this section*
+`if (expr) { code }`  
 
-##### `if` statements
-If statements will run, if an expression evaluates as true.
+... is a command to run the `code` block if `expr` is `true`
 
-```
-if ( EXPRESSION ) {
-  CODE
+```javascript
+if (1 > 0) {
+  console.log("hi");
 }
+//=> hi
 ```
 
-In the above block of code, if EXPRESSION is `true` then CODE will execute. If EXPRESSION is `false`, then we will continue on down the program until we reach the end.
+You can also add an optional `else` clause, to run if `expr` is _not_ `true`:
 
-##### `if`/`else` statements
-In an if else statement, we can not only run a block of code if our condition is true, but also run a separate block of code if it is false:
+`if (expr) { code } else { other code }`
 
-```
-if ( EXPRESSION ) {
-  CODE TO RUN IF TRUE
+```javascript
+if (0 > 1) {
+  console.log("hi");
 } else {
-  CODE TO RUN IF FALSE
+  console.log("bye");
 }
+//=> bye
 ```
 
-##### Ternary statements
-Ternary statements give us a condensed way of expression an if/else conditional:
+When you need to test more than one case, you may use `else if`:
 
-```
-EXPRESSION ? CODE IF TRUE : CODE IF FALSE;
-```
-
-#### Conditionals in Action:
-*Assign `01_exercise.js` to do independently, then together as a class*
-
-Version 1:
-```
-var age = 12
-var allowed = false
-
-if ( age >= 18 ) {
-  allowed = true
-  console.log( "Thank you for smoking." )
-}
-```
-
-Version 2: (First refactor)
-```
-var age = 12,
-    allowed;
-
-if ( age >= 18 ) {
-  allowed = true
-  console.log( "Thank you for smoking." )
+```javascript
+let name = "kittens";
+if (name === "puppies") {
+  name += "!";
+} else if (name === "kittens") {
+  name += "!!";
 } else {
-  allowed = false
-  console.log( "You may have some gum, kid" )
+  name = "!" + name;
+}
+name === "kittens!!"
+//=> true
+```
+
+**Note**: It is **not** recommended to assign letiables within a conditional expression because that will assign a value to the letiable, as seen below:
+
+```javascript
+student = "Jamie";
+//=> "Jamie"
+```
+
+The expression above will return the value shown on the second line. So if you assign a truthy value inside a conditional statement, this condition will always be true; if you assign an undefined value, the conditional statement will be false (undefined = falsey). Another potential issue is that it can be confused with equality (`===`). The example below illustrates WHAT NOT TO DO:
+
+```javascript
+if (x = 3) {
+    console.log("boo");
 }
 ```
 
-Version 3: (Second refactor)
-```
-var age = 12
-var allowed = false
+#### Ternary Operators
 
-if ( age >= 18 ) {
-  allowed = true
-  console.log( "Thank you for smoking" )
-} else if ( age === 17 ) {
-  allowed = false
-  console.log( "Come back in a few months" )
-} else if ( age < 12 ) {
-  allowed = false
-  console.log( "You may have some gum, kid" )
+JavaScript has a ternary operator for conditional expressions. The ternary operator is basically a concise "if-else” in one line, except that it not only executes blocks of code, it also returns a value:
+
+```javascript
+let age = 12;
+//=> undefined
+
+let allowed = (age > 18) ? "yes" : "no";
+//=> undefined
+
+allowed
+//=> "no"
+```
+
+#### Block Statements
+
+Statements intended to be executed after a control flow operation will be grouped into a **block statement**; they are placed inside curly braces:
+
+```javascript
+
+{
+  console.log("hello");
+  console.log("roar");
+}
+```
+
+#### Block Scope
+
+We will talk about scope in later lessons; basically it means a limited area of code that knows about a letiable's existence. In the case of **block statements** in JavaScript, no scope is created, unlike in most other languages.
+
+```javascript
+let name = "gerry";
+{
+  let name = "jay";
+}
+console.log(name);
+// => jay
+```
+
+Only functions introduce scope in Javascript.
+
+---
+
+<a name="codealong1"></a>
+## Comparison Operators (20 min)
+
+[Comparisons](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators) in JavaScript can be made using `<`, `>`, `<=` and `>=`. These can be used for both strings and numbers. This can be either beneficial or frustrating to a developer, since most languages do not implicitly convert strings to numbers the way that JavaScript does.
+
+```javascript
+"A" > "a"
+//=> false
+
+"b" > "a"
+//=> true
+
+12 > "12"
+//=> false
+
+12 >= "12"
+//=> true
+```
+
+#### Double-Equals Equality Operator `==`
+
+Equality is a bit more complex. JavaScript provides two ways to verify equality.
+
+When you verify equality using double-equals `==`, JavaScript performs much of the "type coercion" in the background. As we mentioned above, if the operands have a different type (e.g., the number `1` and the string `"1"`), JavaScript will attempt to change the type of both operands in order to check if they are equal. This means that expressions will often return equal more easily than if we were stricter about what things were equivalent. Some examples:
+
+```javascript
+"dog" == "dog";
+//=> true
+
+1 == true;
+//=> true
+```
+
+#### Triple-Equals Equality Operator `===`
+
+To avoid type coercion and to measure equality more strictly, **use the triple-equals operator**. Because `===` more truly measures actual equality, we should always use `===` instead of `==`, which is a legacy of the early days of JavaScript when people thought it might be useful to have an operator that does type coercion before checking equality, but that's pretty much never a good idea as it defeats the whole purpose of having data types.
+
+> **Note:** "Sameness" and "equality" have letious definitions, which can make the differentiation somewhat fuzzy. They can also differ by programming language. Because you'll often be measuring whether two things are equal, you should carefully investigate the way this works.
+
+Some examples:
+
+```javascript
+1 === true;
+//=> false
+
+true === true;
+//=> true
+
+"hello" === "hello"
+//=> true
+```
+
+However, there are some situations when `===` does not behave as we expect it to, for example when empty objects or arrays are involved:
+
+```javascript
+{} === {}
+//=> Uncaught SyntaxError: Unexpected token ===
+
+[] === []
+//=> false
+
+[1,7] === [1,7]
+//=> false
+```
+
+**Explanation**
+
+The examples in the second set fail equality tests because both **object literals** and **arrays** are objects, not just "primitive" values like strings, numbers, and Booleans. Objects and arrays are complex collections of values, and when we refer to them, we're actually referencing where they live in memory. That's why we call them "reference types." Strings and numbers are "value types."
+
+What does this all mean? When we attempt to compare two objects or arrays with `===`, JavaScript doesn't care if they look like similar collections. It only compares whether or not they are the exact same object in memory. In each case above, checking for equality is actually comparing two objects that are in two different places in memory. They're not exactly "the same."
+
+#### != and !==
+
+There are also `!=` and `!==` operators, which are the negative versions of `==` and `===`. And again, we should always use `!==` and `===`, because they are more precise than `!=` and `==`.
+
+---
+
+<a name="codealong2"></a>
+
+## Truthy and Falsey (15 min)
+
+All of the following become false when converted to a Boolean:
+
+- `false`
+- `0`
+- `""` (empty string)
+- `NaN`
+- `null`
+- `undefined`
+
+All other values become true when converted to a Boolean.
+
+Do not confuse the primitive Boolean values `true` and `false` with the true and false values of the Boolean object. For example:
+
+```javascript
+let b = new Boolean(false);
+if (b) { console.log("true") }
+//=> true
+```
+
+There is a simple way of verifying the 'truthyness' or 'falseyness' of a value. When you add `!` in front of a value, the returned value will be the inverse of the value in a Boolean. So if you add two `!` then you'll get the Boolean value of the original one:
+
+```javascript
+!!1
+//=> true
+
+!!0
+//=> false
+
+!!-1
+//=> true
+
+!![]
+//=> true
+
+!!{}
+//=> true
+
+!!null
+//=> false
+
+!!""
+//=> false
+```
+
+*Find more on truthy and falsey values [here](http://adripofjavascript.com/blog/drips/truthy-and-falsy-values-in-javascript.html)*
+
+---
+
+<a name="codealong3"></a>
+
+## Boolean and Logical Operators (20 min)
+
+When you feed Boolean values of `true` or `false` into logical operators, they will  return `true` or `false` based on a few rules.
+
+There are two "binary" operators that require two values:
+
+- **AND**, denoted `&&`
+- **OR**, denoted `||`
+
+A third "unary" operator requires only one value:
+
+* **NOT**, denoted `!`
+
+#### && (AND)
+
+The `&&` operator requires both left and right values to be `true` in order to return `true`:
+
+```javascript
+true && true
+//=> true
+```
+
+Any other combination is false.
+
+```javascript
+true && false
+//=> false
+
+false && false
+//=> false
+```
+
+#### || (OR)
+
+The `||` operator requires just one of the left or right values to be `true` in order to return true.
+
+```javascript
+true || false
+//=> true
+
+false || true
+//=> true
+
+false || false
+//=> false
+```
+
+Only `false || false` will return `false`
+
+The `!` takes a value and returns the opposite Boolean value:
+
+```javascript
+!(true)
+//=> false
+```
+
+### Short-Circuit Logic
+
+`&&` and `||` and `!` don't have to operate only on true or false -- they can operate on any values, and JavaScript will evaluate the truthyness or falseyness of the operands. In the case of `!`, it returns a Boolean true-or-false, but in the case of `&&` and `||`, it returns one of the original operands themselves, using short-circuit logic.
+
+This means that the execution of the second operand is dependent on the execution of the first. This is useful for checking for null objects before accessing their attributes:
+
+```javascript
+let name = person && person.name;
+```
+
+In this case, if the first operand `person` is undefined, which is falsey, the second operand `person.name` will not be evaluated. The expression basically says, "We already know the whole `&&` expression is false, because `person` is falsey. Why bother dealing with the second operand?"
+
+Short-circuit logic is also useful for setting default values:
+
+```javascript
+let name = person.name || "Bobby Default";
+```
+
+In this case, if the first operand `person.name` turns out to be falsey for any reason (probably because it's undefined or it's an empty string), `"Bobby Default"` will be returned. If `person.name` is truthy (probably because it's a non-empty string), it will be returned, and the second operand won't be evaluated. The expression basically says, "We already know the whole `||` expression is true, because `person.name` is truthy. Why bother dealing with the second operand?"
+
+Further reference: [Mozilla Developer Network article on Logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators)
+
+
+---
+
+<a name="practice1"></a>
+## Independent Practice (25 min)
+
+When programming user interfaces, you will often need to display results based on a certain input. In this exercise, help the students design a program that will let users know what legal privileges U.S. citizens enjoy based on their age.
+
+Write a program that outputs results based on users’ age. This exercise draws on if/else statements, Boolean logic, and comparison operators. See the conditions below:
+
+- If you are under 16, you cannot do much outside of going to school
+- If you are 16 or older, you can drive
+- If you 18 or older, you can vote
+- If you are 21 or older, you can drink alcohol
+- If you are 25 or older, you can rent a car
+- If you are 35 or older, you can run for president
+- If you are 62 or older, you collect social security benefits
+
+Have the program print out only the most recent thing that they've become eligible to do, i.e. if they are 46, only print "You can run for president." (This will at least force them to use `else if` instead of just `if`).
+
+Students can work in pairs to complete the exercise. Check out the solution below.
+
+>Note: If you are outside the U.S., adjust the conditions above to reflect the laws in your country.
+
+**Solution**
+
+```javascript
+let age = 25;
+
+if (age < 16) {
+  console.log('You can go to school!')
+} else if (age >= 16 && age < 18) {
+  console.log('You can drive!');
+} else if (age >= 18 && age < 21) {
+  console.log('You can vote!');
+} else if (age >= 21 && age < 25) {
+  console.log('You can drink alcohol!');
+} else if (age >= 25 && age < 35) {
+  console.log('You can rent a car!');
+} else if (age >= 35 && age < 62) {
+  console.log('You can run for president!');
+} else if (age >= 62) {
+  console.log('You can collect social security!');
 } else {
-  allowed = false
-  console.log( "Sorry, bud" )
+  console.log('Please enter a correct age value');
+}
+
+=> You can rent a car!
+```
+
+---
+<a name="codealong4"></a>
+## Switch Statements (25 min)
+
+Now let's look at switch statements. These conditional statements can be used for multiple branches based on a number or string:
+
+```javascript
+let food = "apple";
+
+switch(food) {
+  case 'pear':
+    console.log("I like pears");
+    break;
+  case 'apple':
+    console.log("I like apples");
+    break;
+  default:
+    console.log("No favorite");
+}
+//=> I like apples
+```
+
+In this case, the `switch` statement compares `food` to each of the cases (`pear` and `apple`) and evaluates the expressions beneath them if there is a match. It uses `===` to evaluate equality.
+
+The default clause is optional.
+
+## Switch Statement Usage
+
+>To illustrate why programmers implement a switch statement—as opposed to if/else logic—compare these two approaches with the students.
+
+#### Part 1: Construct If/Else Conditionals
+
+Create an if/else statement that returns a string, such as "Awesome Job" if the user gets a grade of “A” or "Bad Job" if they get an "F." Console.log a string for each letter grade.
+
+```javascript
+
+let grade = 'C';
+
+if (grade === 'A') {
+  console.log('Awesome job');
+} else if (grade === 'B') {
+  console.log('Good job');
+} else if (grade === 'C') {
+  console.log('Okay job');
+} else if (grade === 'D') {
+  console.log('Not so good job');
+} else if (grade === 'F') {
+  console.log('Bad job');
+} else {
+  console.log('Unexpected grade value entered');
+}
+
+```
+
+#### Part 2: Construct Similar Logic Using a Switch Statement
+
+Using the if/else statement from above, convert it into a switch statement.
+
+>Ask students to do this exercise individually.
+
+```javascript
+let grade = 'C';
+
+switch (grade) {
+  case 'A':
+    console.log('Awesome job');
+    break;
+  case 'B':
+    console.log('Good job');
+    break;
+  case 'C':
+    console.log('Okay job');
+    break;
+  case 'D':
+    console.log('Not so good job');
+    break;
+  case 'F':
+    console.log('Bad job');
+    break;
+  default:
+    console.log('Unexpected grade value entered');
+}
+
+```
+
+#### Part 3: Which is Faster?
+
+>Note: Prompt students to answer which format is faster. Be sure to elaborate on the number of computations run by each of the approaches. For example, when evaluating for `grade = 'C'` using the if/else approach, the condition (`grade === 'x'`) is evaluated three times. What if the if/else statement had 10 conditions? 100? How would this impact the speed of the program? Please see ['Writing Efficient JavaScript'](http://archive.oreilly.com/pub/a/server-administration/excerpts/even-faster-websites/writing-efficient-javascript.html) for more details.
+
+#### Part 4: Intentionally `Break` the Switch Statement
+
+As `break` statements play a major role in switch statements, rewrite the switch statement from Part 2 without any `break`'s:
+
+```javascript
+let grade = 'C';
+
+switch (grade) {
+  case 'A':
+    console.log('Awesome job');
+  case 'B':
+    console.log('Good job');
+  case 'C':
+    console.log('Okay job');
+  case 'D':
+    console.log('Not so good job');
+  case 'F':
+    console.log('Bad job');
+  default:
+    console.log('Unexpected grade value entered');
+}
+
+=> Okay job
+=> Not so good job
+=> Bad job
+=> Unexpected grade value entered
+```
+
+>Ask the students to explain what is occurring here. If you are unable to generate any responses, try changing the `grade` being evaluated from `'C'` to `'B'`:
+
+```javascript
+let grade = 'B';
+
+switch (grade) {
+  case 'A':
+    console.log('Awesome job');
+  case 'B':
+    console.log('Good job');
+  case 'C':
+    console.log('Okay job');
+  case 'D':
+    console.log('Not so good job');
+  case 'F':
+    console.log('Bad job');
+  default:
+    console.log('Unexpected grade value entered');
+}
+
+=> Good job
+=> Okay job
+=> Not so good job
+=> Bad job
+=> Unexpected grade value entered
+```
+
+>Be sure to explain the purpose of the `break`, (i.e., to stop evaluating and break out of the `switch` statement after the condition has been met).
+
+#### Part 5: Illustrate the Fall-Through Technique
+
+You will often need to return the same value for different cases. The fall-through technique is one way to achieve this:
+
+```javascript
+let grade = 'C';
+
+switch (grade) {
+  case 'A':
+  case 'B':
+  case 'C':
+    console.log('You passed!')
+    break
+  case 'D':
+  case 'F':
+    console.log('You failed')
+    break
+  default:
+    console.log('Unexpected grade value entered')
+}
+
+=> You passed!
+```
+---
+
+<a name="codealong5"></a>
+## While and Do-While (10 min)
+
+`While` is a loop statement that will run **while** a condition is true.
+
+JavaScript has `while` loops and `do-while` loops. The first is useful for basic looping, but there's a possibility it will never get run. Using a `do-while` loop makes sure that the body of the loop is executed at least once, because `while()` isn't evaluated until after the block of code runs.
+
+[rewrite of the paragraph above for clarity; please check for accuracy]
+JavaScript has `while` loops and `do-while` loops. The first is useful for basic looping; however, it would forever remain inert without the `do-while` loop, which ensures that the body of the loop is executed at least once, because `while()` isn't evaluated until after the block of code runs.
+
+[some of this below looks like it might be missing content…]
+```javascript
+while (true) {
+  // an infinite loop!
 }
 ```
 
-Version 4: (Third refactor)
-```
-var age = 12,
-    allowed = ( age > 18 ) ? "yes" : "no";
+This should be enough to break a browser.
 
-console.log( allowed );
-```
-
-**Recap:**
-- What is the overall topic of this class? Control Flow
-- What was the first type of control flow that we talked about? The one we used last class? - Linear
-- What is Linear control flow? What do we mean by "linear"?
-- What was the other type of control flow that we talked about? Conditional
-- What do we mean by conditional? - our code will execute if a certain condition is met
-- What tool do we have as part of the language to do this? If, If/Else and If/Else If statements
-
-We've talked about linear flow, which runs through our program and executes each line in sequential order. We've just finished going over conditional flow, which will execute a block of code if a certain condition is met. What we're going to talk about next, is how we can execute the same block of code repetitively - over and over - based on a certain condition.
-
-#### Iterative Flow
-With Iterative or looping control flow, we want to execute a block of code for as long as a condition is true. As part of this, we'll be updating the data that our condition is based on during the loop.
-
-*Refer back to `control-flow.js` throughout this section*
-
-##### `for` loops
-There are a couple of important parts to the `for` loop, which we're going to break down. Overall, the `for` loop looks like this:
-
-```
-for ( ITERATOR; CONDITION; INCREMENT ) {
-  CODES
-}
-```
-
-We initialize a `for` loop with the `for` keyword. Then in parenthesis, we provide three pieces of data that will determine the conditions under which our loop will run and eventually break.
-
-We can think of these parts as before, during and after. This first, statement, the `iterator` is called before the loop starts and is where we'll define our counter. The second statement is the condition our loop is based on, so while this condition is true, our loop will run. The final statement, the `increment`, runs after each loop. The code between our brackets here is what will run during each loop.
-
-Lets look at a basic loop:
-
-```
-for (var i = 0; i < 5; i++) {
-  console.log( i )
-}
-```
-
-Here, we're declaring a variable `i` which we're setting at 0. Then saying that we want our loop to run for as long as `i` is less than `5`, and we're incrementing the value if `i` with each loop. Within our loop, we're simple `console.log`ing the value of `i`. What we expect is for this to simple `console` the numbers `1` through `5` in order - and that's exactly what this does.
-
-So when might this be helpful? We can modify our basic for loop and use it to iterate over an array and perform some action on each item in the array:
-
-```
-var myArray = ['one', 'two', 'three']
-
-for ( var i = 0; i < myArray.length; i++ ) {
-  console.log( myArray[ i ] )
-}
-```
-
-We can modify our `for` loop slightly to make it more succinct when working with arrays specifically by using `for ... in`.
-
-```
-for ( VARIABLE in OBJECT ) {
-  CODE
-}
-```
-
-
-##### `while` loops
-`while` loops are very similar to `for` loops - but without the explicit definition and incrementation of our looping conditions. You can see what I mean by looking at a while loop:
-```
-while( CONDITION ) {
-  CODE
-}
-```
-
-Any `for` loop can be written as a while loop:
-```
-// while loop
-console.log( 'while loop' )
-var x = 10;
-while ( x >= 0  ) {
-  console.log( x )
-  x--;
-}
-
-// for loop
-console.log( 'for loop' )
-for ( var i = 10; i > 0; i-- ) {
-  console.log( i );
-}
-```
-
-We can modify our basic `while` loop into what is called a `do while` loop:
-```
+```javascript
+let input = 0;
 do {
-  CODE
-} WHILE ( condition )
+  console.log(input++);
+} while (input < 10);
+```
+---
+<a name="codealong6"></a>
+## Iteration (15 min)
+
+Iterating is a way of incrementally repeating a task.
+
+#### for
+
+You can iterate over an array with:
+
+```javascript
+let a = [1, 2, 3, 4, 5];
+for (let i = 0; i < a.length; i++) {
+  console.log(i);
+}
 ```
 
-Note that our code will always run at least once in a `do while` loop.
+If the array length is fixed (aka elements are not being added/removed which change the number of elements in the array), the previous loop is slightly inefficient because it is essentially looking up the length property once every loop. An improvement is to chain the `let` assignment:
 
-
-## Final Exercise
-The final exercise can be found in `03_exercise.js`. This is meant to be worked on by students individually at the end of class, then gone over together as a class.
-
-Prompt:
-
-If we list the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
-
-Find the sum of all multiples of 3 or 5 below 1000.
-
-Solution 1:
+```javascript
+let a = [1, 2, 3, 4, 5];
+for (let i = 0, len = a.length; i < len; i++) {
+  console.log(i);
+}
 ```
-var ceiling = 10
-var multiples = []
-var total = 0
 
-for ( var i = 1; i < ceiling; i++ ) {
+Notice the placement of the comma and semi-colons.
 
-  if ( i % 3 === 0 ) {
-    total += i
-  } else if ( i % 5 === 0 ) {
-    total += i
+#### forEach
+
+Another way of iterating over an array added with ECMAScript 5 is [`forEach()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach):
+
+```javascript
+["dog", "cat", "hen"].forEach(function(currentValue, index, array) {
+   console.log("I want a ", currentValue);
+   console.log(array[index]);
+});
+```
+---
+
+<a name="practice2"></a>
+
+## Fizz Buzz: Independent Practice (30 min)
+
+Relying on your new-found knowledge of loops and if/else statements, incrementally build the common Fizz buzz loop. Fizz buzz is a math game designed to teach the concept of division. Create a program that will iterate through numbers 1 to 100 and log each number in the console.
+
+>Hint: Read about [the Remainder Operator on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators) and figure out how to use it to simplify this problem.
+
+Open the [fizzbuzz.js](starter-code/fizzbuzz.js) to get started.
+
+> Note: Guide students with solutions below as they complete each step.
+
+##### Step 1:
+
+Construct a for loop that iterates through, and `console.log()`'s out, numbers 1 - 100:
+
+```javascript
+for (let num = 1; num <= 100; num++) {
+  console.log(num);
+}
+```
+
+##### Step 2:
+
+Add an if/else statement that logs the string `"fizz"` if the value being iterated over is divisible by `3`; otherwise, log out the value:
+
+```javascript
+for (let num = 1; num <= 100; num++) {
+  if (num % 3 === 0) {
+    console.log('fizz');
+  } else {
+    console.log(num)
   }
-
 }
-
-console.log( total )
 ```
 
-Solution 2:
-The first solution runs the same block of code under two conditions, we can condense that so it's more succinct:
+##### Step 3:
 
-```
-var ceiling = 10
-var total = 0
+Add an `else if` clause that logs the string `"buzz"` if the value being iterated over is divisible by `5`:
 
-for ( var i = 1; i < ceiling; i++ ) {
-
-  if ( i % 3 === 0 || i % 5 === 0 ) {
-    total += i
+```javascript
+for (let num = 1; num <= 100; num++) {
+  if (num % 3 === 0) {
+    console.log('fizz');
+  } else if (num % 5 === 0) {
+    console.log('buzz')
+  } else {
+    console.log(num)
   }
-
 }
-
-console.log( total )
 ```
 
-Solution 3:
-Using a while loop and a ternary:
-```
-var i = 0;
-while ( i < ceiling ) {
-  !(i % 3) || !(i % 5) ? total += i : 0;
-  i++
+##### Step 4:
+
+Add an additional `else if` clause that logs the string `"fizzbuzz"` if the value being iterated over is divisible by both `3` and `5`. __Note:__ this step is intentionally broken! Place the new `else if` __below__ the evaluations for `fizz` and `buzz`; after running the code, and experiencing the undesired results, prompt the students as to why the `fizzbuzz` evaluation never occurred.
+
+```javascript
+for (let num = 1; num <= 100; num++) {
+  if (num % 3 === 0) {
+    console.log('fizz');
+  } else if (num % 5 === 0) {
+    console.log('buzz')
+  } else if (num % 15 === 0) {
+    console.log('fizzbuzz')
+  } else {
+    console.log(num)
+  }
 }
-
-console.log( total )
 ```
 
-## Exit Tickets
-- If there are things the students find helpful (like recaps, in-lecture coding, etc) please mention so
+##### Step 5:
+
+Fix the above code to evaluate the `fizzbuzz` condition:
+
+```javascript
+for (let num = 1; num <= 100; num++) {
+  if (num % 15 === 0) {
+    console.log('fizzbuzz');
+  } else if (num % 5 === 0) {
+    console.log('buzz')
+  } else if (num % 3 === 0) {
+    console.log('fizz')
+  } else {
+    console.log(num)
+  }
+}
+```
+
+<a name="conclusion"></a>
+## Conclusion (5 min)
+
+These are some of the foundational tools you’ll use in many of your applications. You might need to study the exact syntax before it’s committed to your memory, but it's important that you remember these core "control flow" concepts, because every programming language you encounter will involve them.
+
+#### Review
+
+Make sure the lesson objectives have been met.
+
+* Be able to explain if/else and switch statements as well as use cases.
+* Differentiate between true, false, 'truthy', and 'falsey'.
+
+#### Homework
+
+The following homework assignments should be introduced before the end of class--make sure that students understand the goals of both exercises and have an opportunity to ask questions. The assignments should be due by the next class period--students should submit their completed assignments to the instructional team using Slack (either as links to GitHub repos or as attached .js files, depending on the class' comfort level with GitHub).
+
+**Assignment 1: 99 Bottles of Beer**
+- Write a script that prints the lyrics to "99 Bottles of Beer on the Wall" in the terminal. If you're unfamiliar with the song, you can [find the lyrics here](http://www.99-bottles-of-beer.net/lyrics.html).
+- Make sure your program can handle both singular and plural cases (i.e. both "100 bottles of beer" and "1 bottle of beer").
+
+**Assignment 2: Random Address Generator**
+- Write a script that can generate random addresses
+- As a first step, create arrays that contain dummy data for each of the following: street number, street name, city name, state name and zip code
+- Your script should randomly select one item from each of these arrays and then use them to construct a random address
+- Each time you run the script, it should print a new randomly-generated address to the terminal. For example:
+- `node random-address.js`
+- `=> 34578 Dolphin Street, Wonka NY, 44506`
+
+#### Further Resources
+- [Control Flow](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
+- [While](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)
