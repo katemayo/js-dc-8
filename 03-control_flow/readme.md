@@ -82,20 +82,7 @@ name === "kittens!!"
 //=> true
 ```
 
-**Note**: It is **not** recommended to assign varbles within a conditional expression because that will assign a value to the variable, as seen below:
-
-```javascript
-student = "Jamie";
-//=> "Jamie"
-```
-
-The expression above will return the value shown on the second line. So if you assign a truthy value inside a conditional statement, this condition will always be true; if you assign an undefined value, the conditional statement will be false (undefined = falsey). Another potential issue is that it can be confused with equality (`===`). The example below illustrates WHAT NOT TO DO:
-
-```javascript
-if (x = 3) {
-    console.log("boo");
-}
-```
+**Note**: It is **not** recommended to assign variables within a conditional expression
 
 #### Ternary Operators
 

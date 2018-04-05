@@ -1,287 +1,352 @@
-# Functions
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Functions and Scope (3:00)
 
-## Learning Objectives
-- Explain what a function is and why we use them
-- Describe what arguments and parameters are and their purpose
-- Explain the importance of the return keyword, and how returning differs from "side effects" like console logging
-- Explain what JavaScript scope is, its purpose, and its rules
-- Discuss what functions in JS being "first class objects" means, and their capabilities as a result
+| Timing | Type | Topic |
+| --- | --- | --- |
+| 10 min | [Opening](#opening) | Introduction to Functions  |
+| 30 min | [Codealong](#codealong1) | Function Declaration |
+| 40 min | [Lab](#lab1) | Rolling Dice |
+| 25 min | [Codealong](#codealong2) | Parameters |
+| 25 min | [Codealong](#codealong3) |  The Return Statement |
+| 20 min | [Introduction](#introduction1) | Introduction to Scope |
+| 25 min | [Codealong](#codealong4) | Local and Global Scope Usage |
+| 5 min | [Conclusion](#conclusion) | Final Questions & Exit Tickets |
 
+>Note: The content in this lesson can be challenging for students with limited programming experience. Make sure to check for understanding as you go and spend additional time on any of the following sections if necessary.
 
-## Class Structure
-- Finish up Objects (6:30)
-- Functions
-  - What is a function? Why do we use them? (7:00)
-  - Function syntax, declare a function (7:10)
-  - **Exercise 1** (7:20)
-  - **Break** (7:30)
-  - Parameters/arguments and return (7:35)
-  - Exercise 2 (7:55)
-  - Scope (8:15)
-  - Scope quiz (8:40)
-  - **Break** (8:55)
-  - Functions as first class objects (9:00)
-- Closing Questions / Tying up loose ends (9:20)
-- Exit Tickets
+### Objectives
 
-## Introduction to Functions
-*Goal is to introduce students to the concept of functions and at a high level why they're important, before going into the syntax and use of functions*
+*After this lesson, students will be able to:*
 
-Looking back,
-- we've learnt the basic data types in JavaScripts (numbers, booleans, strings) and we've learnt how to store them in variables
-- so, we've learnt about data and how to store it
-- last class, we learnt about control flow, which is how we could shape and how it reacted to what our data was.
-- if a number (i.e. some data stored in a variable) is greater than 5, then do this, otherwise do that.
-- so we've learnt how to store data and we've learnt how to respond to the value of our data, but we've only sort of covered how to actually manipulate our data
-- we have talked about incrementing or multiplying our data, especially last class as part of learning control flow
-- but we've really only touched the surface
+- Describe how parameters and arguments relate to functions
+- Create and call a function that accepts parameters to solve a problem
+- Define and call functions defined in terms of other functions
+- Return a value from a function using the return keyword
+- Define and call functions with argument-dependent return values
+- Determine the scope of local and global variables
+- Create a program that hoists variables
 
-We've got our data, we can respond to it, now we need actions that we can run based on our conditions - actions that affect our data in meaningful ways, triggering new responses and creating more actions.
+### Preparation
+*Before this lesson, students should be able to:*
 
-That's one thing that functions give us.
+- Use conditionals to control program flow
+- Differentiate between true, false, 'truth-y', and 'false-y'
+- Use Boolean logic (!, &&, ||) to combine and manipulate conditionals
 
-It's code that does something
+>Note: Last class, we worked on data types, conditional statements, and logical and comparison operators. Check with students to make sure that everyone is comfortable with the materials covered in the last class.
 
-The other thing we need, that functions conveniently give us, is we need a way to encapsulate our code so that we can reuse it
-- functions use this idea of blocks - just like loops do
-- however, in a function blocks have something called scope, which we'll see almost makes them like subprograms without our program
-- once we've declared our function and defined what actions it will perform for us, we can invoke it over and over again, on different data and it'll perform the same action as many times as we need it to
+---
+<a name="opening"></a>
+## Introduction to Functions (10 min)
 
+A function is a reusable statement, or a group of reusable statements, that can be called anywhere in the program. This avoids the need to rewrite the same statement over and over. Functions enable the software developer to segment large, unwieldy applications into smaller, more manageable pieces.
 
-## Writing a function
-*The goal of this section is to introduce how to actually write functions*
+A critical component of programming, functions address a key tenet of engineering: Don't Repeat Yourself, or DRY. Our goal is to create programs with as little code as possible, while maintaining complete clarity.
 
-Lets go ahead and write our first function:
+Another important trait of functions is that they are similar to objects or strings. Function can be passed into other functions as an argument, and they can also be used like any other object we've been working with.
+
+---
+<a name="codealong1"></a>
+## Function Declaration (30 min)
+
+Before we call, or "use", a function, we must define it. In JavaScript, functions can be defined in several ways. Two common methods are __function declarations__ and __function expressions__.
+
+__Function Declarations:__
+```javascript
+function speak (words) {
+  console.log(words);
+}
 ```
+
+__Function Expressions:__
+```javascript
+var speak = function (words) {
+  console.log(words);
+}
+```
+
+While both methods share some similarities, only function declarations define functions that can be used anywhere in the scope where they're defined. In other words, you can call a function that is defined using function declaration before the part of the code where you actually define it:
+
+```javascript
+speak('hello, world!')
+
+function speak(words) {
+  console.log(words)
+}
+
+// DOES NOT RESULT IN ERROR
+```
+
+Function expressions, however, must be defined before they are called:
+
+```javascript
+speak('hello, world!')
+
+var speak = function (words) {
+  console.log(words)
+}
+
+// RESULTS IN ERROR:
+// TypeError: undefined is not a function
+```
+
+#### Function Declaration Syntax
+
+A function declaration always has the following:
+
+* A name
+* An optional list of parameters (i.e., the names of arguments to be "passed" into the function, or information the function will use); this is defined by the parenthesis before the opening curly brace
+* Statements inside the function (the code executed every time the function is called)
+
+In our example above, the function name is `speak`. The parameter is `words`. (Note: multiple parameters would be indicated by a comma-separated list inside the parentheses, such as `(words, num)`.) And the statement is `console.log(words);`
+
+And this makes up a basic function declaration!
+
+#### Calling Functions
+
+Calling, or invoking, a function executes the code defined inside this function.
+
+But defining and calling a function is different. A function will not be called when it's defined.
+
+You call a function by using parenthesis after the function's name `()`:
+
+```javascript
+function hello () {
+  console.log("hello there!")
+}
+
+hello();
+
+=> hello there!
+```
+
+JavaScript functions are often defined as methods on objects. To call a function as a method:
+
+```javascript
+var person = {
+  name: 'Obama',
+  speak: function () {
+    console.log('Hello, World!')
+  }
+}
+
+person.speak()
+=> 'Hello, World!'
+```
+---
+<a name="lab1"></a>
+## Rolling Dice: Lab (40 min)
+
+For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](starter-code/dice/js/app.js). Use the HTML and CSS code included in the starter code folder.
+
+![](starter-code/dice/img/diceroller.png)
+
+Before creating code, be sure to write down the pseudocode for the exercise!
+
+>Note: We haven't covered DOM Manipulation yet, but students will need some familiarity with [document.getElementById](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) to complete this exercise. Be sure to tell them this and/or provide a short intro.
+
+<a name="codealong2"></a>
+## Parameters (25 min)
+
+If a function did the same thing every time it was called, it wouldn't be a very powerful codebase. We would also have to write a new function for each new feature in order to enable additional behaviors in our application:
+
+```javascript
+// Bad idea...
+function helloMark () {
+  console.log('hello, Mark');
+}
+
+function helloObama () {
+  console.log('hello, Obama')
+}
+```
+
+> __Instructor's Note:__ Ask students why they think writing such specific functions is a bad idea. If no one has an answer, ask what happens to the above program structure if it has 1,000 users. If we have to write 1,000 different functions, is this a scalable and maintainable program?
+
+Parameters remedy this problem by allowing us to call, or invoke, the same function with different values:
+
+```javascript
+function sayHello (name) {
+  console.log('Hello ' + name);
+}
+
+sayHello('Mark');
+=> 'Hello Mark'
+
+sayHello('Obama');
+=> 'Hello Obama'
+```
+
+In this example, the function `sayHello` is declared with one parameter, `name`. To write functions with **more than one parameter**, use a comma-separated list: `(param1, param2, param3, param4)`. In JavaScript, functions can accept up to 255 parameters!
+
+```javascript
+function sum(x, y, z) {
+  console.log(x + y + z)
+}
+
+sum(1, 2, 3);
+=> 6
+```
+
+JavaScript is a loosely typed language. Therefore, there is no need to specify the data-type (string, number, etc.) of the function's parameters when writing functions. While this reduces the amount of code you must write, it increases the possibility of type errors, when a value is not of the expected data type. This is because in JavaScript, function definitions do not perform type checking on arguments passed into the functions.
+
+>Note: Parameters vs Arguments. Though often used interchangeably, the terms __parameters__ and __arguments__ have different meanings.
+
+__Parameters__ refer to variables defined in the function's declaration; __arguments__ refer to the actual values passed into the function when the function is called. For example:
+
+```javascript
+// Parameter
+function doSomething (parameter) {
+  // does something
+}
+
+// Argument
+doSomething(argument)
+```
+---
+<a name="codealong3"></a>
+
+## The Return Statement (25 min)
+
+Sometimes we don't want to print to the console or update the DOM; rather, we want to update a variable or even call another function. This requires a `return` statement. When we return something, it ends the function's execution and "spits out" what we are returning. We can then store this returned value in another variable...
+
+```javascript
+function sum (x, y) {
+  return x + y;
+}
+
+var z = sum(3, 4);
+=> 7
+```
+... or pass it to another function:
+
+```javascript
+function sum (x, y) {
+  return x + y;
+}
+
+function double (z) {
+  return z * 2;
+}
+
+var num = sum(3, 4)
+=> 7
+var numDbl = double(num);
+=> 14
+
+// This can also be written:
+var num = double(sum(3,4));
+=> 14
+```
+
+Note that the `return` statement will completely stop a function's execution. Any statements following the `return` statement will not be called:
+
+```javascript
+function speak (words) {
+  return words;
+
+  // The following statements will not run:
+  var x = 1;
+  var y = 2;
+  console.log(x + y)
+}
+```
+
+By default, JavaScript functions will return an `undefined` value. To test this, use Node to define and run a function __without__ a return value. A `return` value "overwrites" this default value.
+
+---
+<a name="introduction1"></a>
+
+## Introduction to Scope (25 min)
+
+Scope is the set of variables you have access to. As we learned in the beginning of this class, JavaScript reads from top to bottom. Sometimes, however, we declare variables inside functions (just like arguments), which aren't accessible in other parts of our code. This is the concept of scope.
+
+
+#### Global Scope
+
+Before you write a line of JavaScript, you're in what we call the `Global Scope`. When a variable is declared outside a function, it is public—referred to as GLOBAL—and has a global scope. Any script or function on the page can then reference this variable.
+
+For example, when you declare a variable right away, it's defined globally:
+
+```javascript
+var name = 'Gerry';
+```
+
+Global scope can be confusing when you run into namespace clashes. You don't want to use global scoping for all your variables--because using it correctly is highly complex--but every Javascript program uses the global scope in one way or another, so it’s important to be familiar with it.
+
+> Note: If time permits, briefly explain what [namespace](http://www.codeproject.com/Articles/829254/JavaScript-Namespace) means in JavaScript.
+
+#### Local Scope
+
+Conversely, if a variable is declared inside a function, it is referred to as LOCAL, and has a local scope.
+
+A variable with local scope cannot be referenced outside of that function.
+
+---
+
+<a name="codealong4"></a>
+
+## Local and Global Scope Usage (25 mins)
+
+Take a look at the code below:
+
+```javascript
+var a = "this is the global scope";
 function myFunction() {
-  console.log( 'This is my first function' )
+  var b = "this variable is defined in the local scope";
 }
+myFunction();
+console.log(b);
 ```
 
-- syntax is starting to look familiar - compare to `if` statements and `for` loops and variable declaration
-- this is the first step in creating and using a function - this is called declaring the function or function declaration
-- the second step is called function invocation or invoking the function
+In this case, the console log will send a reference error because the variable `b` is not accessible outside the scope of the function in which it is defined.
 
-```
-myFunction()
-```
-- so now we've gone through the two steps of using functions: declaration and invocation
+In the logic defined above, the fact that a variable cannot be accessed by the parent scope works only in one way.
 
-*Exercise 01
+A function can access variables of the parent scope. In other words, a function defined in the global scope can access all variables defined in the global scope.
 
+```javascript
+// Global Scope
+var a = "Hello";
 
-## Parameters/Arguments and Return
-*Here, we want to take our functions one step further by adding parameters*
-- so we can now declare and invoke functions, but they're kind of limited in what they can do for us
-- think about this add and subtract one example: if we're building a calculator, are we going to want to write one function for every possible action that we could take, adding 1, adding 2, adding 3, etc?
-- so we can see the reusability in that we can encapsulate some code in a function and call it as many times as we want
-- we need reusability in that our functions become actions that can be performed regardless of the values of our data, so become one level higher
-- we call these `parameters`
-
-```
-function sayThanks( name ) {
-  console.log( 'Thanks ' + name )
+// This function is defined in the global scope
+function sayHello(name) {
+    return a + " " + name;
 }
 
-sayThanks( 'Obama' )
-// => 'Thanks Obama'
+sayHello("JavaScript");
+=> "Hello JavaScript";
 ```
 
-*Refer to `functions.js`*
+### Nested Function Scope
 
-```
-var number = 0;
-function addOneToNumber() {
-  number += 1
-}
+When a function is defined inside another function, it is possible to access variables defined in the parent from the child:
 
-function addTwoToNumber() {
-  number += 2
-}
-```
-
-```
-function addOne( number ) {
-  return number + 1
-}
-```
-
-*Exercise 02 ( 10 minutes )*
-
-
-## Returning values ( 10 minutes )
-*Point of this section is to understand returning a value from a function and the difference between ouput and side effects*
-- one thing missing about using functions that we need
-- what if we don't always want to `console.log` the product of our work?
-- if we step back and think about if, our function is performing an action. We're giving our function some input in the form of parameters. How do we get our output back?
-- Two ways: side effects and output
-
-Side effects:
-- we've already seen side effects, this is where running our function affects something by nature of the function running
-
-```
-var number = 0
-
-function addNumber( adder ) {
-  number += adder;
-}
-
-addNumber( 5 )
-// => number = 5;
-```
-
-Output:
-- We have not seen output - this is where we explicitly return the results of our function back after invoking it
-- this completes the circle for us - or paints the whole picture: we have data, we perform an action on that data by calling a function, then we get a result back from the function that we can use
-
-```
-function addNumbers( num1, num2 ) {
-  return num1 + num2
-}
-
-var number = addNumbers( 5, 10 )
-console.log( number ) // => 15
-```
-
-
-## Function Scope  ( 15 minutes )
-*Introduce the concept of scope, how it works and why it's useful*
-- scope determines when and where variables are considered defined
-- we've already seen one examples of scope when we talked about parameters
-
-
-Scope Example 1
-```
-var a = 1
-
-function addThree( x ) {
-  return x + 3
-}
-
-addThree( a )
-```
-- do we think `x` exists outside of this function?
-
-Scope Example 2:
-```
-function myFunction() {
-  var a = 1
-}
-
-console.log( a ) // => error
-```
-- do we expect this `console.log` to work on `a`?
-- variables declared within a function are only available within that function
-
-Scope Example 3:
-```
-var a = 1
-
-function myFunction() {
-  console.log( a )
-}
-```
-- do we expect this `console.log` to work on `a`?
-- hierarchy of scopes
-- global scope vs function scope
-
-Scope Example 4:
-```
+```javascript
 var a = 1;
-function firstFunction() {
-  // do we expect this to work?
-  console.log( a )
 
-  var b = 2
+function getScore () {
+  var b = 2,
+  c = 3;
 
-  function internalFunction() {
-    var c = 3
-
-    // do we expect this to work?
-    console.log( a )
-    console.log( b )
-    console.log( c )
+  function add() {
+  return a + b + c;
   }
 
-  // do we expect this to work?
-  console.log( a )
-  console.log( b )
-  console.log( c )
+  return add();
 }
-// do we expect this to work?
-console.log( a )
-console.log( b )
-console.log( c )
 
+getScore();
+=> 6
 ```
 
-## Using Functions
-In javascript, functions are instances of the Functions object - a native javascript object to describe functions. That's right, functions are objects. If you run `typeof v` where v is a function, you'll get `function` back, which is helpful, but what it means for us is that functions are another datatype and can be used as one.
+---
 
-That means we can store functions in a variable - or in an array, or in an object. Anywhere we can use a variable
+<a name="conclusion"></a>
 
-- Alias a function by creating a variable that points to it.
-- Put functions in an array (possibly mixed with other types of data).
-- Use functions as properties of an object (see Chapter 9).
-- Pass a function into a function.
-- Return a function from a function.
-- Return a function from a function that itself takes a function as an argument.
+## Conclusion (5 min)
 
+Make sure the lesson objectives have been met.
 
-## Functional Programming
-- now that we've covered declaring functions and how to use them, it's time to take a step back and think at a higher level
--  here, we're going to think about functions as functions, in the mathematical sense
-- functional programming is a programming paradigm that is derived from mathematics
-- entire languages that are purely/solely functional, like haskell, and supersets of javascript that enforce functional programming, like elm.
-
-### Pure Functions
-Two criteria for pure functions:
-1. always return the same output for the same set of inputs
-2. don't have any side effects (invoking our function wont have any affect on the state of our program elsewhere)
-
-- this is a paradigm of programming that many people like to follow, one of it's biggest use cases is that it will often lead to fewer bugs in your programs
-
-### Making a function pure
-We have the following function for determining if it is currently a leap year:
-```
-function isCurrentYearLeapYear() {
-
-   const year = new Date().getFullYear()
-
-   if(year % 4 !== 0) {
-     return false
-   } else if(year % 100 != 0) {
-     return true
-   } else if(year % 400 != 0) {
-     return false
-   } else {
-     return true
-   }
-
-}
-```
-
-We can make this function pure, by not having it tied to the current year:
-
-```
-function isCurrentYearLeapYear( year ) {
-
-   if(year % 4 !== 0) {
-     return false
-   } else if(year % 100 != 0) {
-     return true
-   } else if(year % 400 != 0) {
-     return false
-   } else {
-     return true
-   }
-
-}
-```
-
-### Why use pure functions
-- makes programming more like math?
-- because pure functions make your code easier to test, easier to understand, and more portable.
-- functions that return different values under different circumstances or rely on outside data or create side effects are tied to their context
-- if I spend all this time writing a function that is tied to it's context and I want to use it for a very slightly different task - will it work?
-
+* Summarize the difference between global and local scope.
+* Explain how you define and call functions using arguments.
+* How does Hubot work?
