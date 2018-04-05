@@ -20,5 +20,5 @@ function favoriteStartup() {
 };
 
 function printFaveStartups() {
-    document.body.append('My favorite startup ideas are: ' + faveStartup.join(''));
+    document.body.append('My favorite startup ideas are: ' + faveStartup.join(''))
 };
