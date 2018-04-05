@@ -13,7 +13,7 @@
 //  1. Basics of working with Arrays
 //
 
-// console.log( [1, 2, 3, 4, 5] ) // => [1, 2, 3, 4, 5]
+console.log([1, 2, 3, 4, 5]); // => [1, 2, 3, 4, 5]
 
 // const myFavoriteNumbers = [1, 2, 3, 4, 5]
 // console.log( myFavoriteNumbers ) // => [1, 2, 3, 4, 5]
@@ -33,20 +33,25 @@
 // console.log( myOnlyFriends[ myOnlyFriends.length ] ) // undefined
 // console.log( myOnlyFriends[ myOnlyFriends.length - 1 ] ) // 'Curly'
 
-//
-// 2. Array Methods
-//
+let teams = ['Bruins', 'Cal Bears', 'Ravens', 'Ducks'];
+teams.forEach(function (foo, index) {
+      console.log(`${foo} - ${index}`);
+    });
 
-// There are a ton of array methods! Here are 4:
+    //
+    // 2. Array Methods
+    //
 
-// remove and return the last element from an array
-// console.log( myOnlyFriends.pop() ) // => 'Curly'
+    // There are a ton of array methods! Here are 4:
 
-// Add an item to the end of an array
-// console.log( myOnlyFriends.push( 'Christine' ) ) // => [ 'Christine', 'Moe', 'Larry', 'Curly' ]
+    // remove and return the last element from an array
+    // console.log( myOnlyFriends.pop() ) // => 'Curly'
 
-// Reverse the order of items within an array
-// console.log( myOnlyFriends.reverse() ) // => [ 'Curly', 'Larry', 'Moe' ]
+    // Add an item to the end of an array
+    // console.log( myOnlyFriends.push( 'Christine' ) ) // => [ 'Christine', 'Moe', 'Larry', 'Curly' ]
 
-// Concatenate elements of an array together into a string
-// console.log( myOnlyFriends.join() ) // => 'Moe,Larry,Curly'
+    // Reverse the order of items within an array
+    // console.log( myOnlyFriends.reverse() ) // => [ 'Curly', 'Larry', 'Moe' ]
+
+    // Concatenate elements of an array together into a string
+    // console.log( myOnlyFriends.join() ) // => 'Moe,Larry,Curly'

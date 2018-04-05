@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width">
+
+  <!-- external JS link -->
+  <script type="text/javascript" src="js/madlib-console.js"></script>
 </head>
 
 <body>
@@ -21,9 +24,9 @@
   <h1 id="xForY"></h1>
 
   <div id="inputs">
-    <button id="create">Create New Startup</button>
-    <button id="save">Favorite Startup</button>
-    <button id="print">Print Favorites</button>
+    <button id="create" onclick="newStartup();">Create New Startup</button>
+    <button id="save" onclick="favoriteStartup();">Favorite Startup</button>
+    <button id="print" onclick="printFaveStartups();">Print Favorites</button>
   </div>
 
   <h2 id="favorites">
@@ -32,7 +35,7 @@
 
 
   <script src='http://code.jquery.com/jquery-latest.min.js'></script>
-  <script src="js/app.js"></script>
+  <!-- <script src="js/madlib-console.js"></script> -->
 
 </body>
 

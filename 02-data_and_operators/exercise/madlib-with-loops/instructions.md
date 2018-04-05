@@ -12,7 +12,7 @@ Have you ever heard someone describe a startup as being "Like Uber for puppies" 
 
 ## Minimum Requirements
 
-Your job is to add code to the JavaScript file that makes the "Create new startup" button work. Basically, when the user clicks that buttons, your JavaScript should generate a new madlib saying, which should appear inside the `XforY` h1.
+Your job is to add code to the JavaScript file that makes the "Create new startup" button work. Basically, when the user clicks that button, your JavaScript should generate a new madlib saying, which should appear inside the `XforY` h1.
 
   * In order to complete this task, you will need to know a little bit about DOM manipulation. If this isn't something you've covered yet in class, you may want to wait until you've covered DOM manipulation before you try to tackle this exercise. If, however, you'd like to get a head start, feel free to [check out this tutorial](http://www.javascriptkit.com/javatutors/dom2.shtml), which should contain everything you need to get started.
 
