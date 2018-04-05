@@ -27,8 +27,8 @@
 ### Preparation
 *Before this lesson, students should already be able to:*
 
-- Describe the concept of a "data type" and how it relates to letiables.
-- Declare, assign to, and manipulate data stored in a letiable.
+- Describe the concept of a "data type" and how it relates to variables.
+- Declare, assign to, and manipulate data stored in a variable.
 - Create arrays and access values in them.
 - Iterate over and manipulate values in an array.
 
@@ -82,20 +82,7 @@ name === "kittens!!"
 //=> true
 ```
 
-**Note**: It is **not** recommended to assign letiables within a conditional expression because that will assign a value to the letiable, as seen below:
-
-```javascript
-student = "Jamie";
-//=> "Jamie"
-```
-
-The expression above will return the value shown on the second line. So if you assign a truthy value inside a conditional statement, this condition will always be true; if you assign an undefined value, the conditional statement will be false (undefined = falsey). Another potential issue is that it can be confused with equality (`===`). The example below illustrates WHAT NOT TO DO:
-
-```javascript
-if (x = 3) {
-    console.log("boo");
-}
-```
+**Note**: It is **not** recommended to assign variables within a conditional expression
 
 #### Ternary Operators
 
@@ -126,7 +113,7 @@ Statements intended to be executed after a control flow operation will be groupe
 
 #### Block Scope
 
-We will talk about scope in later lessons; basically it means a limited area of code that knows about a letiable's existence. In the case of **block statements** in JavaScript, no scope is created, unlike in most other languages.
+We will talk about scope in later lessons; basically it means a limited area of code that knows about a variable's existence. In the case of **block statements** in JavaScript, no scope is created, unlike in most other languages.
 
 ```javascript
 let name = "gerry";
@@ -178,7 +165,7 @@ When you verify equality using double-equals `==`, JavaScript performs much of t
 
 To avoid type coercion and to measure equality more strictly, **use the triple-equals operator**. Because `===` more truly measures actual equality, we should always use `===` instead of `==`, which is a legacy of the early days of JavaScript when people thought it might be useful to have an operator that does type coercion before checking equality, but that's pretty much never a good idea as it defeats the whole purpose of having data types.
 
-> **Note:** "Sameness" and "equality" have letious definitions, which can make the differentiation somewhat fuzzy. They can also differ by programming language. Because you'll often be measuring whether two things are equal, you should carefully investigate the way this works.
+> **Note:** "Sameness" and "equality" have various definitions, which can make the differentiation somewhat fuzzy. They can also differ by programming language. Because you'll often be measuring whether two things are equal, you should carefully investigate the way this works.
 
 Some examples:
 

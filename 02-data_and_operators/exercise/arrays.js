@@ -1,17 +1,14 @@
-/*
-  Arrays
+const arr = [1, 2, 3, 4, 5]
 
-  1. Basics
-  2. Array Methods
-*/
+// let mappedArr = arr.map(function (item) {
+//   console.log(item)
+//   return item * 2
+// })
 
-/*
-  Instructions: Uncomment lines of code and run this file using `node arrays.js`
-*/
+// mappedArr
+// arr
 
-//
-//  1. Basics of working with Arrays
-//
+const mappedArr = []
 
 console.log([1, 2, 3, 4, 5]); // => [1, 2, 3, 4, 5]
 
@@ -55,3 +52,8 @@ teams.forEach(function (foo, index) {
 
     // Concatenate elements of an array together into a string
     // console.log( myOnlyFriends.join() ) // => 'Moe,Larry,Curly'
+for (let i = 0; i < arr.length; i++) {
+  mappedArr.push(arr[i] * 2)
+}
+
+mappedArr

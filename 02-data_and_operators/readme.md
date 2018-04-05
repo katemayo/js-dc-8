@@ -86,7 +86,7 @@ We don’t yet know what type of data we're working with, so let’s ask the com
   ```
   `typeof()` returns a string with the type of the operand, or expression of the object you're looking at.
 
-  >Note: At this point we haven't explained exactly what objects are. Provide a brief overview of objects as a collection of properties, and of a property as an association between a key and a value. Objects in JavaScript are used in two ways:
+  >Note: At this point we haven't explained exactly what objects are. Objects in JavaScript are used in two ways:
     >1. As simple structured data store, similar to arrays—the main difference being that instead of accessing values by index, we access them by a key.
     >2. As a fundamental programming paradigm that helps us structure and categorize our code.
   >More about objects in the second half of this class.

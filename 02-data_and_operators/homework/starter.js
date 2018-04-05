@@ -1,4 +1,7 @@
 /** THIS IS KATIE'S PRACTICE COMMENT!!!!
+// this ia new change
+
+/**
  * Arrays
  * Most of your answers should be stored in variables called q1, q2 etc..
  * and the variables printed to the console.
