@@ -2,8 +2,11 @@
 
 
 
-function pickNumber() {
-  let bottles = 99;
+// function pickNumber() {
+  
+// }
+
+let bottles = 99;
   var person = prompt("Please enter a number", "a numeral greater than one");
   document.getElementById("demo").innerHTML =
     if (bottles.isNaN()) {
@@ -28,4 +31,3 @@ function pickNumber() {
         }
       }
     }
-}
