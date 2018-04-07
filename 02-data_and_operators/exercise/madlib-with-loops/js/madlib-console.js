@@ -9,7 +9,8 @@ var random2 = Math.floor((Math.random() * startupY.length))
 function newStartup() {
     random1 = Math.floor((Math.random() * startupX.length))
     random2 = Math.floor((Math.random() * startupY.length))
-    document.body.append('A startup that is ' + startupX[random1] + ', but for ' + startupY[random2] + '. ')
+//    document.body.append('A startup that is ' + startupX[random1] + ', but for ' + startupY[random2] + '. ')
+    document.getElementById('xForY').innerHTML = 'A startup that is ' + startupX[random1] + ', but for ' + startupY[random2] + '. '
 };
 
 var faveStartup = [];
@@ -20,5 +21,6 @@ function favoriteStartup() {
 };
 
 function printFaveStartups() {
-    document.body.append('My favorite startup ideas are: ' + faveStartup.join(''))
+    // document.body.append('My favorite startup ideas are: ' + faveStartup.join(''))
+    document.getElementById('favorites').innerHTML = faveStartup.join('')
 };
