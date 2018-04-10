@@ -11,8 +11,6 @@
 | 25 min | [Codealong](#codealong4) | Local and Global Scope Usage |
 | 5 min | [Conclusion](#conclusion) | Final Questions & Exit Tickets |
 
->Note: The content in this lesson can be challenging for students with limited programming experience. Make sure to check for understanding as you go and spend additional time on any of the following sections if necessary.
-
 ### Objectives
 
 *After this lesson, students will be able to:*
@@ -55,6 +53,8 @@ __Function Declarations:__
 function speak (words) {
   console.log(words);
 }
+
+speak.name // "speak" 
 ```
 
 __Function Expressions:__
@@ -62,6 +62,8 @@ __Function Expressions:__
 var speak = function (words) {
   console.log(words);
 }
+
+speak.name // "speak" 
 ```
 
 While both methods share some similarities, only function declarations define functions that can be used anywhere in the scope where they're defined. In other words, you can call a function that is defined using function declaration before the part of the code where you actually define it:
@@ -87,6 +89,18 @@ var speak = function (words) {
 
 // RESULTS IN ERROR:
 // TypeError: undefined is not a function
+```
+
+```javascript
+function speak(words) {
+  console.log(words)
+}
+
+speak.name // "speak" 
+
+let speak = function(words){}
+
+speak.name // "speak"
 ```
 
 #### Function Declaration Syntax
@@ -138,7 +152,7 @@ person.speak()
 
 For this lab, you'll be creating a page that displays a random update of two dice every time the user hits the "Roll Dice" button. To get started, open the [app.js file](starter-code/dice/js/app.js). Use the HTML and CSS code included in the starter code folder.
 
-![](starter-code/dice/img/diceroller.png)
+![](exercise/dice/img/diceroller.png)
 
 Before creating code, be sure to write down the pseudocode for the exercise!
 
@@ -159,8 +173,6 @@ function helloObama () {
   console.log('hello, Obama')
 }
 ```
-
-> __Instructor's Note:__ Ask students why they think writing such specific functions is a bad idea. If no one has an answer, ask what happens to the above program structure if it has 1,000 users. If we have to write 1,000 different functions, is this a scalable and maintainable program?
 
 Parameters remedy this problem by allowing us to call, or invoke, the same function with different values:
 
@@ -214,7 +226,7 @@ function sum (x, y) {
   return x + y;
 }
 
-var z = sum(3, 4);
+let z = sum(3, 4);
 => 7
 ```
 ... or pass it to another function:
@@ -228,13 +240,13 @@ function double (z) {
   return z * 2;
 }
 
-var num = sum(3, 4)
+let num = sum(3, 4)
 => 7
-var numDbl = double(num);
+let numDbl = double(num);
 => 14
 
 // This can also be written:
-var num = double(sum(3,4));
+let num = double(sum(3,4));
 => 14
 ```
 
@@ -245,8 +257,8 @@ function speak (words) {
   return words;
 
   // The following statements will not run:
-  var x = 1;
-  var y = 2;
+  let x = 1;
+  let y = 2;
   console.log(x + y)
 }
 ```
@@ -271,9 +283,32 @@ For example, when you declare a variable right away, it's defined globally:
 var name = 'Gerry';
 ```
 
+
+
 Global scope can be confusing when you run into namespace clashes. You don't want to use global scoping for all your variables--because using it correctly is highly complex--but every Javascript program uses the global scope in one way or another, so it’s important to be familiar with it.
 
-> Note: If time permits, briefly explain what [namespace](http://www.codeproject.com/Articles/829254/JavaScript-Namespace) means in JavaScript.
+##### Namespacing
+
+Sometimes its important to silo off your code so that it wont interfere with other variables. We can use a `namespace` to do that. A namespace is simply a container for a specific set of code. We use them to keep different functionality separate from each other.
+```Javascript
+let MyDiscountApp = {
+  rate: .95,
+  calculate: function(amount){
+    return amount * this.rate
+  }
+}
+
+let MyTaxApp = {
+  taxRate: 1.05,
+  calcuate: function(amount){
+    return amount * this.rate
+  }
+}
+
+const spending = 100
+MyDiscountApp.calculate(spending) // 95
+MyTaxApp.calculate(spending) // 105
+```
 
 #### Local Scope
 
@@ -290,9 +325,9 @@ A variable with local scope cannot be referenced outside of that function.
 Take a look at the code below:
 
 ```javascript
-var a = "this is the global scope";
+let a = "this is the global scope";
 function myFunction() {
-  var b = "this variable is defined in the local scope";
+  let b = "this variable is defined in the local scope";
 }
 myFunction();
 console.log(b);
@@ -340,6 +375,8 @@ getScore();
 ```
 
 ---
+
+
 
 <a name="conclusion"></a>
 

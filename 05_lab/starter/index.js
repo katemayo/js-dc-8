@@ -1,12 +1,12 @@
-let prompt = require('prompt-sync')();
+let prompt = require('prompt-sync')()
 
-let player1Name = prompt('Player 1, what is your name?');
+let player1Name = prompt('Player 1, what is your name?')
 
-let player2Name = prompt('Player 2, what is your name?');
+let player2Name = prompt('Player 2, what is your name?')
 //
 // console.log(`OK ${player1Name} and ${player2Name}, get ready to go to WAR!`);
 
-let suits = ['hearts', 'clubs', 'spades', 'diamonds'];
+let suits = ['hearts', 'clubs', 'spades', 'diamonds']
 let ranks = [
   'ace',
   'two',
@@ -21,9 +21,9 @@ let ranks = [
   'jack',
   'queen',
   'king'
-];
+]
 
-function createDeck(ranks, suits) {
+function createDeck (ranks, suits) {
   const cardDict = {
     two: 2,
     three: 3,
@@ -40,8 +40,8 @@ function createDeck(ranks, suits) {
     ace: 14
   }
   var deck = []
-  ranks.forEach(function(rank) {
-    suits.forEach(function(suit) {
+  ranks.forEach(function (rank) {
+    suits.forEach(function (suit) {
       deck.push({
         name: `${rank} of ${suit}`,
         value: cardDict[rank]
@@ -52,8 +52,8 @@ function createDeck(ranks, suits) {
 }
 
 var deck = createDeck(ranks, suits)
-console.log(deck);
-function getRandomCard(deck) {
+console.log(deck)
+function getRandomCard (deck) {
   var randomNumber = Math.floor(Math.random() * deck.length)
   var randomCard = deck.splice(randomNumber, 1)[0]
   return randomCard
@@ -61,7 +61,7 @@ function getRandomCard(deck) {
 
 // console.log(getRandomCard(deck))
 
-function dealHand(deck, cardAmount = 1) {
+function dealHand (deck, cardAmount = 1) {
   var hand = []
   for (var i = 0; i < cardAmount; i++) {
     hand.push(getRandomCard(deck))
@@ -82,21 +82,20 @@ let player2 = {
 player1.hand = dealHand(deck, 26)
 player2.hand = dealHand(deck, 26)
 
-console.log(player1.hand);
+console.log(player1.hand)
 const player1Card = player1.hand.shift()
 const player2Card = player2.hand.shift()
 
 // It should take a card out of player 1 and player 2's hands
-//It should then compare the value of those cards to each other
+// It should then compare the value of those cards to each other
 // Once it knows which card is a higher value, it should then place both of those cards into the winners hands
 // The hands of both players should then be returned reflecting the new amount of cards in their hand
 
-function simpleRound(player1Card, player2Card) {
+function simpleRound (player1Card, player2Card) {
   var player1Hand = player1.hand
   var player2Hand = player2.hand
 
-
-// console.log(player1Card.name)
+  // console.log(player1Card.name)
   // console.log(`${player1Name} drew a ${player1Card.name}.\n${player2Name} drew a ${player2Card.name}.`)
   // if (player1Card.value === player2Card.value) {
   //   while (player1Card.value === player2Card.value){
@@ -109,45 +108,35 @@ function simpleRound(player1Card, player2Card) {
   //   }
   // }
 
+  // If they are equal
+  // Console Log WAR
+  // save a variable and add the simpletround function in it
+  //
+  // return var results in array [results[0],[results[1]].comncat ]
 
-   //If they are equal
-   //Console Log WAR
-   //save a variable and add the simpletround function in it
-   //
-   //return var results in array [results[0],[results[1]].comncat ]
-
-   if (player1Card.value === player2Card.value) {
-     console.log("WAAAAAAR")
-     var results = simpleRound(player1Card, player2Card)
-     // Lets look into forming these into objects instead of arrays
-     return [results[0],[player1Card, player2Card].concat(results[1])]
-   }
-  else if (player1Card.value > player2Card.value) {
-
+  if (player1Card.value === player2Card.value) {
+    console.log('WAAAAAAR')
+    var results = simpleRound(player1Card, player2Card)
+    // Lets look into forming these into objects instead of arrays
+    return [results[0], [player1Card, player2Card].concat(results[1])]
+  } else if (player1Card.value > player2Card.value) {
     console.log(`${player1.name} wins this battle!`)
     // console.log(player1Hand)
     // player1Hand.push(player1Card, player2Card)
     // console.log(player1Hand)
-    return [player1Hand,[player1Card, player2Card]]
-  }
-  else if (player1Card.value < player2Card.value) {
+    return [player1Hand, [player1Card, player2Card]]
+  } else if (player1Card.value < player2Card.value) {
     console.log(`${player2.name} wins this battle!`)
     player2Hand.push(player1Card, player2Card)
     return [player2Hand, [player2Card, player1Card]]
-
   }
   // return winner
 }
-
 
 // var player1Hand = simpleRound(player1Card, player2Card)[0]
 // console.log(player1Hand)
 
 // console.log(player1Hand)
-
-
-
-
 
 // function fullRound (player1Card, player2Card) {
 //
@@ -223,21 +212,18 @@ function simpleRound(player1Card, player2Card) {
 //
 // // round()
 //
-function fullGame(player1Card, player2Card) {
+function fullGame (player1Card, player2Card) {
   var counter = 0
   while (player1.hand.length > 0 || player2.hand.length > 0) {
     console.log(`ROUND ${++counter}`)
-    if(player1.hand.length > 0 || player2.hand.length > 0) {
-
+    if (player1.hand.length > 0 || player2.hand.length > 0) {
       var game = simpleRound(player1Card, player2Card)
       // game[0].concat[game[1]
       // game[0]
       console.log(`${player1.name} now has ${player1.hand.length} cards.\n${player2.name} now has ${player2.hand.length} cards.`)
-    }
-    else if (player1.hand.length === 0) {
+    } else if (player1.hand.length === 0) {
       console.log(`${player1.name} now has ${player1.hand.length} cards.\n${player2.name} has won the war!`)
-    }
-    else if (player2.hand.length === 0) {
+    } else if (player2.hand.length === 0) {
       console.log(`${player1.name} has won the war!\n${player2.name} now has ${player2.hand.length} cards.`)
     }
   }
@@ -246,7 +232,7 @@ function fullGame(player1Card, player2Card) {
 // game()
 // // console.log(createDeck(ranks, suits))
 
-//Next we need to get a random card and then deal them
+// Next we need to get a random card and then deal them
 
 // TO DO:
 
