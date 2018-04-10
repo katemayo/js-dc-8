@@ -59,7 +59,7 @@ speak.name // "speak"
 
 __Function Expressions:__
 ```javascript
-var speak = function (words) {
+let speak = function (words) {
   console.log(words);
 }
 
@@ -83,7 +83,7 @@ Function expressions, however, must be defined before they are called:
 ```javascript
 speak('hello, world!')
 
-var speak = function (words) {
+let speak = function (words) {
   console.log(words)
 }
 
@@ -92,15 +92,11 @@ var speak = function (words) {
 ```
 
 ```javascript
-function speak(words) {
+let speak = function(words){
   console.log(words)
 }
 
-speak.name // "speak" 
-
-let speak = function(words){}
-
-speak.name // "speak"
+speak('hello, world!')
 ```
 
 #### Function Declaration Syntax
@@ -136,7 +132,7 @@ hello();
 JavaScript functions are often defined as methods on objects. To call a function as a method:
 
 ```javascript
-var person = {
+let person = {
   name: 'Obama',
   speak: function () {
     console.log('Hello, World!')
@@ -266,6 +262,7 @@ function speak (words) {
 By default, JavaScript functions will return an `undefined` value. To test this, use Node to define and run a function __without__ a return value. A `return` value "overwrites" this default value.
 
 ---
+
 <a name="introduction1"></a>
 
 ## Introduction to Scope (25 min)
@@ -376,6 +373,169 @@ getScore();
 
 ---
 
+# ES6 Functions (Arrow Functions)
+
+ES6 introduces what we call *arrow functions*, which is a shorthad way of declaring functions.
+
+```javascript
+// es5 function
+const sum2 = function(arg1, arg2){
+  return arg1 + arg2
+}
+
+// es6 arrow function
+const sum2 = (arg1, arg2) => {
+  return arg1 + arg2
+}
+```
+
+```javascript
+// If you only have 1 argument you don't need parenthesis
+const double = arg1 => {
+  return arg1 * 2
+}
+
+// in fact, you can imply a return. If there is no return statement, are return is implied.
+const double = arg1 => arg1 * 2
+```
+
+
+```javascript
+let array = [1,7,98,5,4,2]
+
+// ES5 way
+let doubledArray = array.map(function (num) {
+  return num * 2
+})
+
+// ES6 way
+let doubledArray = array.map(num => num * 2)
+```
+
+## Default Parameters
+
+In ES6, we can set default parameters like this:
+
+```javascript
+// in this case, we have no defaults
+function orderPizza(type, toppings){
+  console.log(`Ordering a ${type} pizza with the following toppings:`)
+  toppings.forEach(topping => {
+    console.log(topping)
+  })
+}
+
+orderPizza("deep dish") // Cannot read property 'forEach' of undefined
+
+// we can give it defaults by using the assignment operator
+function orderPizza(type = 'deep dish', toppings = ['cheese']){
+  console.log(`Ordering a ${type} pizza with the following toppings:`)
+  toppings.forEach(topping => {
+    console.log(topping)
+  })
+}
+
+orderPizza("thin crust")
+// Ordering a thin crust pizza with the following toppings:
+// cheese
+```
+
+## Understanding `this` keyword
+
+`this` is a unique keyword whose value changes depending on where it is called from. When called outside of a function, `this` defaults to the `Window` object in the browser. In Node, `this` outside of a function will generally return an empty object. 
+
+Inside of a function, `this` refers to the global object. In node
+
+```javascript
+function hello() {
+  console.log(this)
+}
+
+hello() // Window (if called by browser)
+```
+
+When using arrow functions, `this` does not get bound to a new value. Lets look at some examples as to why this matters.
+
+```javascript
+// With a regular function, `this` will reference the the person object. This is desired!
+const person = {
+  name: 'Ramsay',
+  sayHello: function () {
+    console.log('Hello ' + this.name)
+  }
+}
+
+person.sayHello() // 'Hello Ramsay'
+
+// With an arrow function, `this` is referencing the global object, which doesn't have a property called 'name'
+const person = {
+  name: 'Ramsay',
+  sayHello: () => {
+    console.log('Hello ' + this.name)
+  }
+}
+
+person.sayHello() // 'Hello'
+```
+
+We will cover the `this` keyword in more depth when we talk about objects and event listeners in more depth. 
+
+
+# Bonus ES6 Material
+
+### Destructuring Arrays
+
+```javascript
+// ES5
+let array = [1,2,3,4,5]
+
+let one = array[0]
+let two = array[1]
+let three = array[2]
+
+// ES6
+let [one, two, three] = [1,2,3,4,5]
+
+console.log(one) // 1
+console.log(two) // 2
+console.log(three) // 3
+```
+
+```javascript
+// The rest operator will give you the remaining non-destructured values as an array
+let array = [1,2,3,4,5]
+let [one, two, three, ...rest] = array
+
+console.log(...rest) // 4 5
+
+[...rest].forEach(number => {
+  console.log(number)
+})
+
+```
+
+You can use desctructed arrays in function paramenters
+
+```javascript
+let numbers = [5, 10, 15]
+
+function sumNumbers([first, second, third]) {
+  return first + second + third
+}
+
+let sum = sumNumbers(numbers) // 30
+```
+
+You can also use defaults in the desctructuring
+```javascript
+let numbers = [5, 10]
+
+function sumNumbers([first, second, third = 15]) {
+  return first + second + third
+}
+
+let sum = sumNumbers(numbers) // 30
+```
 
 
 <a name="conclusion"></a>
