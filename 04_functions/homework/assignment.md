@@ -1,5 +1,5 @@
 # Assignment
-* Exercise 03 in the `exercises` folder
+* Refer to the `starter.js` file for the exercise.
 * [Functions, Eloquent Javascript](http://eloquentjavascript.net/03_functions.html)
 * [Higher Order Functions, Eloquent Javascript](http://eloquentjavascript.net/05_higher_order.html)
 * Get ready for the upcoming lab!

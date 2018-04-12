@@ -296,7 +296,7 @@ let MyDiscountApp = {
 }
 
 let MyTaxApp = {
-  taxRate: 1.05,
+  reate: 1.05,
   calcuate: function(amount){
     return amount * this.rate
   }

@@ -4,9 +4,10 @@ Card Game of War Exercise Part 1.
 
 */
 
-var suits = ['hearts', 'clubs', 'spades', 'diamonds']
-var ranks = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']
+let suits = ['hearts', 'clubs', 'spades', 'diamonds']
+let ranks = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']
 
+<<<<<<< HEAD
 /*
 
 Given the above suits and ranks array, write a function called
@@ -109,12 +110,15 @@ Card Game of War Exercise Part 1.
 
 // /*
 
+=======
+>>>>>>> e05ba9639645d14a8c331e711a896ab36bf0c7ab
 // Given the above suits and ranks array, write a function called
 // createDeck that will take both as parameters and return a new array
 // with all 52 possible card combinations. The returned 'Deck of Cards'
 // should be an array with 52 strings in it, each representing a card
 // (i.e. 'ace of Hearts')
 
+<<<<<<< HEAD
 // final product: array of 52 strings
 
 // Call createDeck and save the result into a variable called
@@ -209,3 +213,10 @@ Card Game of War Exercise Part 1.
 // compare their score with each other!
 
 // */
+=======
+// Call createDeck and save the result into a variable called
+// deckOfCards.
+
+// Write a function called getRandomCard that will return one random
+// card from deckOfCards whenever it is called.
+>>>>>>> e05ba9639645d14a8c331e711a896ab36bf0c7ab
