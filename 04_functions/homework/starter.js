@@ -7,7 +7,6 @@ Card Game of War Exercise Part 1.
 let suits = ['hearts', 'clubs', 'spades', 'diamonds']
 let ranks = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack', 'queen', 'king']
 
-<<<<<<< HEAD
 /*
 
 Given the above suits and ranks array, write a function called
@@ -110,8 +109,6 @@ Card Game of War Exercise Part 1.
 
 // /*
 
-=======
->>>>>>> e05ba9639645d14a8c331e711a896ab36bf0c7ab
 // Given the above suits and ranks array, write a function called
 // createDeck that will take both as parameters and return a new array
 // with all 52 possible card combinations. The returned 'Deck of Cards'
