@@ -26,7 +26,7 @@ function anySum () {
   for (let i = 0; i < arguments.length; i++) {
     sum += arguments[i]
   }
-  return sum
+  console.log(sum)
 }
 anySum(4, 5, 5, 4)
 // ------------------------------------------------------------------------------
@@ -47,19 +47,19 @@ const anySum2 = () => {
   for (let i = 0; i < arguments.length; i++) {
     sum += arguments[i]
   }
-  return sum
+  console.log(sum)
 }
 anySum2(4, 5, 5, 4)
 // ------------------------------------------------------------------------------
 const weirdFunction = numbers => {
-  const [one, two, three, ...rest] = numbers
-  const sum = one + two + three
-  const average = 0
-  const arr = [...rest]
+  let [one, two, three, ...rest] = numbers
+  let sum = one + two + three
+  let average = 0
+  let arr = [...rest]
   arr.forEach(num => {
     average += num
   })
   average = average / arr.length
-  return sum + average
+  console.log(sum + average)
 }
-weirdFunction(1, 1, 1, 4, 5, 6)
+weirdFunction([1, 1, 1, 4, 5, 6])
