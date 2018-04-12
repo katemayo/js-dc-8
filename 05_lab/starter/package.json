@@ -8,7 +8,8 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "prompt-sync": "^4.1.5"
+  "devDependencies": {
+    "lodash": "^4.17.5",
+    "prompt-sync": "^4.1.6"
   }
 }
