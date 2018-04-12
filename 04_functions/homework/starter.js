@@ -19,15 +19,17 @@ Call createDeck and save the result into a variable called
 deckOfCards.
 
 */
-let deckOfCards = {}
+let deckOfCards = []
 function createDeck (suits, ranks) {
-  for (let i = 0; i < ranks.length(); i++) {
-	  for (let j = 0; j < suits.length(); j++) {
+  for (let i = 0; i < ranks.length; i++) {
+	  for (let j = 0; j < suits.length; j++) {
       deckOfCards.push(`${ranks[i]} of ${suits[j]}`)
 	  }
   }
+  console.log(deckOfCards)
   return deckOfCards
 }
+createDeck(suits, ranks)
 
 /*
 
@@ -38,8 +40,10 @@ Don't worry about removing the card from deckOfCards.
 
 */
 function getRandomCard () {
+  console.log(deckOfCards[Math.floor(Math.random() * deckOfCards.length)])
   return deckOfCards[Math.floor(Math.random() * deckOfCards.length)]
 }
+getRandomCard()
 /*
 
 Write a function called dealHand that takes a number (like 5) as it's only
@@ -54,13 +58,15 @@ the cards as an array.
 
 */
 let numCards = 1
-let handDealt = {}
+let handDealt = []
 const dealHand = numCards => {
   for (let i = 0; i < numCards; i++) {
 	  handDealt.push(getRandomCard())
   }
+  console.log(handDealt)
   return handDealt
 }
+dealHand(4)
 /*
 
 Create two variables, playerOneCards and playerTwoCards, and
@@ -69,8 +75,8 @@ initialize them as empty arrays.
 Deal both playerOneCards and playerTwoCards 7 cards each.
 
 */
-let playerOneCards = {}
-let playerTwoCards = {}
+let playerOneCards = []
+let playerTwoCards = []
 playerOneCards = dealHand(7)
 playerTwoCards = dealHand(7)
 /*
@@ -79,6 +85,9 @@ Write a function called showHand that takes a player's cards as an
 array and prints each card.
 
 */
+function showHand = aPlayersCards =>{
+  aPlayer
+}
 
 /*
 
