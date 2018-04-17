@@ -231,11 +231,6 @@ Create 3 monkeys total. Make sure all 3 monkeys have all properties set and meth
 Exercise your monkeys by retrieving their properties and using their methods. Practice using both syntaxes for retrieving properties (dot notation and brackets).
 
 ---
-## Working with Object Properties: Bonus!
-
-Work individually or with a partner and follow instructions in the [app.js](starter-code/objects/app.js) file to complete the challenge!
-
----
 <a name = "introduction1"></a>
 
 ### Introduction to JSON (15 min)
@@ -271,14 +266,6 @@ Make sure the lesson objectives have been met.
 
 * Be able to code objects using constructors and prototypes.
 * Understand how JSON transfers data between programs.
-
-#### Homework
-
-The following homework assignment should be introduced before the end of class--make sure that students understand the goals of the exercise and have an opportunity to ask questions. The assignment should be due by the next class period--students should submit links to their completed assignments on GitHub to the instructional team using Slack.
-
-**Converting JSON**
-- All of the instructions for this exercise are contained [in the json-hw.js file](starter-code/json-hw.js), located in the starter code folder
-- Provide students with the json-hw.js file and have them read through the instructions and complete each of the challenges, typing their code directly into the file
 
 #### Additional JavaScript Object Resources
 
