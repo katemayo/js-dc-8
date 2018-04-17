@@ -9,15 +9,11 @@ properties, at least one of which is a method.
 
 */
 
-
-
 /*
 
 Get one of the properties from your object using dot notation
 
 */
-
-
 
 /*
 
@@ -25,14 +21,12 @@ Get one of the properties from your object using bracket notation
 
 */
 
-
 /*
 
 Set one of the values of one of your properties using either dot notation or
 bracket notation
 
 */
-
 
 /*
 
