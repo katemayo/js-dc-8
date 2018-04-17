@@ -1,8 +1,6 @@
 # Review
 The following is suggested reading for you, if you'd like to review any of the material we've covered in the first part of the course.
 
-I recommend that you finish it before next Tuesday's class, when we start our first lab. By no means is any of this *assigned*, it's for your own interest and education.
-
 - [Eloquent JavaScript, Chapters 1 through 11](http://eloquentjavascript.net/index.html)
 
 These chapters in particular for review:
