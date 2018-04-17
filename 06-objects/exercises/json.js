@@ -4,7 +4,7 @@ You can pull in data from another file using JavaScripts `require()` method,
 which you pass a path as a string to the file you wish to incldue. For instance,
 you could require a json file like this:
 
-var myJSON = require('./path/to/file.json')
+let myJSON = require('./path/to/file.json')
 
 Given the above, import `data.json` and save it to a variable.
 

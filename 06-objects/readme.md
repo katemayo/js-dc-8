@@ -210,35 +210,11 @@ Whoa.  Where did `prototype` come from?
 
 Every object in JavaScript has a prototype, connected to the constructor that created it.  If `foo` is an object, and you ask JavaScript to invoke the method `foo.doSomething()`, JavaScript looks first to see if the object has a property called doSomething that contains a function.  If it does, JavaScript invokes that function.  If not, JavaScript looks for the prototype object on its constructor and sees if that object has an appropriate method.
 
-## Useful Idea: Restricting Access to Attributes
-
-Much of the time, attributes can only reasonably contain certain values.  For instance, an attribute containing a person's age in years should never contain a negative number, and will rarely contain a number over 100.  One way to enforce this is by creating "getter" functions and "setter" functions that enforce these restrictions (also called "accessor" functions, a term commonly use in languages like Ruby):
-
-```js
-// Example 3
-
-Person.prototype.setAge = function (newAge) {
-  if (newAge < 0) {
-    console.error("A person cannot be negative years old!");
-  }
-  else if (newAge > 150) {
-    console.error("People do not generally live to the age of 150");
-  }
-  else {
-    this.age = newAge;
-  }
-};
-
-Person.prototype.getAge = function () {
-  return this.age;
-};
-```
-
 ---
 <a name = "lab1"></a>
 ## Monkey Exercise (25 minutes)
 
-Open the [monkey.js file](starter-code/monkey.js) in the starter code.
+Open the [monkey.js file](exercises/02_monkey.js) in the starter code.
 
 Work with a partner to create a monkey object, which has the following properties:
 
