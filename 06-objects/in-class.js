@@ -1,1 +1,41 @@
-// put your in-class code-along and notes here.
+
+// This is a constructor function. Constructor functions start with a capital letter.
+let Superhero = function (firstName, superheroName) {
+  this.firstName = firstName
+  this.superheroName = superheroName
+  console.log('Superhero instantiated')
+}
+
+// We add methods to our Superhero class through the prototype.
+// Read more about prototypes: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
+Superhero.prototype.identity = function () {
+  console.log(this.firstName + ' is ' + this.superheroName)
+}
+
+Superhero.prototype // ?
+
+let superman = new Superhero('Clark', 'Superman')
+
+// superman is an object, but it doesn't have a prototype. Only constructor
+// function have prototypes.
+superman.prototype // ?
+
+// superman DOES have a constructor function though!
+superman.constructor // ?
+
+superman.constructor.prototype // ?
+
+let batman = new superman.constructor('Bruce', 'Batman')
+
+batman
+
+batman.constructor // ?
+
+batman.constructor.prototype // ?
+
+batman.identity()
+superman.identity()
+
+batman.nemesis // ?
+batman.nemesis = 'Penguin'
+batman.nemesis // ?
