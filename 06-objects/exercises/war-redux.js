@@ -63,9 +63,10 @@ let Game = function (players) {
 }
 
 Game.prototype.deal = function () {
-  let handSize = this.deck.length / this.players.length // ?
-  this.players.forEach(function (player) {
-
+  let handSize = this.deck.cards.length / this.players.length // ?
+  this.players.forEach(player => {
+    const playerCards = this.deck.cards.splice(0, handSize) // ?
+    player.deal(playerCards)
   })
 }
 
