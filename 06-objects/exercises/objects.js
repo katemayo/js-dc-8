@@ -35,6 +35,7 @@ Get one of the properties from your object using dot notation
 train.capacity;
 //eg
 reservation.settleUserAccount()
+reservation.paid
 /*
 
 Get one of the properties from your object using bracket notation

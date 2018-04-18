@@ -20,3 +20,12 @@ Apple, Red, 0.78
 Nuts, Brown, 2.23
 
 */
+const data = require('./data.json')
+
+for (let key in data) {
+  console.log(data[key])
+}
+
+data.Foods.forEach(function(food)){
+    food
+}
