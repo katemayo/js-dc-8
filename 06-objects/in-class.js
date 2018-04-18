@@ -1,4 +1,25 @@
 
+let myHouse = {
+
+}
+
+myHouse.propThatDNE = "hey"
+myHouse{"propthatDNE"}
+
+const person = {
+  name: "katie",
+  age: 25,
+  height: "5'6"
+}
+
+for(let i in person){
+  person[i]
+}
+
+Object.keys(person) //returns all keys
+Object.values(person) //returns array of values
+
+
 // This is a constructor function. Constructor functions start with a capital letter.
 let Superhero = function (firstName, superheroName) {
   this.firstName = firstName
