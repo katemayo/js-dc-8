@@ -1,233 +1,320 @@
-# JavaScript in the Browser
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Intro to DOM and jQuery (3:00)
 
-## Learning Objectives
-- Explain the basics of how a webpage gets rendered
-- Explain the role of JavaScript on the web and its place among the big 3 web technologies
-- Describe how JavaScript gets included and executed on a webpage
-- Define the DOM and and its role in helping us access a webpage through JavaScript
-- Query the DOM using native JavaScript selectors
-- Manipulate the DOM using native JS methods on DOM nodes
-- Explain the role of jQuery (and similar libraries) in helping to query and manipulate the DOM
-
-## Class Structure
-- Review Lab (6:30)
-- Intro to the DOM 
-  - Webpage rendering (7:00)
-  - Role of JS in the browser (7:15)
-  - What is the DOM (7:30)
-  - *BREAK* (7:45)
-  - Querying the DOM (7:50)
-  - *Exercise Part 1* (8:05)
-  - Manipulating the DOM (8:25)
-  - *Break* (8:40)
-  - *Exercise Part 2* (8:45)
-  - Intro to jQuery (9:05)
-- Closing Questions / Tying up loose ends (9:15)
-- Exit Tickets (9:25)
+| Timing | Type | Topic |
+| --- | --- | --- |
+| 10 min | [Opening](#opening) | The Document Object Model (DOM) |
+| 30 min | [Codealong](#codealong1) | Working the DOM |
+| 25 min | [Lab](#lab1) | DOM Manipulation: Independent Practice |
+| 30 min | [Introduction](#introduction) | jQuery and DOM |
+| 50 min | [Codealong](#codealong2) | Augmenting JavaScript with jQuery |
+| 30 min | [Lab](#lab2)| Create a Checklist: Independent Practice |
+| 5 min | [Conclusion](#conclusion) | Final Questions & Exit Tickets  |
 
 
-## Lab review
-- How do students feel it went?
-- What did people find difficult?
-  - structuring their program
-  - approaching the task of writing a program
-  - the syntax
-  - understanding the material (data types, loops, conditionals, functions, objects)
+### Objectives
+*After this lesson, students will be able to:*
 
-## Looking Ahead
-- finished part 1 of the course
-- part 1 is our introduction to the language by focusing on the language features
-- the rest of the course is more focused on using the language
-- we'll continue to use everything we learned in part 1 on a regular basis
-- focus will be on using the language and becoming JavaScript developers
+- Identify differences between the DOM and HTML.
+- Explain the methods and use the DOM in javascript.
+- Manipulate the DOM by using jQuery selectors and functions.
+- Register and trigger event handlers for jQuery events.
 
-### Intro to JavaScript: Part II
-- building applications in JavaScript
-- start on what we call the front end or the client side of an applications
-  - what the user sees and interacts with
-  - start with the dom - how does the browser build and render HTML web pages and how can we use javascript to interact and manipulate an html web page once it's been rendered
-  - then we're going to talk about APIs. We won't know how to build an API yet, but we can consume one in order to get some info and display it on our webpages.
-  - templating: building an html page on the client using javascript, rendering new parts of the page with new data
-  - take a jump to the back end and build our first server. using a framework called Express, we'll build servers that can respond to http requests
-  - once we know how to build servers, we'll need to know how to work with databases so we can save data somewhere safe. At this point we'll be able to build feature rich applications
-  - We'll close this section off by talking about application architecture - this lesson will focus on how we break up our application into different parts, what functionality do we put where and why
-- our lab for this class will be a clone of the popular Hacker News site
-- from there we will delve into Single Page Applications and dip our toes into React!
+### Preparation
+*Before this lesson, students should already be able to:*
 
+- Understand fundamental data types.
+- Implement object oriented programming in JavaScript.
+- Create and modify JavaScript objects.
 
+>Note: Last class, we worked on writing constructors and prototypes for JavaScript objects! Check with students to make sure that everyone is comfortable with the materials covered in the last class.
 
+---
 
+<a name = "opening"></a>
+## The Document Object Model (DOM) (10 minutes)
 
+We are now familiar with all the fundamental JavaScript data types, including objects. We can use existing objects as well as create our own to pass around information and functionality. Understanding the fundamentals of objects not only gives us the ability to pass around information, but it is also essential in how we use JavaScript to manipulate our sites and applications.
 
-## JS In the Browser
-**Goals:
-- introduce the browser and an environment to program and run JavaScript
-- how are the browser and JavaScript related?
-- how do we run JS in the browser?
-- what is the JS console? how do we interact with it?
-- 'hello world' for the browser**
+The Document Object Model (DOM) is a programming interface for HTML [and XML] documents. Before we dive too deep into the DOM, we need to understand first how browsers work. Watch this short video on [browser rendering](https://www.youtube.com/watch?v=n1cKlKM3jYI).
 
-### History
-- we remember from our first day of class, when we talked about the history of JavaScript, that it was built originally for the browser
-  - wasn't until later that we were able to run JavaScript on the server
-- JS started as a client side scripting language
-  - change, move, remove, update elements on the page in the browser
-- that's still an incredibly important part of JS
-  - what we're focusing on learning today
-- doing stuff to what's on the page, after the page has loaded
-- making our static html pages dynamic
+So, the DOM is a (potential) large object that describes the structure of our content. Since it's an object, we can use normal techniques to get and set data! In the browser, the DOM is represented by the `document` object. JS specifies some built-in methods that make using the DOM easier. Take a minute to review the [summary of the DOM at MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document). Pay particular attention to the following methods:
 
-### How do Browsers work
-- When a user loads a page or navigates to a URL a couple of things happen
-- first the browser makes a request to a url (something we'll talk about when we talk about servers and APIs)
-- the browser gets back an document that is written in HTML
-- it then parses that document and does a bunch of stuff with it but the steps that we care about are:
-  - it fetches the assets it needs to render the document, so the css and the JavaScript
-  - it then builds a model of the document's structure and uses that model with a rendering engine to draw that page on the screen
-  - this document model is what we care about today
+- `Document.getElementById(String id)`
+- `Document.querySelector(String selector)`
+- `Document.querySelectorAll(String selector)`
 
-### Exercise: How do we use JS in the browser
-- Open up a browser and navigate to the console
-- reference the browser's `document` object
+When reading these methods, try to get a sense of what they're trying to accomplish. We aren't going to ask you to memorize documentation. Don't worry about the details, since we're going to observe some examples.
 
-**Exercise 1:**
-- Demonstrate the console, how to get to it and what it is
-- Compare it to the live node environment we saw when we ran `node` in the terminal
-- explore the `window` and `document` objects
-- `console.log( 'sup world?' )`
+Each of these methods returns an element from the DOM. What can we do with an [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element)? Let's write a few suggestions down on the board.
 
-How do we run JS in the browser?
-Method 1: Inline, in the `script` tag
-- html is a markup language made up of tags that we can use to structure a document
-- one of those tags is the `script` tag
-*Add a `script` tag to `index.html` and `console.log('hello world')`*
+---
+<a name = "codealong1"></a>
+## Working with the DOM: Codealong (30 minutes)
+We can manipulate the DOM in 3 different ways:
 
-Method 2: External js files
-- just like we can reference external stylesheets, we can also reference external JavaScript
-- using the `script` tag but giving it a path to a JS file
-*Modify the `script` tag to import `index.js` and reload the page, showing that the file runs. Talk about the difference between loading js at the beginning versus end of a document*
+1.  Inline JavaScript (least desirable).
+```html
+  <body onload="window.alert('welcome to my app!');">
+```
+2. Include script tags in our HTML documents. This technique is used primarily when generating content/properties through a back-end language. Try to avoid this if not necessary.
+```html
+  <html>
+    <head>
+      <script>
+         alert('Welcome to my app!');
+      </script>
+    </head>
+    <body>
+    </body>
+  </html>
+```
+3. Including the JavaScript file [at the footer] of our site/app.
 
+**It is important to get used to falling in the habit of only doing DOM related manipulation only once our content has loaded.** This is required, as we can't manipulate something that has not yet been drawn in the browser. In plain JavaScript, we can usually wrap this in a 'window.onload' function.
 
+```js
+   // run this function when the document is loaded
+   window.onload = function() {
 
+     // create a couple of elements in an empty HTML page
+     var main_heading = document.createElement("h1");
+     var heading_text = document.createTextNode("Hello dynamic world!");
+     main_heading.appendChild(heading_text);
+     document.body.appendChild(main_heading);
+  }
+```
 
+The above `window.onload` function adds a new element to our page through the following steps:
 
+  1. We first create the new H1 element through the `document.createElement` method.
+  2. We create the text through the `createTextNode` method.
+  3. The text is added to the newly created H1 element.
+  4. The H1 element is added to the body. Both steps 3 and 4 use the `appendChild` method to the respective element. Think of `appendChild` as an array of elements belonging to the element we are adding to.
 
-## Intro to the DOM
-**Goals:
-- understand what the DOM is
-- understand the different parts of the DOM
-- what is a DOM tree? what is a DOM node?**
+Below are a few of the core interfaces to target existing elements in the DOM.
 
-### What is the DOM?
-- the DOM is built by the browser and gives us a way to interact with the document
-- it's a data structure - which means its an organized group of data
-- the "structure" is what we call a `tree` structure - a document tree
+```html
+<body>
+  <div id="hello">Hello world</p>
+  <ul id="gaCampuses">
+    <li>DC</li>
+    <li>NY</li>
+    <li>SF</li>
+    <li>LA</li>
+    <li>HK</li>
+  </ul>
+</body>
+```
 
-### What is a document tree?
-- we've seen a tree structure before: the file system we navigate with our terminal
-- we have some starting point, which we call the `root` and then we have some number of branches and subbranches and sub-subbranches that we can navigate through to get to a certain point
-- the DOM works like this, but as a JS object
+```js
+   // run this function when the document is loaded
+   window.onload = function() {
+     // Target items by id via the getElementById() method
+     var helloElem = document.getElementById("hello");
+     // We can access that element's css styles through the style property, and then accessing the css property through its camel-cased equivalent
+     helloElem.style.color = "red";
 
-**draw a document tree on the board, referring to the html file**
-- We have an `html` element, within which we have `head` and `body` elements, within each of these, we have further nested elements
-- this is how trees work
-- this is important terminology for us to be familiar with
-- when we're working with the DOM, we typically mean we're working with DOM nodes (i.e. nodes of the DOM tree)
+     var campusesContainer = document.getElementById("gaCampuses");
+     // The getElementsByTagName() method returns a live HTMLCollection of elements with the given tag name.
+     var gaCampuses = campusesContainer.getElementsByTagName("li");
 
+     // We can iterate through the returned collection with a for loop
+     for (var i = 0; i < gaCampuses.length; i++) {
+          gaCampuses[i].style.backgroundColor = "red";
+      }
+  }
+```
 
+Finally, we can set certain events to execute based on user interaction. A common example is listening for a button click.
 
+```html
+  <form>
+    <input id="my-input" />
+    <input id="my-input-button" type="submit" value="Run button code"></submit>
+  </form>
+```
 
+```js
+  window.onload = function() {
+    button = document.getElementById('my-input-button');
+    // Event parameter is the default object event that would have happened on user click
+    button.onclick = function(event) {
+      // The preventDefault() method lets us disable the default action, allowing us to override with our on functionality.
+      event.preventDefault();
+      MyApp.do_something("world");
+    };
+  };
 
-## Working with the DOM
-**Goals:
-- how do we use JS to work with the DOM?
-- what can we do with the DOM?**
+  // We can define things outside of the `window.onload` that are evaluated
+  // only when called.
+  MyApp = {};
 
-So we now know how to get javascript to run with our documents, either with inline js or by referencing an external JS file.
+  MyApp.do_something = function(name) {
+    console.log("Hello " + name);
+  }
+```
+---
 
-What happens when we import a file? It runs (i.e. when we used `require`)
+<a name = "lab1"></a>
+## DOM Manipulation: Independent Practice (25 minutes)
 
-Same happens with JS being imported through a `script` tag
+Complete the [main.js](exercises/js_dom_exercise/main.js) file in [js_dom_exercise](exercises/js_dom_exercise) folder:
 
-### Document Methods
-- `document.getElementById('myID')`
-- `document.getElementsByTagName('div')`
-- `document.getElementsByClassName('my-class')`
-- `document.querySelector('#myID')`
-- `document.querySelector('.my-class')`
-- `document.querySelectorAll('.my-class')`
-- `document.querySelectorAll('div')`
+- When the user clicks the submit button, take the value they've typed into the input box and add it to the list (remember: `appendChild`!)
 
+- Also, when a new item is added to the list, clear the input box. (Hint: the `value` property of the input box, before anyone types in it,
+is the empty string.)
 
-
-
-
-### Getting data from the DOM
-**Goals:
-- understand  and use the methods for getting data from the DOM
-- how to use selectors
-- understand how to work with data that we get back from the DOM**
-
-- our `document` object has a set of methods that we can use to get information from our page
-- based on how we select html elements using CSS
-- two types of methods that we can use - the original API and the newer API
-
-#### Original methods
-- `document.getElementById('myID')`
-- `document.getElementsByTagName('div')`
-- `document.getElementsByClassName('my-class')`
-
-- all of these are methods on the document object
-- they all start with `getElement` or `getElements`
-- the plurality determines whether or not we'll get one or an array of elements back
-- we have to pass in a `selector` - a reference to what we want from within the DOM
-  - also use selectors in CSS to target and style html elements
-  - can be thought of as a reference to an element
-  - tag, class, id, name
-
-#### Newer methods
-- `document.querySelector('#myID')`
-- `document.querySelector('.my-class')`
-- `document.querySelectorAll('.my-class')`
-- `document.querySelectorAll('div')`
-
-- the `querySelector` set of methods is newer (may work inconsistently with older browsers) and also has some key differences
-- the `getElement` and `getElements` methods are methods of the document object, but not methods of the child nodes of the object, while the `querySelector` methods are
-
-*Pull open a document and see what it looks like by getting a p by id, then trying to get an a by id from within that p*
-
-**Probably ready for a break right about now**
+- Bonus:  When they click submit without typing anything, alert the user "you must type in a value!"
 
 
+---
 
+<a name = "introduction"></a>
 
+## jQuery and the DOM: Introduction (30 minutes)
+By now, you've learned about the DOM and seen how we can use JavaScript to interact with it - reading values from it, and writing values to it. The DOM's _**API**_ (application programming interface) give us access to a couple of different methods that allow us to select elements from the DOM.
 
+* `document.getElementById` retrieves a single element with a matching ID.
+* `document.getElementsByClassName` retrieves an array of elements that match the given class.
+* `document.getElementsByTagName` retrieves an array of elements that are of the given type.
 
-### Setting data in the DOM
-**Goals:
-- understand and use the methods for inserting data into the DOM
-- creating elements in JS
-- inserting those elements with JS
-- changing elements with JS**
+However, these options are somewhat limiting. What if we wanted to retrieve the first `<li>` on a particular list with class `specialList`? We might be able to find it by using the `children` property, but that's a little clunky. If we were using CSS, we could just write a selector like this to style that element:
 
-We've talked now about how to get stuff from the DOM, next we're going to talk about how to work with that data once we've retrieved it and then how to put it back on to the page. For now we're somewhat limited because we haven't talked about events (which is what most of our next class will be on). Events let us define functions and call them when a certain browser event happens, like when someone clicks on a link.
+```CSS
+  .specialList li:first-child {
+    ...
+  }
+```
 
-- get an element from the DOM
-- review what methods and properties it has
-- how do we get the text of the element as a string?
-- how can we manipulate the style of an element?
+Wow - short and powerful! Wouldn't it be nice if we could select elements in the same way?
 
+Enter jQuery. jQuery is an open-source project that was released in 2006, and it's currently the most widely used JavaScript library on the web; originally, it was going to be called "JSelect", but the domain name "JSelect.com" was taken, so its creator, John Resig, decided to call it jQuery instead.
 
+jQuery allows us to query (i.e. select elements from) the DOM using the exact same selector syntax that we've used in CSS. To select the element described above, we would write
 
-### Exercises
-Build a Table of contents
+```js
+jQuery(".specialList li:first-child")
+```
 
+jQuery allows us to query (i.e. select elements from) the DOM using the exact same selector syntax that we've used in CSS. To select the element described above, we would write
 
-## jQuery
-**Goals:
-- discuss the pros and cons of using jQuery
-- review a little bit about the history of jQuery and why it's so big
-- comment the drawbacks of jQuery
-- go over jQuery's syntax
-- compare native JS selection and editing methods with using jQuery
-- talk about some of jQuery's methods**
+This will return a 'jQuery Object' - think of it as an abstraction for the search results from our query. You can retrieve any of the specific results using array notation (`jQuery("...")[i]`). There are also a number of special methods on the 'jQuery Object' that you can call which will manipulate the DOM for _all elements select by the query, at once_. These methods can do things like:
+
+* change styling
+* add event listeners for specific events
+* write brand new content (text _and_ HTML) into the page
+
+Writing 'jQuery' every time we want to make a query is a little tedious, though, so the jQuery team kindly created a shorthand reference that you can use to refer to jQuery : `$`. We can rewrite our jQuery code above as follows.
+
+```js
+$(".specialList li:first-child")
+```
+
+---
+<a name = "codealong2"></a>
+## Augmenting JavaScript with jQuery: Codealong (50 min)
+
+When reading the jQuery documentation, be sure to scroll through the whole document to ensure you're looking at the correct method signature. Most jQuery methods change their behavior depending on the number of arguments they have when called.
+
+For example, have a look at [.val()](https://api.jquery.com/val/). Note in the table of contents that there are two method signatures, `.val()` and `.val(value)`. This is our hint that `.val()` can do two things.
+
+Reading the documentation, we discover that `.val()` is getter on an element, but that `.val(value)` is a setter on an element. Be sure you're using the correct method. Reading examples is very helpful, and the jQuery examples in the docs are fully functional!
+
+Here is a list of many commonly used jQuery API functions:
+
+1. **[find()](http://api.jquery.com/find)**
+1. **[hide()](http://api.jquery.com/hide)**
+1. **[show()](http://api.jquery.com/show)**
+1. **[html()](http://api.jquery.com/html)**
+1. **[append()](http://api.jquery.com/append)**
+1. **[prepend()](http://api.jquery.com/prepend)**
+1. **[on()](http://api.jquery.com/on)**
+1. **[off()](http://api.jquery.com/off)**
+1. **[css()](http://api.jquery.com/css)**
+1. **[attr()](http://api.jquery.com/attr)**
+1. **[val()](http://api.jquery.com/val)**
+1. **[text()](http://api.jquery.com/text)**
+1. **[each()](http://api.jquery.com/each)**
+
+We can use jQuery to find elements, manipulate the returned elements, change styles, and add event listeners.
+
+Targeting DOM elements in jQuery is a little easier to read than the JavaScript counterpart.
+
+```js
+  // Target item by id
+  $('#item');
+
+  // Target item(s) by class
+  $('.box')
+
+  // Target item(s) by tag
+  $('h2')
+```
+
+Setting CSS properties is just as easy
+```js
+  // It is good practice to prefix items we have selected via jQuery with a $ in front of the variable name
+  var $item = $('#item');
+  // Setting the css property requires us to pass the property we are changing and the value we are changing it to as parameters (strings) in the css() method
+  $item.css('color', 'red');
+```
+*** NOTE: We often don't update styles through the css property. This should be done by adding and removing classes appropriately through the `addClass()` and `removeClass()` methods. ***
+
+We can update the internal html of an element with the html() method. Whatever we pass through the method will replace the current content of the selected element.
+```js
+  var $item = $('#item');
+  // We can replace the content of the element either with text or with additional html.
+  var htmlContent = "<p>Hello world</p>";
+  $item.html(htmlContent);
+```
+
+jQuery also gives us access to many events making dealing with user interaction significantly easier.
+```js
+  var $button = $('#my-button');
+
+  // Most events we will work with will pass as the first parameter in the on() method
+  $button.on('click', function(event) {
+    event.preventDefault();
+    // Do something
+  });
+```
+
+Now let's use jQuery to refactor some JS code! You may either follow along as or you may focus on taking notes.
+
+---
+
+<a name = "lab2"></a>
+## Create a Checklist: Independent Practice (30 mintutes)
+
+Complete the [main.js](exercises/jquery_exercise/main.js) app in the [jquery_exercise folder](exercises/jquery_exercise).
+
+You'll add the ability to complete tasks in your favorite things list:
+
+- Using jQuery, add a "complete task" link at the end of each to-do item (i.e. each "favorite thing")
+- When clicked, the link will cross out the current item (hint: add a class to the list that sets the text-decoration to line-through)
+- Each new item added by the user needs to also have the "complete task" link at the end
+
+---
+
+<a name = "conclusion"></a>
+
+## Conclusion (5 min)
+
+Ask students what was learned. Make sure the objectives have been met.
+
+* Uderstand how HTML parses and creates the object model, the DOM.
+* Use selectors and methods to access and update HTML using the DOM.
+* Register and trigger event handlers for jQuery events.
+
+#### Further Resources
+
+- [MDN: Document Object Model (DOM)][1]
+- [Youtube video: browser rendering flow][2]
+- [jQuery documentation][3]
+- [jQuery events][4]
+
+[1]: https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
+[2]: https://www.youtube.com/watch?v=n1cKlKM3jYI
+[3]: http://api.jquery.com
+[4]: https://learn.jquery.com/events/
