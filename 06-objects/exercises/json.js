@@ -26,6 +26,6 @@ for (let key in data) {
   console.log(data[key])
 }
 
-data.Foods.forEach(function(food)){
-    food
-}
+// data.Foods.forEach(function(food)){
+//     food
+// }
