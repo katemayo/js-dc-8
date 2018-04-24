@@ -71,7 +71,7 @@ We started covering mouse events with the click event. We can add additional mou
   $thingListItems.on('mouseenter', function(e) {
     $(this).removeClass('inactive');
     $(this).siblings().addClass('inactive');
-  });
+  }); 
 
   $thingListItems.on('mouseleave', function(e) {
     $(this).siblings().removeClass('inactive');

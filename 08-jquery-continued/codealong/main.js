@@ -1,18 +1,3 @@
-/* Independent Practice
-
-Making a favorites list: event delegation
-
-Refactor the code below.
-
-The difference will be: use event delegation so that you only have
-to set one event listener for all the items once, when the
-code first runs, and you don't have to add any others whenever
-someone adds an item.
-
-Bonus: When the user mouses over each item, the item should turn grey. Don't use CSS hovering for this.
-
-*/
-
 function addToList ($list, thing) {
   let $thingLi = $('<li>').html(thing)
   addCompleteLink($thingLi)
@@ -49,5 +34,7 @@ $(document).ready(function () {
       addToList($thingList, newThing)
       $newThingInput.val('')
     }
-  })
+  })``
 })
+
+// NEW STUFF FOR THIS CLASS

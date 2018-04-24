@@ -2,7 +2,6 @@
 
 Making a favorites list: event delegation
 
-
 Refactor the code below.
 
 The difference will be: use event delegation so that you only have
@@ -16,42 +15,41 @@ Bonus 2: Add another link, after each item, that allows you to delete the item.
 
 */
 
-function addToList($list, thing) {
-  var $thingLi = $('<li>').html(thing).addClass('fav-thing');
-  addCompleteLink($thingLi);
-  $list.append($thingLi);
+function addToList ($list, thing) {
+  let $thingLi = $('<li>').html(thing).addClass('fav-thing')
+  addCompleteLink($thingLi)
+  $list.append($thingLi)
 }
 
-function addCompleteLink($li) {
-  var $completedLink = $('<span>').html(' complete task').addClass('complete-task');
-  $li.append($completedLink);
+function addCompleteLink ($li) {
+  let $completedLink = $('<span>').html(' complete task').addClass('complete-task')
+  $li.append($completedLink)
 }
 
-$(document).ready(function() {
-  var $thingList = $('#fav-list');
-  var $things = $('.fav-thing');
-  var $button = $('#new-thing-button');
-  var $newThingInput = $('#new-thing');
+$(document).ready(function () {
+  let $thingList = $('#fav-list')
+  let $things = $('.fav-thing')
+  let $button = $('#new-thing-button')
+  let $newThingInput = $('#new-thing')
 
-  $things.toArray().forEach(function(li) {
-    addCompleteLink($(li));
-  });
+  $things.toArray().forEach(function (li) {
+    addCompleteLink($(li))
+  })
 
-  $button.on('click', function(event) {
-    event.preventDefault();
-    var newThing = $newThingInput.val();
+  $button.on('click', function (event) {
+    event.preventDefault()
+    let newThing = $newThingInput.val()
     if (newThing === '') {
-      alert('You must type in a value!');
+      alert('You must type in a value!')
     } else {
-      addToList($thingList, newThing);
-      $newThingInput.val('');
+      addToList($thingList, newThing)
+      $newThingInput.val('')
     }
-  });
+  })
 
-  $thingList.on('click', '.fav-thing .complete-task', function(event) {
-    var $thingItem = $(this).parent();
-    $thingItem.addClass('completed');
-    $(this).html('');
-  });
-
-});
+  $thingList.on('click', '.fav-thing .complete-task', function (event) {
+    let $thingItem = $(this).parent()
+    $thingItem.addClass('completed')
+    $(this).html('')
+  })
+})
