@@ -1,0 +1,20 @@
+#completed-list-div {
+  display: none;
+}
+
+.complete-task {
+  color: blue;
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.fav-thing{
+  color: purple;
+}  
+
+.fav-thing.inactive{
+  color: orange;
+}
