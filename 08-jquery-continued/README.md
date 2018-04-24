@@ -173,8 +173,8 @@ Handlebars has a 4 step process to implementing templates in our applications:
 2. We can then use jQuery to reference the newly created template and pass that reference to Handlebars.
 
   ```js
-    var source = $('#hello-world-template').html();
-    var template = Handlebars.compile(source);
+    let source = $('#hello-world-template').html();
+    let  template = Handlebars.compile(source);
   ```
 
 3. We can then pass our data object to the newly created template.
@@ -182,12 +182,12 @@ Handlebars has a 4 step process to implementing templates in our applications:
 4. And add it to the DOM via jQuery.
 
   ```js
-    var source = $('#hello-world-template').html();
-    var template = Handlebars.compile(source);
+    let source = $('#hello-world-template').html();
+    let template = Handlebars.compile(source);
 
-    var helloStatement = { helloTitle: "Hello world", helloContent: "GA JS class is just awesome"};
+    let helloStatement = { helloTitle: "Hello world", helloContent: "GA JS class is just awesome"};
 
-    var compiledTemplate = template(helloStatement);
+    let compiledTemplate = template(helloStatement);
     $('body').append(compiledTemplate);
 
     // or you could have done $('body').append(template(helloStatement));
