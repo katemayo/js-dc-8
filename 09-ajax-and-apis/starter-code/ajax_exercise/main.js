@@ -12,6 +12,23 @@ success and error scenarios.
 */
 
 'use strict';
-(function() {
-  // Alternate data source: https://data.cityofnewyork.us/api/views/jb7j-dtam/rows.json?accessType=DOWNLOAD
-})();
+(function () {
+  let httpRequest = new XMLHttpRequest()
+  httpRequest.onreadystatechange = responseMethod
+
+  function responseMethod () {
+    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+      if (httpRequest.status === 200) {
+        const data = JSON.parse(httpRequest.responseText) // ?
+        data.forEach(function (d) {
+          console.log(d.id)
+        })
+      } else {
+        console.log('There was a problem')
+      }
+    }
+  }
+
+  httpRequest.open('GET', 'http://data.consumerfinance.gov/api/views.json')
+  httpRequest.send()
+})()

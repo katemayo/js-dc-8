@@ -45,7 +45,7 @@ Last class we learned the importance of separation of concerns. It's best practi
 - Social game sharing high scores
 - Any app with user log in
 
-Given the increase in the number of devices and platforms, [Service Oriented Architectures (SOA)](https://en.wikipedia.org/wiki/Service-oriented_architecture) have becoming increasingly prevalent and are soon becoming best practice. SOAs allow us to build one backend/database to share across all of these platforms. This means that our applications will not only deal with external APIs, but also rely on these services for our core data.
+Given the increase in the number of devices and platforms, [Service Oriented Architectures (SOA)](https://en.wikipedia.org/wiki/Service-oriented_architecture) have become increasingly prevalent and are soon becoming best practice. SOAs allow us to build one backend/database to share across all of these platforms. This means that our applications will not only deal with external APIs, but also rely on these services for our core data.
 
 ### API Gotchas
 
@@ -96,7 +96,7 @@ Often Web Servers are just the middleman, passing HTTP Request and Responses bet
 
 Are programs built by a developer, sometimes using a framework like Rails or Express. These programs plug into a web server, process the **HTTP requests** that the server receives, and generate **HTTP Responses**.
 
-![HTTP Request and Response](images/http_req_resp.gif)
+![HTTP Request and Response](images/nodejsdeployarch.png)
 
 Lost? Here's the play-by-play.
 
@@ -213,7 +213,7 @@ To make an HTTP request with AJAX we need to first create an instance of `XMLHtt
 
 ```js
   // Create instance of XMLHTTPRequest
-  var httpRequest = new XMLHttpRequest();
+  let httpRequest = new XMLHttpRequest();
 
   // Set a custom function to handle the request
   httpRequest.onreadystatechange = responseMethod;
