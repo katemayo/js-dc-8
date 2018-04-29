@@ -50,4 +50,10 @@ $(document).ready(function () {
       $newThingInput.val('')
     }
   })
+
+  $thingList.on('click', '.fav-thing .complete-task', function (event) {
+    let $thingItem = $(this).parent()
+    $thingItem.addClass('completed')
+    $(this).html('')
+  })
 })

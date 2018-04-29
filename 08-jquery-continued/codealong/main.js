@@ -1,5 +1,5 @@
 function addToList ($list, thing) {
-  let $thingLi = $('<li>').html(thing)
+  let $thingLi = $('<li>').html(thing).addClass('fav-thing')
   addCompleteLink($thingLi)
   $list.append($thingLi)
 }
@@ -34,7 +34,18 @@ $(document).ready(function () {
       addToList($thingList, newThing)
       $newThingInput.val('')
     }
-  })``
+  })
+
+  let $thingListItems = $('#fav-list')
+
+  $thingListItems.on('mouseenter mouseleave', 'li', function (event) {
+    if (event.type === 'mouseenter') {
+      $(this).removeClass('inactive')
+      $(this).siblings().addClass('inactive')
+    } else if (event.type === 'mouseleave') {
+      $(this).siblings().removeClass('inactive')
+    }
+  })
 })
 
 // NEW STUFF FOR THIS CLASS
