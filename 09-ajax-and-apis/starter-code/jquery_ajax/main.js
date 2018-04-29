@@ -10,9 +10,7 @@
 */
 
 'use strict';
-(function() {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-  var apiKey = "";
-
-  });
-})();
+(function () {
+  var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?q='
+  var apiKey = ''
+})()

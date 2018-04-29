@@ -1,38 +1,38 @@
 'use strict';
-(function() {
-  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-  var apiKey = "2de143494c0b295cca9337e1e96b00e0";
+(function () {
+  var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&q='
+  var apiKey = '62d89c97aada83d1378c49b38d1d07e4'
 
-  getWeather('washington', 'dc');
+  getWeather('Washington', 'USA')
 
-  $('#getTemp').on('click', function(e) {
-    getWeather($('#city').val(), $('#state').val());
-  });
+  $('#getTemp').on('click', function (e) {
+    getWeather($('#city').val(), $('#country').val())
+  })
 
-  function getWeather(city, state) {
+  function getWeather (city, country) {
     $.ajax({
-        url: weatherUrl + city + ',' + state + '&appid=' + apiKey,
+      url: weatherUrl + city + ',' + country + '&APPID=' + apiKey,
 
-        // Work with the response
-        success: function( response ) {
-            updateUISuccess(response.main.temp, city, state);
-        },
+      // Work with the response
+      success: function (response) {
+        console.log(response)
+        updateUISuccess(response.main.temp, city, country)
+      },
 
-        error: function() {
-          updateUIError();
-        }
-    });
+      error: function () {
+        updateUIError()
+      }
+    })
   }
 
-  function updateUISuccess(temp, city, state) {
-    $('#city, #state').val('');
-    $('#location').html(city + ', ' + state);
-    console.log(temp);
-    $('#temp').html(temp);
+  function updateUISuccess (temp, city, country) {
+    $('#city, #country').val('')
+    $('#location').html(city + ', ' + country)
+    console.log(temp)
+    $('#temp').html(temp)
   }
 
-  function updateUIError() {
-    alert("There was an error getting weather data :(");
+  function updateUIError () {
+    alert('There was an error getting weather data :(')
   }
-
-})();
+})()
