@@ -1,6 +1,8 @@
-# Express
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Express (3:00)
 
-## Learning Objectives
+### Objectives
+*After this lesson, students will be able to:*
+
 - Differentiate between the internet and the world wide web
 - Define HTTP and its role
 - Explain the client-server relationship and the role of each in delivering web content
@@ -10,7 +12,7 @@
 - Create a simple web server using Express
 - Learn to use named parameters on a web page
 
-## Opening Framing (15/15)
+## Opening (15/15)
 
 Let's start out by listing the things we've covered in the first 2 units of JSD.
 
