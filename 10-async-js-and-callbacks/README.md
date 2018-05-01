@@ -261,6 +261,170 @@ Open the [main.js](starter-code/iife-exercise/js/main.js) file.
 
 ---
 
+## Introduction to Closures and Context (5 min)
+
+Now lets talk about a couple features of Javascript that make it unique from other languages; _closures_ and _context_. Closures and context are definitely used in many languages other than Javascript, but it is the way Javascript handles these two concepts that makes them unique. Context and closures are often thought of as the most hard to grasp concepts of JS, but we will break down this lesson covering them one topic at a time, followed by enough independent practice and brainteasers to give you a mastery of them.
+
+## A Review of Scope (10 mins)
+
+As we have learned from Unit 1, Javascript implements a concept of scope. If you don't fully remember, scope is synonymous with variable access, meaning, the scope of our executed code will dictate which variables we have access to and can ultimately use at the time of execution. The two types of scope we've touched on were global and local.
+
+Global scope:
+
+```js
+var a = 1
+
+function foo() {
+  console.log(a)
+}
+
+foo() // 1
+```
+
+If you declare a variable _outside_ of all functions it becomes globally scoped meaning it can be accessed from anywhere within the execution environment. In the example above, `foo()` logs the value for the global variable `a`.
+
+Local scope:
+
+```js
+function bar() {
+  var b = 'local value'
+  console.log(b)
+}
+
+bar() // 'local value'
+
+console.log(b) // b is not defined
+```
+
+Variables declared _inside_ of a function are given a local scope and can only be accessed from within the function they were declared. This is why when we run `bar()` our log of `b` gives us `'local value'` but when we try to access `b` outside that scope we get `b is not defined`.
+
+
+## Scope Chains (10 mins)
+
+The scoping rules work the same when there are functions nested inside of other
+functions; each function gets its own local scope, and variables in that scope
+can only be accessed from the _lines of code_ within the function they were
+declared. This is called _Lexical Scope_.
+
+To phrase it a different way; inner functions can access variables in the scope
+of their outer function, but the reverse is not true: outer functions _cannot_
+access the scope of an inner function.
+
+For example:
+
+```javascript
+function someFunc() {
+  var outerVar = 1;
+  function zip() {
+    var innerVar = 2;
+  }
+}
+```
+
+*`zip` has access to both `innerVar` & `outerVar`, but `someFunc`* only *has
+access to `outerVar`*
+
+### Multiple Nested Scopes
+
+Nesting isn't limited to a single inner scope, there can be multiple nested
+scopes, each of which adhere to the rule above. With one addition: sibling
+scopes are also restricted from accessing each other's variables.
+
+For example:
+```javascript
+function someFunc() {
+  function zip() {
+  }
+  function quux() {
+  }
+}
+```
+
+*`zip` & `quux` are both inner scopes of `someFunc`. Just as `someFunc`
+cannot access `zip`'s variables, `zip` cannot access `quux`'s variables
+(and vice versa)*
+
+## Closures (20 mins)
+
+```html
+<button>Click Me!</button>
+```
+
+```javascript
+document.addEventListener('DOMContentLoaded', function() {
+
+  var count = 0
+
+  document.querySelector('button').addEventListener('click', function() {
+    alert(count)
+  })
+})
+```
+
+The inner function closes over the variable `count`, and continues to have
+access to that variable no matter how many times the user clicks on the
+`<button>`.
+
+Note that because `count` is declared inside the outer function, it is _not_
+available in the `global` scope.
+
+We can then extend the code to increase the count each time the button is
+clicked:
+
+```html
+<button>Click Me!</button>
+```
+
+```javascript
+document.addEventListener('DOMContentLoaded', function() {
+
+  var count = 0
+
+  document.querySelector('button').addEventListener('click', function() {
+    count = count + 1
+    alert(count)
+  })
+})
+```
+
+Because the variable `count` is in an outer function, and is closed over by the
+inner function, any modifications made to it anywhere along any of the scope
+chains leading to it are reflected in every closure:
+
+```html
+<button id="increase">Increase Number +</button>
+<button id="show">Show Me!</button>
+```
+
+```javascript
+document.addEventListener('DOMContentLoaded', function() {
+
+  var count = 0
+
+  document.querySelector('#increase').addEventListener('click', function() {
+    count = count + 1
+  })
+
+  document.querySelector('#show').addEventListener('click', function() {
+    alert(count)
+  })
+})
+```
+
+Here we have two scope chains:
+
+1. `#increase`'s click function -> `document`'s loaded function
+2. `#show`'s click function -> `document`'s loaded function
+
+Both close over `count` so whenever it changes, both scope chains have access
+to the new value.
+
+*Note*: Due to this sharing of a variable across closures, it can sometimes be
+the cause of unexpected bugs due to the variable being unexpectedly modified by
+another scope chain.
+
+
+
 <a name = "conclusion"></a>
 ## Conclusion (5 min)
 Callbacks and closures are the bread and butter of asynchronous programming. Looking back at our DOM and APIs lessons, our interfaces update on user interactions and/or once we receive data from remote locations. Best practices in JS call for these reactions to be handled in the form of callbacks.
@@ -268,6 +432,7 @@ Callbacks and closures are the bread and butter of asynchronous programming. Loo
 Callbacks, closures, and IIFEs allow us to better organize our code for each scenario, as well as make our functions significantly more dynamic.
 
 Make sure class objectives have been met.
+
 
 ## Homework
 
