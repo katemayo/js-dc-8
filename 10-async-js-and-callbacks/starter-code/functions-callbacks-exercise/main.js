@@ -29,9 +29,25 @@
  *
  */
 
-function makeCountingFunction () {}
+function makeCountingFunction (predicate) {
+  return function (numbers) {
+    let count = 0
+    numbers.forEach(function (number) {
+      if (predicate(number)) {
+        count++
+      }
+    })
+    return count
+  }
+}
 
-function isOdd () {}
+function isOdd (number) {
+  return number % 2 == 1
+}
+
+function isEven (number) {
+  return number % 2 == 0
+}
 
 // =============================================================================
 // The code below should work without modification.
@@ -44,14 +60,17 @@ function isOdd () {}
  * This new function is being assigned to the variable 'countTheOdds'.
  */
 
-var countTheOdds = makeCountingFunction(isOdd)
+const test = [1, 2, 3, 4, 5, 6, 7]
 
+var countTheOdds = makeCountingFunction(isOdd)
+var countTheEvens = makeCountingFunction(isEven)
 /**
  * The final line below calls our new 'countTheOdds()' function and passes in an
  * array of numbers. Once your code is working, the line below should return the
  * number 4.
  */
 
-var oddCount = countTheOdds([1, 2, 3, 4, 5, 6, 7])
+var oddCount = countTheOdds(test)
+var evenCount = countTheEvens(test)
 console.log('There are ' + oddCount + ' odd numbers in the array.')
 // expected output: 'There are 4 odd numbers in the array.'

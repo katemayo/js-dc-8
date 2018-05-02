@@ -36,7 +36,7 @@ $(document).ready(function () {
     }
   })
 
-  let $thingListItems = $('#fav-list')
+  // let $thingListItems = $('#fav-list')
 
   $thingListItems.on('mouseenter mouseleave', 'li', function (event) {
     if (event.type === 'mouseenter') {

@@ -12,7 +12,9 @@
   function getWeather (city, country) {
     $.ajax({
       url: weatherUrl + city + ',' + country + '&APPID=' + apiKey,
+      let theRequest = new XMLHttpRequest()
 
+theRequest.onreadystatechange = searchFor
       // Work with the response
       success: function (response) {
         console.log(response)
