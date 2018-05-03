@@ -3,63 +3,14 @@
 ### Objectives
 *After this lesson, students will be able to:*
 
-- Differentiate between the internet and the world wide web
-- Define HTTP and its role
-- Explain the client-server relationship and the role of each in delivering web content
-- List common reasons JavaScript is used for server applications
-- Compare and contrast JavaScript in the browser vs JS on the server
 - Use `npm` to manage project dependencies
 - Create a simple web server using Express
 - Learn to use named parameters on a web page
 
 ## Opening (15/15)
 
-Let's start out by listing the things we've covered in the first 2 units of JSD.
-
-- First we learned about JS as a language, regardless of context in a browser, server or otherwise.
-- Next, we moved into JS on the client side, where it was born, and learned how we can use JS to manipulate web pages in response to user events
-- Now, we will learn how how we can use both client side and server side JavaScript to create a traditional full stack web application
-- Next unit, we will learn how we can adapt the paradigm we'll be teaching in this unit to make even more responsive, more dynamic single page web applications
-
 The class introduces Node and Express. Node is a JavaScript runtime environment (ie a program for running JavaScript code) for running JS in a server environment.
 
-
-<details>
-  <summary>What is a web framework?</summary>
-  <p style="color:grey;">
-  A web framework is a toolset for listening for an responding to web requests.
-  </p>  
-</details>
-
-
-<details>
-  <summary>
-  What is meant by opinionated/unopinionated in regards to frameworks?
-  </summary>
-  <p style="color:grey;">
-  The first web framework we used in Ruby was Sinatra; through just the line `require 'sinatra'`, we got access to a bunch of methods we could use to listen for particular requests. Next we used Rails which served the same purpose as Sinatra but made lots of inferences for us and provided extremely powerful helper tools. Frameworks that leverage inference and "convention over configuration" are called opinionated. Rails is extremely opinionated. Sinatra is not.  
-  </p>
-  <p style="color:grey;">
-  The Express project prides itself in being unopinionated. Just like we did with Sinatra, we have a lot of freedom in how we structure our application, its routes, resources, and assets (folders/files, how to load different files, managing dependencies, etc). This also means we need to do more ourselves.
-  </p>
-</details>
-
-
-## Full Stack JavaScript
-Everything we cover from here on is an extension of what we've already learned.
-We will use Node and Express to do the exact same thing we have done with Ruby and Sinatra/Rails.
-
-Writing JavaScript for the server has become very popular because it allows you to write all JavaScript.
-The MEAN stack (MongoDB, Express, Angular, Node) is a very popular all JS tech stack.
-
-The JavaScript we write to be executed by Node is still JavaScript, but the environment is different. We've been writing JavaScript to be run by a browser on a client machine. Now, we will write JavaScript to be run by Node on our server as we had done with Ruby.
-
-<details>
-  <summary>
-  What is the global object in the browser environment?
-  </summary>
-
-  > `window`. In node, the global object is `process`
 
 </details>
 
@@ -69,8 +20,7 @@ Let's jump right into creating a simple "Hello World!" Express application.
 
 In the terminal:
 ```bash
-$ mkdir hello-express
-$ cd hello-express
+$ cd exercises/99bottles-handlebars
 $ npm init
 ```
 
@@ -136,8 +86,6 @@ We've required the Express module which is a function that returns an instance o
 We invoke the module instantiating a constant `app` which holds all the methods and state we use to write and run our web app.
 The listen method starts the app and specifies the port where the app will listen for requests.
 
-> How is this similar to Sinatara? How is it different?
-
 When we run the application(`$ node index.js`) we can see in the terminal `app listening on port 4000` The process continues to run occupying the shell process until we hit `ctrl + c` just like pervious servers we have run. Let's try going to the local host of that port number. In the browser enter
 `http://localhost:4000`.
 
@@ -148,8 +96,6 @@ Cannot GET /
 ```
 
 What does this mean?
-What does the equivalent error look like in Sinatra?
-How about Rails?
 
 We've told the server what port to listen on, but we didn't specify any route handlers.
 The absence of a `get` handler for the `"/"` route is our problem here.
@@ -170,19 +116,13 @@ Cannot GET /
 
 No change.
 We added a route and handled it by sending the string `"hello world"` as the response.
-The running server however has not been changed until we restart the server (also remeniscent of Sinatra) and refresh the page in the browser. And we see:
+The running server however has not been changed until we restart the server and refresh the page in the browser. And we see:
 
 `Hello World`
 
 Constantly needing to restart the server will get very tedious.
 
-Q. What was the fix for that in Sinatra?
----
-
-> sinatra/reloader from the sinatra-contrib repo would restart the server any time that files changed
-
-The node module `nodemon` (a portmanteau of "node monitor") performs a similar task to `sinatra/reloader` but goes about it slightly differently.
-Instead of requiring `nodemon` in our code, we use `nodemon` from the command line (demonstrated after install).
+The node module `nodemon` (a portmanteau of "node monitor") can help. `nodemon` will watch our javascript files and automatically restart our node server whenever a file is changed. We use `nodemon` from the command line (demonstrated after install)
 
 In the terminal:
 
@@ -202,10 +142,16 @@ $ nodemon index.js
 
 ## Params in URL in Express (5/50)
 
-Let's take a second to compare this `GET '/'` handler in express to [how we would write a handler in Sinatra](https://github.com/ga-wdi-exercises/emergency_compliment/blob/solution/server.rb#L14-L19).
+In express, we can pass parameters to our server through the URL. This is a pretty common practice in web development. For example, when you go to a URL like "myblog.com/post/1", the "1" in the URL represents the id of a post. We send the ID of the post to our server via the URL. The route in our server might look like this:
 
-Remember parameters in our ruby frameworks? It's very similar in JS.
-Let's update `index.js` to include:
+```js
+app.get("/post/:id", (req, res) => {
+  const postId = req.params.id
+  Post.get(postId)
+});
+```
+
+In our own `index.js`, lets update the `GET` route so that it can accept a parameter called `name`.
 
 ```js
 app.get("/:name", (req, res) => {
@@ -213,20 +159,22 @@ app.get("/:name", (req, res) => {
 });
 ```
 
-## Break(10/60)
+Now, in our browser we can go to `http://localhost:4000/JustinBieber/` and see what happens!
 
-## You do: 99 Bottle of Beer(20/80)
-The readme can be found [here](https://github.com/ga-wdi-exercises/99_bottles_express)
 
-## Views (20/100)
+<a name = "lab1"></a>
+## Express Independent Practice (30 mins)
 
-Let's leverage our [solution to 99 Bottles of
-Beer](https://github.com/ga-dc/99_bottles_express/tree/solution) to learn about views.
+Open the [index.js](exercises/99bottles/index.js) file.
 
-Handlebars is a JavaScript module for templeting.
-Handlebars templates are very simlar to the erb templates we used in Sinatra and Rails letting us write code to augment our HTML.
+- Create an express application that provides a route that accepts a `numBottlesOfBeer` parameter
+- The route should returns a string that consists of the correct line from the song and a link to the next line. 
+---
 
-Install Handlebars (`hbs`) as a project dependency:
+
+## Working With Views
+
+We're going to be using handlebars again as a view template enginge. First, lets install Handlebars (`hbs`) as a project dependency:
 
 ```bash
 $ npm install --save hbs
@@ -287,7 +235,9 @@ The only problem is our view is empty! Let's go ahead and change that now. In
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
   </head>
   <body>
-   {{{body}}}
+    <div class="main">
+      {{{body}}}
+    </div>
   </body>
 </html>
 ```
@@ -298,7 +248,14 @@ This is also a great time to note how we serve static assets. Notice we linked a
 stylesheet in our layout file.
 
 In our `index.js`, let's also add:
- `app.use(express.static(__dirname + '/public'))`
+
+```javascript
+ app.use(
+  express.static(
+    path.join(__dirname, '/public')
+  )
+)
+ ```
 
 This allows us to utilize files in that folder in the layout.
 
@@ -310,12 +267,17 @@ Finally we should update our index view to reflect the same strings we had
 before. In `views/index.hbs`:
 
 ```html
-{{bottles}} bottles of beer on the wall.
-{{#if next}}
-  <a href='/{{next}}'>Take One Down, Pass it Around</a>
-{{else}}
-  <a href='/'>Start Over</a>
-{{/if}}
+<div class="container">
+  <p class="bottle-text">
+    {{bottles}} bottles of beer on the wall.
+  </p>
+
+  {{#if next}}
+    <a class="button" href='/{{next}}?player={{player_name}}'>Take One Down, Pass it Around</a>
+  {{else}}
+    <a class="button" href='/'>Start Over</a>
+  {{/if}}
+</div>
 ```
 
 > This syntax for the conditional statement is a [built-in helper from Handlebars](http://handlebarsjs.com/block_helpers.html).
@@ -345,7 +307,6 @@ This is undesirable because the larger an app is and the more global scope is us
 
 > In the browser, the _only_ way for different scripts to interact with one another is by way of the global namespace.
 
-> AngularJS kept track of modules internally and we wrapped all of our code in IIFEs so that the extend of polution of the global namespace was just the `angular` object.
 
 </details>
 
@@ -364,7 +325,7 @@ module.exports = {
   }
 }
 ```
-To use `require(...)` to import a local file rather than a node module (like `require('express')`), the string `require` is called with needs to be a path.
+We use `require(...)` to import a local file rather than a node module (like `require('express')`), the string `require` is called with needs to be a path.
 
 Since the argument to require needs to be recognizable as a path, the path to a file in the same directory needs to be prefaced with a `./`.
 
@@ -380,33 +341,32 @@ calculator.add(3,4)
 A practical example would be to import our route handlers from a seperate file:
 
 ```js
-const bottles = require("./controllers/bottles.js");
-app.get("/:numberOfBottles?", bottles.index );
+const bottlesController = require('./controllers/bottles.js')
+app.get('/:numberOfBottles?', bottlesController.getBottles)
 ```
 
-We could create a routes module that defines our index route. Let's create a `controllers/bottles.js` file with the following contents:
+We create a controller for our bottles. The controller acts as a bridge between the server and the client, or the Model and the View. Let's create a `controllers/bottles.js` file with the following contents:
 
 ```js
-module.exports = {
-  index( req, res ){
-    let bottles = req.params.numberOfBottles || 99;
-    let next = bottles - 1;
-    res.render('index',{
+const BottlesController = {
+  getBottles: function (req, res) {
+    let bottles = req.params.numberOfBottles || 99
+    let next = bottles - 1
+    res.render('index', {
       bottles,
       next
-    });
+    })
   }
-};
+}
+
+module.exports = BottlesController
+
 ```
 
 > We see the exact same behavior; just moved some logic into a different file.
-What advantages does that bring to us with regard to separation of concerns in MVC? (st-wg)
+What advantages does that bring to us with regard to separation of concerns in MVC?
 
-If we had the 7 RESTful routes that Rails provides for each model, you can start to see how keeping everything in the `index.js` can begin to become unwieldy.
-
-## Break (10/130)
-
-## HTML Forms: Bodyparser & Post requests (20/150)
+## HTML Forms: Bodyparser & Post requests
 
 Let's personalize our 99 bottles app.  We'll make a welcome page with a form asking for user's name.
 
@@ -421,13 +381,14 @@ app.get("/", (req, res) => {
 
 ```html
 <!-- views/welcome.hbs -->
-<h1>Welcome to 99 Bottles</h1>
-<form action="/" method="post">
-  <label for="player_name">Please enter your name</label>
-  <input id="player_name" type="text" name="player_name">
-  <input type="submit">
-</form>
-
+<div class="container">
+  <h1 class="heading">Welcome to 99 Bottles</h1>
+  <form class="form" action="/" method="post">
+    <label for="player_name">Please enter your name</label>
+    <input class="input __text" id="player_name" type="text" name="player_name">
+    <input class="input __submit button" type="submit">
+  </form>
+</div>
 ```
 
 Submit a name:
@@ -441,9 +402,27 @@ Cannot POST /
 > In `index.js`...
 
 ```js
-app.post("/", (req, res) => {
-  res.send("Hello there!")
-})
+app.post('/', bottlesController.welcomePlayer)
+```
+
+Now lets update the `bottlesController`.
+> In `controllers/bottles.js
+
+```js
+const BottlesController = {
+  getBottles: function (req, res) {
+    let bottles = req.params.numberOfBottles || 99
+    let next = bottles - 1
+    res.render('index', {
+      player_name: req.query.player,
+      bottles,
+      next
+    })
+  },
+  welcomePlayer: function (req, res) {
+    res.send("hello")
+  }
+}
 ```
 
 Well it works, but it's not super valuable, we're not even getting our
@@ -451,15 +430,15 @@ parameter.
 Let's greet the name submitted in the form:
 
 ```js
-app.post("/", (req, res) => {
+welcomePlayer: function (req, res) {
   res.send("Hello " + req.params.player_name)
-})
+}
 ```
 
 hello undefined... oh man.. and just to be sure let's `console.log(req.params)`.
 It's an empty object!
 
-Our html form information is not in `req.params`. Express is not handling information posted from an html form.  We need to install middleware in order to get form data and JSON data in a POST request for Express applications. Rails and Sinatra already include the middleware to handle this (RACK). By default Express does not, so we need to install it manually.
+Our html form information is not in `req.params`. Express is not handling information posted from an html form.  We need to install middleware in order to get form data and JSON data in a POST request for Express applications. 
 
 Middleware is code that runs in between receiving the request and responding. Body-parser used to be included to Express, but they took it out.
 
@@ -496,42 +475,28 @@ If you want to get at values in a query string (ie url after a `?`), these value
 So we change the final post request in index.js to:
 
 ```js
-app.post("/", (req, res) => {
+welcomePlayer: function (req, res) {
   res.send(`hello ${req.body.player_name}`)
-})
+}
 ```
 
 And finally, we'll integrate it the name into our index template:
 
-Update index.js:
+Update controllers/bottles.js:
 
 ```js
-app.post("/", (req, res) => {
-  res.render("index", {
-    player_name: req.body.player_name,
-    bottles: 99,
-    next: 98
-  });
-});
+  welcomePlayer: function (req, res) {
+    res.render('index', {
+      player_name: req.body.player_name,
+      bottles: 99,
+      next: 98
+    })
+  }
 ```
 
 And to our view:
 ```html
-{{#if player_name}}
-  Hey {{player_name}}, there are
-{{/if}}
+  {{#if player_name}}
+    <h1 class="player-name">Greetings {{player_name}}</h1>
+  {{/if}}
 ```
-
-:tada:
-
-## You do - Ultimate Compliment (Homework)
-
-* [Ultimate Compliment](https://github.com/ga-dc/compliment-express)
-  * You might want to look at the [Sinatra Version Solution](https://github.com/ga-dc/emergency_compliment/tree/solution)
-
-## Sample Quiz Questions
-- What is `npm`?
-
-- Write a get request using any path as you would in an Express application.
-
-- How does `module.exports` help us with separation of concerns?
