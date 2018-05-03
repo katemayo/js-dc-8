@@ -34,7 +34,6 @@
     // error is with replacewith
     $('#resultGif').replaceWith(`<div><iframe src="${chosenGif}" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>`)
   }
-
   function updateUIError () {
     alert('There was an error getting weather data :(')
   }
