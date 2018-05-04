@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+body{
+  background-color: var(--orange);
+  font-family: 'Roboto Slab', serif;
+}
+
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  padding-top: 3rem;
+}
+
+:root{
+  --orange: #de5310;
+  --purple: #a537de;
+}
+
+.heading{
+  font-size: 2rem;
+  color: var(--orange);
+}
+
+.bottle-text{
+  font-size: 1.5rem;
+}
+
+.container{
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0px 5px 20px -3px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.form label{
+  font-size: .8rem;
+  margin-bottom: .25rem;
+}
+
+.input{
+  margin-bottom: 1rem;
+  appearance: none;
+  border-radius: 0;
+}
+
+.input.__text{
+  padding: .5rem;
+  border-width: 0 0 1px 0;
+  background-color: #eee;
+  border-bottom: 1px solid var(--orange);
+  width: 80%;
+}
+
+.button{
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  padding: .5rem 1.5rem;
+  background-color: var(--orange);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover{
+  background-color: var(--purple);
+}
