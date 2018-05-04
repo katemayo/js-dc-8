@@ -1,0 +1,15 @@
+<div class="container">
+  {{#if player_name}}
+    <h1 class="player-name">Greetings {{player_name}}</h1>
+  {{/if}}
+
+  <p class="bottle-text">
+    {{bottles}} bottles of beer on the wall.
+  </p>
+
+  {{#if next}}
+    <a class="button" href='/{{next}}?player={{player_name}}'>Take One Down, Pass it Around</a>
+  {{else}}
+    <a class="button" href='/'>Start Over</a>
+  {{/if}}
+</div>
