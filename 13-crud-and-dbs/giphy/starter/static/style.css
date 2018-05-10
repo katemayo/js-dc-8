@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+:root{
+  --light-grey: #efefef;
+  --orange: #f96202;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  background: var(--light-grey);
+  font-family: 'Open Sans', sans-serif;
+}
+
+.page{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.search-form{
+  display: flex;
+  width: 100%;
+  max-width: 350px;
+  padding: 1rem;
+  background-color: white;
+  font-size: 1.1rem;
+}
+
+.search-form input.__text{
+  flex: 1;
+}
+
+.input{
+  border: 0;
+}
+
+.input.__text{
+  border: 0;
+  background-color: var(--light-grey);
+  padding: .5rem;
+}
+
+.input.__submit{
+  background: var(--orange);
+  color: white;
+  padding: .5rem 1rem;
+}
+
+
+.gif-list{
+  display: flex;
+  flex-flow: column;
+}
+
+.gif{
+  
+}
+
+.gif img{
+  max-width: 100%;
+}
+
+.search-list{
+  list-style: none;
+  background: white;
+  padding: .5rem;
+}
+
+.search-list li{
+  background-color: var(--light-grey);
+  padding: .5rem;
+  font-size: .8rem;
+}
+
+.search-list li:not(:last-of-type){
+  margin-bottom: .5rem;
+}

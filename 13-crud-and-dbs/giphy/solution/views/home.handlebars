@@ -1,0 +1,11 @@
+<div class="page home">
+  <ul class="search-list" id="search-results">
+    {{#each searchResults}}
+      <li class="js-search-result">
+        <a href="/{{text}}">
+          {{text}} - {{date}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</div>
