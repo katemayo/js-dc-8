@@ -1,0 +1,16 @@
+<div class="page home">
+  <form action="/" method="post" id="search-form" class="search-form form" >
+    <input class="input __text" type="text" id="search" name="search"/>
+    <input class="input __submit" type="submit" value="search"/>
+  </form>
+
+  <ul class="search-list" id="search-results">
+    {{#each searchResults}}
+      <li class="js-search-result">
+        <a href="/{{text}}">
+          {{text}} - {{date}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</div>
