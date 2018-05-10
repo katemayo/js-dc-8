@@ -8,13 +8,10 @@ const url = `${endpoint}api_key=${key}&q=${search}`
 // a valid request endpoint looks like this:
 // https://api.giphy.com/v1/gifs/search?api_key=XvPOxKdQreOgBQ9YKlivmoMHS3aQGJnH&q=fun
 
-fetch(url)
-  .then(function (theRequest) {
-    return theRequest.json()
-  })
-  .then(function (myJson) {
-    console.log(myJson)
-  })
+// Create instance of XMLHTTPRequest
+let theRequest = new XMLHttpRequest()
+// Set a custom function to handle the request
+theRequest.onreadystatechange = searchFor
 
 function searchFor () {
   if (theRequest.readyState === XMLHttpRequest.DONE) {

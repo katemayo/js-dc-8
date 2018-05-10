@@ -12,15 +12,17 @@
 
       // Work with the response
       success: function (theRequest) {
-        console.log('success')
+        // console.log('success')
         let allGifs = theRequest.data
         // let allGifs = JSON.parse(theRequest.responseText)['data']
-        let whichGif = Math.ceil(Math.random() * allGifs.length)
-        let chosenGif = allGifs[whichGif].embed_url
+        let pickOne = Math.ceil(Math.random() * allGifs.length)
+        let whichGif = allGifs[pickOne]
+        let chosenGif = whichGif.embed_url
 
-        console.log(chosenGif)
+        // console.log(chosenGif)
         // console.log(theRequest)
         updateUISuccess(chosenGif)
+        console.log('running agian')
       },
 
       error: function () {
@@ -30,11 +32,13 @@
   }
 
   function updateUISuccess (chosenGif) {
-    console.log(chosenGif)
+    let newResultGif = '<iframe src="' + chosenGif + `" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`
     // error is with replacewith
-    $('#resultGif').replaceWith(`<div><iframe src="${chosenGif}" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>`)
+    console.log(newResultGif)
+
+    $('#resultGif').replaceWith(newResultGif)
   }
   function updateUIError () {
-    alert('There was an error getting weather data :(')
+    alert('There was an error getting data :(')
   }
 }())

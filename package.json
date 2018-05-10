@@ -27,5 +27,13 @@
     "plugins": [
       "jsdom-quokka-plugin"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katemayo/js-dc-8.git"
+  },
+  "bugs": {
+    "url": "https://github.com/katemayo/js-dc-8/issues"
+  },
+  "homepage": "https://github.com/katemayo/js-dc-8#readme"
 }
