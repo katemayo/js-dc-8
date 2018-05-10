@@ -316,8 +316,8 @@ Great! Now, when a user clicks on the one of the search results, we want to call
 
 app.get('/:search', (req, res) => {
   const searchText = req.params.search
-  api.searchGifs(searchText).then(r => {
-    const data = JSON.parse(r).data
+  api.searchGifs(searchText).then(gifs => {
+    const data = JSON.parse(gifs).data
     res.render('gif-list', {gifs: data})
   })
 })
@@ -338,7 +338,3 @@ app.post('/', (req, res) => {
 ```
 
 We create a new `search` route that handles hitting the Giphy API search. Its a GET route. The browser goes to the url and makes a GET request. We moved the logic from the POST request on the root route into this route. And the POST request route now redirects to the new route. Now, when a user submits the form, our Database gets updates and we just redirect to the new URL. Our server handles the new request by calling the Giphy API and rendering the correct view.
-
-
-## To Do App
-__Goal: have students build their own simple express app with a databse. If there's time after the Guestbook exercise, this can be started in class, otherwise it becomes homework.__
