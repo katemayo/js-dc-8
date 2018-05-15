@@ -1,5 +1,5 @@
 const key = 'XvPOxKdQreOgBQ9YKlivmoMHS3aQGJnH'
-const view = require('./view.js')
+// const view = require('./view.js')
 const http = require('http')
 
 function searchGifs (searchText, res) {
@@ -13,8 +13,8 @@ function searchGifs (searchText, res) {
     })
 
     resp.on('end', () => {
-      const html = view.renderGifs(JSON.parse(data))
-      res.send(html)
+      // const html = view.renderGifs(JSON.parse(data))
+      // res.send(html)
     })
   })
 }
