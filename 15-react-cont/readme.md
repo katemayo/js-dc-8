@@ -29,9 +29,18 @@ In our `server` directory, we'll need to modify the `server.js` file to remove a
 // server.js
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const api = require('./api.js')
-const db = require('./db.js')
 const app = express()
+
+// we need to allow Cross Domain requests. Our client is at localhost:3000 but our server is
+// localhost:4000. This is technicaly a 'cross-domain' reuqest. By defualt, these aren't allowed.
+// We can whitelist certain origins and allow them to acess our API.
+const corsOptions = {
+  origin: 'http://localhost:3000'
+}
+
+app.use(cors(corsOptions))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -48,8 +57,8 @@ app.get('/:search', (req, res) => {
 app.listen(4000, () => {
   console.log('listening on port 4000')
 })
-```
 
+```
 We've removed all the handlebars stuff and modified the `GET` request to `/:search`. Also, notice that instead of using `res.render()` to render a view, we are using `res.send(data)` . That's because our server is no longer responsible for rendering the view. Our server simply prodives the data it is requested, just like an API does!
 
 Sweet, now from our `server` directory we can run `rpm run start` and our server will be listening on port 4000. 
