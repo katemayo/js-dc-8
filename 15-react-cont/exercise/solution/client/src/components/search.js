@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
+import {searchGifs} from '../api.js'
 import './search.css'
 
 class Search extends Component {
 
   constructor () {
-    // make call to parent class' (Component) constructor
     super()
-    // define an initial state
     this.state = {
       searchText: null
     }
@@ -15,7 +14,9 @@ class Search extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const searchText = this.state.searchText
-    
+    searchGifs(searchText).then(gifs => {
+      this.props.updateParentState(gifs)
+    })
   }
 
   handleChange = (e) => {
