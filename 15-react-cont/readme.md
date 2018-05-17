@@ -1,26 +1,56 @@
-# Intro to React.js
-
----
-
-![react-logo](./images/react-white-logo.png)
-
----
+# React.js Cont
 
 ## Learning Objectives
 
-* Explain what ReactJS is and where it fits in our applications' stack.
-* Explain the component model of web development.
-* Describe what the 'virtual DOM' is and why it is so important to React's performance
-* Explain the role of props and state and the differences between each
-* Describe the role of JSX in a React app
-* Create and render React components in the browser.
-* Pass in data to a React component via `props`.
-* Nest React components.
-* Modify the `state` of a React component through events.
+* Understand the relationship between a React application and an express server
+* Using Axios, create an API from our existing Giphy Search express server
+* In React, make requests to our new API and display the results
 
 ---
 
-## Framing (5 minutes / 0:05)
+## Understand the relationship between a React application and an express server
+
+In the last class, we used `create-react-app` to generate a new directory for us that contained our React application. When we run `npm run start` from the new directory, `create-react-app` starts up a local development server for us and opens a web browser to localhost:3000. This development server is listening for changes in our React code - when it detects a change it re-bundles our code and delivers it to the web browser automatically and the page updates with our changes. This is a really nice development feature!
+
+In our handlebars-express example, we created our own express server that handled rendering HTML for us. Our `server.js` file used `handlebars-express` as a templating engine. When requests were made to our server from a browser, the server would get data from the Giphy API and provide it to a handlebars template the rendered HTML as a string and then sent that back to our browsers to render. 
+
+With our React application, we need a way of requesting the data from Giphy and displaying it. We can either make the Giphy API request directly from our React application (so the request is made from the client), or we can make a call to our own server (via an API) and have our own server make the API call to Giphy. Its good practice to separate out the business logic (which is getting the data from Giphy) from the front-end, which we can accomplish by making our own API.
+
+To be clear, our React application will be making an HTTP request to our express server which in turn will make an HTTP request to Giphy to get the data. The downside of this is that it requires an extra HTTP request, but the upside is that we can apply different front-end applications to our data layer make it more reuseable. 
+
+We're going to now be managing two different applications (our React app and our API app). For class purposes, we're separating these into `client` and `server` directories. In a production environment, these applications would really be their own git repositories with their own version numbers.
+
+
+## Creating The API
+
+In our `server` directory, we'll need to modify the `server.js` file to remove all the handlebars stuff. We'll also need to make a `POST` handler for our search endpoint. Lets start by cleaning up the file by removing what we don't need. 
+
+```js
+// server.js
+const express = require('express')
+const bodyParser = require('body-parser')
+const api = require('./api.js')
+const db = require('./db.js')
+const app = express()
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('static'))
+
+app.post('/:search', (req, res) => {
+  const searchText = req.params.search
+  return api.searchGifs(searchText).then(r => {
+    const data = JSON.parse(r).data
+    return data
+  })
+})
+
+app.listen(4000, () => {
+  console.log('listening on port 4000')
+})
+```
+
+We've removed all the handlebars stuff and turned the `GET` request to `/:search` into a `POST` request. Why? 
 
 ### What is ReactJS?
 
