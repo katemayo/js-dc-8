@@ -292,53 +292,57 @@ Now, when we submit the form, we notice that the URL changes. But we don't get a
 
 If we think about our `searchView` component, the component calls Giphy's API only when it is mounted. When we submit the form and update the URL, our `searchView` component updates, because it's props have changed (the URL changes which triggers the props to be updated), but we aren't doing anything `whenComponentUpdates`. Lets change that.
 
-First, we'll create a new function that handles just the searching and updating state part.
-
 ```js
 // client/src/views/searchView.js
+import React, {Component} from 'react'
+import GifList from '../components/gifList.js'
+import {searchGifs} from '../api.js'
 
-...
+class SearchView extends Component {
 
-constructor () {
-  super () 
-  this.state = {
-    results: null
+  constructor () {
+    super () 
+    this.state = {
+      results: null
+    }
+  }
+  
+  // move the functionality from `componentDidMount` to its own function so it could be called
+  // from `componentDidMount` and `componentWillReceiveProps`
+  getGifsAndUpdateState = (search) => {
+    searchGifs(search).then(gifs => {
+      // update state when the results are returned. This will trigger the component to be 
+      // re-rendered.
+      this.setState({
+        results: gifs
+      })
+    })
+  }
+
+  // ComponentDidMount is a built in life-cycle method. A component mounts only once. This
+  // function will get called when the component initially mounts. Any updates to the component
+  // will cause it to re-render, but it wont be re-mounted. 
+  componentDidMount(){
+    this.getGifsAndUpdateState(this.props.match.params.search)
+  }
+
+  // ComponentWillReceiveProps is another lifecycle method. This will receive new props every
+  // time the URL is updated. When the URL is updated we want to fetch new gifs and display them. 
+  componentWillReceiveProps (nextProps) {
+    this.getGifsAndUpdateState(nextProps.match.params.search)
+  }
+
+  render () {
+    return (
+      <div className="page">
+        {this.state.results && 
+          <GifList gifs={this.state.results}/>
+        }
+      </div>
+    )
   }
 }
-  
-getGifsAndUpdateState = () => {
-  const {search} = this.props.match.params
-  searchGifs(search).then(gifs => {
-    // update state when the results are returned. This will trigger the component to be 
-    // re-rendered.
-    this.setState({
-      results: gifs
-    })
-  })
-}
 
-...
+export default SearchView
 
 ```
-
-
-
-
-## Closing
-
-### What's Next?
-
-* [Router](https://github.com/reactjs/react-router)
-* [API/Axios](https://www.npmjs.com/package/axios)
-* [Events](https://facebook.github.io/react/tips/dom-event-listeners.html)
-* [Forms](https://facebook.github.io/react/docs/forms.html)
-
----
-
-## Additional Reading
-
-* [Tyler McGinnis' React.js Program](http://www.reactjsprogram.com/)
-* [Raw React: No JSX, Webpack, ES6, etc.](http://jamesknelson.com/learn-raw-react-no-jsx-flux-es6-webpack/)
-* [Integrating React with Backbone](https://blog.engineyard.com/2015/integrating-react-with-backbone)
-* [React DC (Meetup)](http://www.meetup.com/React-DC/)
-* [React Tic-Tac-Toe (by Jesse Shawl)](https://github.com/jshawl/react-tic-tac-toe)

@@ -11,8 +11,7 @@ class SearchView extends Component {
     }
   }
   
-  getGifsAndUpdateState = () => {
-    const {search} = this.props.match.params
+  getGifsAndUpdateState = (search) => {
     searchGifs(search).then(gifs => {
       // update state when the results are returned. This will trigger the component to be 
       // re-rendered.
@@ -26,17 +25,15 @@ class SearchView extends Component {
   // function will get called when the component initially mounts. Any updates to the component
   // will cause it to re-render, but it wont be re-mounted. 
   componentDidMount(){
-    this.getGifsAndUpdateState()
+    this.getGifsAndUpdateState(this.props.match.params.search)
   }
 
-  // ComponentDidUpdate gets called whenever a component's props or state change. 
-  componentDidUpdate () {
-    // this.getGifsAndUpdateState()
+  componentWillReceiveProps (nextProps) {
+    this.getGifsAndUpdateState(nextProps.match.params.search)
   }
 
 
   render () {
-    console.log('search rendering')
     return (
       <div className="page">
         {this.state.results && 
