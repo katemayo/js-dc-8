@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import Search from './components/search.js'
 import GifList from './components/gifList.js'
