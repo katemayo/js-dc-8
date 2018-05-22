@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
-import {searchGifs} from '../api.js'
+
+// we import withRouter from 'react-router' so we can wrap the entire component in it
+import { withRouter } from 'react-router'
 import './search.css'
 
 class Search extends Component {
@@ -13,10 +15,11 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const searchText = this.state.searchText
-    searchGifs(searchText).then(gifs => {
-      this.props.updateParentState(gifs)
-    })
+
+    // instead of updating the state of our parent component, we simply redirect by
+    // pushing a new value into our Browser's history. `history` is attached to props
+    // because we used `wrapRouter`
+    this.props.history.push(`/${this.state.searchText}`)
   }
 
   handleChange = (e) => {
@@ -28,12 +31,12 @@ class Search extends Component {
   }
 
   render () {
-    // we have access to the prop that is passed in
     const hideHomeLink = this.props.hideHomeLink
     const buttonClass = this.props.buttonClass || 'normal'
 
     return (
       <div className="search">
+        
         {hideHomeLink ? null :
           <a className="home-link" href="/">Home</a>
         }
@@ -42,9 +45,12 @@ class Search extends Component {
           <input className="input __text" onChange={this.handleChange}/>
           <input className={`input __submit ${this.props.buttonClass}`} type="submit" value="search"/>
         </form>
+
       </div>
     )
   }
 }
 
-export default Search
+
+// notice instead of simply export Search, we wraped Search with `withRouter`
+export default withRouter(Search)

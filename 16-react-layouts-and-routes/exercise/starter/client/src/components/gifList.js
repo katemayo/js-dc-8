@@ -10,7 +10,7 @@ class GifList extends Component {
         <div className="gif-list">
           {gifs.map(gif => {
             return (
-              <Gif gif={gif}/>
+              <Gif gif={gif} key={gif.id}/>
             )
           })}
         </div>

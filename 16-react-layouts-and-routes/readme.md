@@ -2,296 +2,169 @@
 
 ## Learning Objectives
 
-* Understand the relationship between a React application and an express server
-* Using Axios, create an API from our existing Giphy Search express server
-* In React, make requests to our new API and display the results
+* Use 3rd party react component as loading indicator
+* Create and animate our own loading indicator
+* Discuss 
 
 ---
 
-## Understand the relationship between a React application and an express server
+## Using 3rd Party Components
 
-In the last class, we used `create-react-app` to generate a new directory for us that contained our React application. When we run `npm run start` from the new directory, `create-react-app` starts up a local development server for us and opens a web browser to localhost:3000. This development server is listening for changes in our React code - when it detects a change it re-bundles our code and delivers it to the web browser automatically and the page updates with our changes. This is a really nice development feature!
+Lets use a 3rd party component as a loading indictor when we first execute our search, so the user knows something is happening before the results are returned. First, lets take a look at [react-loading](https://www.npmjs.com/package/react-loading]). 
 
-In our handlebars-express example, we created our own express server that handled rendering HTML for us. Our `server.js` file used `handlebars-express` as a templating engine. When requests were made to our server from a browser, the server would get data from the Giphy API and provide it to a handlebars template the rendered HTML as a string and then sent that back to our browsers to render. 
-
-With our React application, we need a way of requesting the data from Giphy and displaying it. We can either make the Giphy API request directly from our React application (so the request is made from the client), or we can make a call to our own server (via an API) and have our own server make the API call to Giphy. Its good practice to separate out the business logic (which is getting the data from Giphy) from the front-end, which we can accomplish by making our own API.
-
-To be clear, our React application will be making an HTTP request to our express server which in turn will make an HTTP request to Giphy to get the data. The downside of this is that it requires an extra HTTP request, but the upside is that we can apply different front-end applications to our data layer make it more reuseable. 
-
-We're going to now be managing two different applications (our React app and our API app). For class purposes, we're separating these into `client` and `server` directories. In a production environment, these applications would really be their own git repositories with their own version numbers.
-
-
-## Creating The API
-
-In our `server` directory, we'll need to modify the `server.js` file to remove all the handlebars stuff. We'll also need to make a `GET` handler for our search endpoint. Lets start by cleaning up the file by removing what we don't need. 
-
-```js
-// server.js
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const api = require('./api.js')
-const app = express()
-
-// we need to allow Cross Domain requests. Our client is at localhost:3000 but our server is
-// localhost:4000. This is technicaly a 'cross-domain' reuqest. By defualt, these aren't allowed.
-// We can whitelist certain origins and allow them to acess our API.
-const corsOptions = {
-  origin: 'http://localhost:3000'
-}
-
-app.use(cors(corsOptions))
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static('static'))
-
-app.get('/:search', (req, res) => {
-  const searchText = req.params.search
-  return api.searchGifs(searchText).then(r => {
-    const data = JSON.parse(r).data
-    res.send(data)
-  })
-})
-
-app.listen(4000, () => {
-  console.log('listening on port 4000')
-})
+From our `client` directory, install the package.
 
 ```
-We've removed all the handlebars stuff and modified the `GET` request to `/:search`. Also, notice that instead of using `res.render()` to render a view, we are using `res.send(data)` . That's because our server is no longer responsible for rendering the view. Our server simply prodives the data it is requested, just like an API does!
-
-Sweet, now from our `server` directory we can run `rpm run start` and our server will be listening on port 4000. 
-
-## Consuming the API
-
-Now we're moving into client-side code inside of our React app. We need to create an reuseable way to call our new API. Lets create a new file called `api.js` in our `client` directory.
-
-In this file, we'll handle making all of the HTTP requests to our API (express server). Remember, our API server is listening on port 4000 and our development server is listening on port 3000. 
-
-We're going to use a library called [axios](https://github.com/axios/axios). Axios is a promise based HTTP client for the browser and node.js. Its pretty commonly used industry-wide.
-
-Lets install the dependency from our `client` directory.
-
-```
-$ npm install --save axios
+$ npm install -save react-loading 
 ```
 
-Now, lets create an `api.js` file in our `client/src` directory. 
-
-```js
-// client/src/api.js
-import axios from 'axios'
-
-const api = axios.create({
-  baseURL: 'http://localhost:4000'
-})
-
-function searchGifs (searchText) {
-  return api.get(`/${searchText}`).then(result => {
-    return result.data
-  })
-}
-
-export {api, searchGifs}
-```
-
-We import `axios` and create a new connection to our express server. We can now make HTTP requests to our express server easily! We create a `searchGifs` function that makes a get request to our enpoint and returns a promise. Now in our React component we can call searchGifs and render them!
-
-In our `search.js` component we can now call searchGifs when the form is submitted.
-
-First, we'll need to import `searchGifs` then we'll need to modify the `handleSubmit` function.
+Now, we can update our `search` component to include the `ReactLoading` component. We need to import the package:
 
 ```js
 // client/src/components/search.js
-
 import React, {Component} from 'react'
+
+// import the new Component
+import ReactLoading from 'react-loading'
+
+
 import {searchGifs} from '../api.js'
 import './search.css'
 
-class Search extends Component {
+...
 
-  constructor () {
-    super()
-    this.state = {
-      searchText: null,
-      gifs: [] // add gifs to default state 
-    }
+```
+
+In order to display the loading indicator at right time, we'll need to track when the search is loading. We can do that using the component's state. When the search is first initiated, we can set `this.state.loading` to true, and when the results are in, we set `this.state.loading` back to false.
+
+Let's update the constructor and give a default loading state of `false`.
+
+```js
+constructor () {
+  super()
+  this.state = {
+    searchText: null,
+    loading: false
   }
+}
+```
 
-  handleSubmit = (e) => {
+Next, we update the `handleSubmit` callback function to update state, accordingly.
+
+```js
+handleSubmit = (e) => {
     e.preventDefault()
     const searchText = this.state.searchText
 
-    // call our new api handler that we import from axios
+    // now we set loading to true until our results come back
+    this.setState({
+      loading: true
+    })
+
     searchGifs(searchText).then(gifs => {
-      // well update the state of our component with the result of our api
-      this.setState({
-        gifs: gifs
-      })
+      // our results are back! Lets set loading to false. We're 
+      // using a `setTimeout` here to artificially create a 1000ms
+      // delay in the response so we can see the lodaing indicator.
+      window.setTimeout(() => {
+        this.setState({
+          loading: false
+        })
+        this.props.updateParentState(gifs)
+      }, 1000)
     })
   }
-  ...
-}
-
-export default Search
-
 ```
 
-Great, our state will update when the result of the API comes back! This will cause our Search component to re-render. Now we need to display them. Lets update the `render` function of our Search component.
+Now, in the `render` function we'll use some conditional login to display the loading component.
 
 ```js
-// client/src/components/search.js
-
 render () {
-  const hideHomeLink = this.props.hideHomeLink
-  const buttonClass = this.props.buttonClass || 'normal'
-
-  return (
-    <div className="search">
-      {hideHomeLink ? null :
-        <a className="home-link" href="/">Home</a>
-      }
-
-      <form className="search-form form" onSubmit={this.handleSubmit}>
-        <input className="input __text" onChange={this.handleChange}/>
-        <input className={`input __submit ${this.props.buttonClass}`} type="submit" value="search"/>
-      </form>
-
-      <div className="gif-list">
-        {this.state.gifs.map(gif => {
-          return (
-            <div className="gif">
-              <img src={gif.images.fixed_height.url}/>
-              <div className="meta">
-                <div className="meta-item">
-                  Rating: {gif.rating}
-                </div>
-                <div className="meta-item">
-                  <a href={gif.url} target="_blank">link</a>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
-```
-
-After the `<form>` element we pretty much copy and paste in the markup from the `gif.handlebars` file in the express handlebars solution from several classes ago. 
-
-After saving and running a search it works! But the formatting is all wrong! That's because we're rendering the results inside the search component. Really, the list of gifs should be its own component - a sibling component to the Search component.
-
-This poses a problem - our Search component is the one that fetches the data, but the results of that data need to be passed to sibling component and React doesn't have a direct way of doing that. Instead, we can keep our application state in the parent `<App/>` component. But that poses a different problem - we need our Search component to modify the application state, but now state isn't being stored at the Search component level. We can pass a function into the Search component from the parent that will update the parents state from the child. Lets look at it in action. We'll need to update our `App.js` file to handle state and then to render a new component - GifList.
-
-## Creating GifList and Gif components
-
-Lets create some new componetns for our GifList and our Gif. First, create a file called `gif.js` in the `client/src/components` directory.
-
-```js
-// client/src/components/gif.js
-
-import React, {Component} from 'react'
-
-class Gif extends Component {
-  render () {
-    const gif = this.props.gif
+    // we have access to the prop that is passed in
+    const hideHomeLink = this.props.hideHomeLink
+    const buttonClass = this.props.buttonClass || 'normal'
 
     return (
-      <div className="gif">
-        <img src={gif.images.fixed_height.url}/>
-        <div className="meta">
-          <div className="meta-item">
-            Rating: {gif.rating}
+      <div className="search">
+        
+        {hideHomeLink ? null :
+          <a className="home-link" href="/">Home</a>
+        }
+
+        <form className="search-form form" onSubmit={this.handleSubmit}>
+          <input className="input __text" onChange={this.handleChange}/>
+          <input className={`input __submit ${this.props.buttonClass}`} type="submit" value="search"/>
+        </form>
+
+        {
+          this.state.loading &&
+          <div className="loading">
+            <ReactLoading type="bars" color="#f96202"/>
           </div>
-          <div className="meta-item">
-            <a href={gif.url} target="_blank">link</a>
-          </div>
-        </div>
+        }
+        
       </div>
     )
-  }
 }
-
-export default Gif
 ```
 
-This is basically copied (and removed) directly from the `Search` component. Notice how our `Gif` component accepts a prop called `gif`. The `GifList` component will pass the prop to this component. Lets create `GifList`.
 
-First, create a file called `gifList.js` in the `client/src/components` directory. 
+## Introduction to React Router
+
+[React Router](https://reacttraining.com/react-router/web/guides/philosophy) is a leading React library that handles routing in React applications. Routing is an important concept in web development. There are two types of `routes` - **static** and **dynamic**. 
+
+With **static** routing, you declare your routes as part of an applications initialization phase, before anything is rendered. We've seen static routing when using `express`. In express, we declare our routes before we tell our application to listen on a port. This method works particularly well for our API. 
+
+With **dynamic** routing, the routing takes place as your app is actually rendering. It's not part of a configuration step. With React Router, this means that literally everything is a React component. This is particularly beneficial when using React because it works very well with the ecosystem. Let's take a look. 
+
+First, lets install React Router in our `client` directory.
+
+```
+npm install --save react-router-dom
+```
+
+### BrowserRouter
+
+First, we'll need to update our `index.js` file to wrap our `App` component inside of `BrowserRouter`. `BrowserRouter` is a component that exposes HTML5 history API for updating your browser's URL history with the application.
 
 ```js
-// client/src/components/gifList.js
+// client/src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom'
+import registerServiceWorker from './registerServiceWorker';
 
-import React, {Component} from 'react'
-import Gif from './gif.js'
-
-class GifList extends Component {
-  render () {
-    const gifs = this.props.gifs
-
-    return (
-      <div className="page">
-        <div className="gif-list">
-          {gifs.map(gif => {
-            return (
-              <Gif gif={gif}/>
-            )
-          })}
-        </div>
-      </div>
-    )
-  }
-}
-
-export default GifList
-
+ReactDOM.render(
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>,
+  document.getElementById('root'));
+registerServiceWorker();
 ```
 
-
-## Updating Layout
-
-Lets revisit our `App.js` file. We're going to implement a contructor function so App.js can have some state. Next, we'll render the GifList.
+Next, in our `App.js` file, we'll update the render function to include a Route.
 
 ```js
 // client/src/App.js
 
-import React, { Component } from 'react';
-import Search from './components/search.js'
+import React, { Component } from 'react'
+import {Route} from 'react-router-dom'
+import SearchForm from './components/search.js'
+import SearchView from './views/searchView.js'
 import GifList from './components/gifList.js'
-import './App.css';
+import './App.css'
 
 class App extends Component {
-
-  constructor () {
-    super()
-    this.state = {
-      gifs: []
-    }
-  }
-
-  setGifs = (gifs) => {
-    this.setState({
-      gifs: gifs
-    })
-  }
-
   render() { 
     return (
       <div className="App">
-        <Search 
+        <SearchForm 
           hideHomeLink={true}
           buttonClass="__large"
-          updateParentState={this.setGifs}
         />
 
-        {this.state.gifs.length > 0 ? 
-          <GifList gifs={this.state.gifs}/> :
-          null
-        }  
-      }
+        <Route path="/:search" component={SearchView}/>
       </div>
     );
   }
@@ -300,20 +173,155 @@ class App extends Component {
 export default App;
 ```
 
-Great! We've created a `setGifs` function that will set the state of our `App` component. We'll pass this function into our `Search` component as props. The `Search` component will call `this.props.handleSubmit` which will then update the state of its parent component - the `App` component. Lets make the final changes to the `Search` component. We just need to update the `handleSubmit` 
+We're defining a route that tells our application to render the `SearchView` component whenever the route `/:search` is satisfied. React Router will attach the `search` parameter to the props of the rendered component. Now, we need to create our `SearchView` component.
+
+Lets create a new directory called `views` inside our `src` directory. Create a new file called `searchView.js` inside the `views` directory.
+
+```js
+// client/src/views/searchView.js
+
+import React, {Component} from 'react'
+import GifList from '../components/gifList.js'
+import {searchGifs} from '../api.js'
+
+class SearchView extends Component {
+
+  constructor () {
+    super () 
+    this.state = {
+      results: null
+    }
+  }
+
+  // ComponentDidMount is a built in life-cycle method. A component mounts only once. This
+  // function will get called when the component initially mounts. Any updates to the component
+  // will cause it to re-render, but it wont be re-mounted. 
+  componentDidMount(){
+    // the search parameter is attached as props via the `match` object, which is provided 
+    // by React Router.
+    const {search} = this.props.match.params
+    searchGifs(search).then(gifs => {
+      // update state when the results are returned. This will trigger the component to be 
+      // re-rendered.
+      this.setState({
+        results: gifs
+      })
+    })
+  }
+
+  render () {
+    return (
+      <div className="page">
+        {this.state.results && 
+          <GifList gifs={this.state.results}/>
+        }
+      </div>
+    )
+  }
+}
+
+export default SearchView
+```
+
+Now we can navigate to a URL like [http://localhost:3000/funny](http://localhost:3000/funny) and it will display our results for us. Try a different URL. It works! But now, our Search form doesn't. Currently the `search` component handles the form submission by calling a function that is passed into it from `App` that updates the state of `App`. We no longer need to do this, since we've moved to a route-based rendering solution. We just need to redirect the user to the new route when the form is submitted.
+
+In order to do this, though, we'll want to use React Router's `History` feature. The `search` component, though, isn't rendered by our Router - its in the main `App.js` file. This means it doesn't have access to any router features. Luckily, React Router has a `withRouter` function that allows us to wrap a component to provide us those features. 
 
 ```js
 // client/src/components/search.js
-  ...
+import React, {Component} from 'react'
+
+// we import withRouter from 'react-router' so we can wrap the entire component in it
+import { withRouter } from 'react-router'
+import './search.css'
+
+class Search extends Component {
+
+  constructor () {
+    super()
+    this.state = {
+      searchText: null
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
-    const searchText = this.state.searchText
-    searchGifs(searchText).then(gifs => {
-      this.props.updateParentState(gifs)
+
+    // instead of updating the state of our parent component, we simply redirect by
+    // pushing a new value into our Browser's history. `history` is attached to props
+    // because we used `wrapRouter`
+    this.props.history.push(`/${this.state.searchText}`)
+  }
+
+  handleChange = (e) => {
+    const val = e.target.value
+
+    this.setState({
+      searchText: val
     })
   }
-  ...
+
+  render () {
+    const hideHomeLink = this.props.hideHomeLink
+    const buttonClass = this.props.buttonClass || 'normal'
+
+    return (
+      <div className="search">
+        
+        {hideHomeLink ? null :
+          <a className="home-link" href="/">Home</a>
+        }
+
+        <form className="search-form form" onSubmit={this.handleSubmit}>
+          <input className="input __text" onChange={this.handleChange}/>
+          <input className={`input __submit ${this.props.buttonClass}`} type="submit" value="search"/>
+        </form>
+
+      </div>
+    )
+  }
+}
+
+
+// notice instead of simply export Search, we wraped Search with `withRouter`
+export default withRouter(Search)
+
 ```
+
+Now, when we submit the form, we notice that the URL changes. But we don't get any updates in the DOM. What gives?
+
+If we think about our `searchView` component, the component calls Giphy's API only when it is mounted. When we submit the form and update the URL, our `searchView` component updates, because it's props have changed (the URL changes which triggers the props to be updated), but we aren't doing anything `whenComponentUpdates`. Lets change that.
+
+First, we'll create a new function that handles just the searching and updating state part.
+
+```js
+// client/src/views/searchView.js
+
+...
+
+constructor () {
+  super () 
+  this.state = {
+    results: null
+  }
+}
+  
+getGifsAndUpdateState = () => {
+  const {search} = this.props.match.params
+  searchGifs(search).then(gifs => {
+    // update state when the results are returned. This will trigger the component to be 
+    // re-rendered.
+    this.setState({
+      results: gifs
+    })
+  })
+}
+
+...
+
+```
+
+
 
 
 ## Closing

@@ -1,37 +1,20 @@
-import React, { Component } from 'react';
-import Search from './components/search.js'
+import React, { Component } from 'react'
+import {Route} from 'react-router-dom'
+import SearchForm from './components/search.js'
+import SearchView from './views/searchView.js'
 import GifList from './components/gifList.js'
-import './App.css';
+import './App.css'
 
 class App extends Component {
-
-  constructor () {
-    super()
-    this.state = {
-      gifs: []
-    }
-  }
-
-  setGifs = (gifs) => {
-    this.setState({
-      gifs: gifs
-    })
-  }
-
   render() { 
     return (
       <div className="App">
-        <Search 
+        <SearchForm 
           hideHomeLink={true}
           buttonClass="__large"
-          updateParentState={this.setGifs}
         />
 
-        {this.state.gifs.length > 0 ? 
-          <GifList gifs={this.state.gifs}/> :
-          null
-        }  
-      }
+        <Route path="/:search" component={SearchView}/>
       </div>
     );
   }
