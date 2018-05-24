@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// client/src/components/gif.js
-=======
->>>>>>> be59d5677d14a4322e995673f521562194d1134c
-
 import React, {Component} from 'react'
 
 class Gif extends Component {

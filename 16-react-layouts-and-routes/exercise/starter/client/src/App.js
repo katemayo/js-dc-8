@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import Search from './components/search.js'
 import GifList from './components/gifList.js'
@@ -6,12 +5,9 @@ import './App.css';
 
 class App extends Component {
 
-  constructor () {
-    super()
-    this.state = {
+state = {
       gifs: []
     }
-  }
 
   setGifs = (gifs) => {
     this.setState({
