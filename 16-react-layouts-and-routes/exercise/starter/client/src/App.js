@@ -32,6 +32,6 @@ state = {
       </div>
     );
   }
-}
+} 
 
 export default App;
