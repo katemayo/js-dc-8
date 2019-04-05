@@ -1,8 +1,8 @@
+// this file defines the data that is stored in mlab
 const mongoose = require('mongoose')
 
-const searchSchema = mongoose.Schema({
-  text: String,
-  date: Date
+const Schema = mongoose.Schema({
+  url: String
 })
 
 mongoose.model('Search', searchSchema)

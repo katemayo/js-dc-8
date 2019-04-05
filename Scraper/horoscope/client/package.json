@@ -10,6 +10,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
+    "request": "^2.87.0",
     "request-promise": "^4.2.2"
   },
   "scripts": {
